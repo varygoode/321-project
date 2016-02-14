@@ -10,7 +10,7 @@ package hotelmanagement;
 //this comment was on branch rob-vary-test -rob
 //testing commit - push - merge
 
-//this is a test for branch finn
+//this is a test for branch -finn
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
