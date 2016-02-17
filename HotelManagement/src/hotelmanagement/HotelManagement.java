@@ -14,6 +14,8 @@ package hotelmanagement;
 //this is another test -finn
 //this is a test performed on a tuesday -finn
 
+//this a test for branch finn
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javafx.application.Platform;
