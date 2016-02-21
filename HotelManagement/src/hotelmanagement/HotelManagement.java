@@ -99,5 +99,5 @@ public class HotelManagement extends JApplet {
         root.getChildren().add(btn);
         fxContainer.setScene(new Scene(root));
     }
-    
+    //this is a comment
 }
