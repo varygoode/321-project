@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package hotelmanagement;
-import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -12,13 +12,17 @@ import java.util.Calendar;
  */
 public class Reservation {
     
+    private Date startDate;
+    private Date endDate;
     private int roomNumber;
     private double totalPrice;
     private boolean isPaid;
-    User reserver;
+    private User reserver;
     
     public Reservation()
     {
+        startDate = null;
+        endDate = null;
         roomNumber = 000;
         totalPrice = 0.00;
         isPaid = false;
@@ -27,6 +31,8 @@ public class Reservation {
     
     public Reservation(int room, double price, boolean payment, User user)
     {
+        startDate = null;
+        endDate = null;
         roomNumber = room;
         totalPrice = price;
         isPaid = payment;
@@ -36,6 +42,16 @@ public class Reservation {
     //===============================
     //  Mutators
     //===============================
+    public void setStartDate(Date start)
+    {
+        startDate = start;
+    }
+    
+    public void setRoomNumber(Date end)
+    {
+        endDate = end;
+    }
+    
     public void setRoomNumber(int room)
     {
         roomNumber = room;
@@ -59,6 +75,16 @@ public class Reservation {
     //===============================
     //  Accessors
     //===============================
+    public Date getStartDate()
+    {
+        return startDate;
+    }
+    
+    public Date getEndDate()
+    {
+        return endDate;
+    }
+    
     public int getRoomNumber()
     {
         return roomNumber;

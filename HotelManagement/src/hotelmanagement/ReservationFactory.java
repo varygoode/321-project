@@ -9,6 +9,15 @@ package hotelmanagement;
  *
  * @author timothy
  */
-public class ReservationFactory {
+public class ReservationFactory 
+{
+    public ReservationFactory()
+    {
+        
+    }
     
+    public Reservation createReservation()
+    {
+        return new Reservation();    
+    } 
 }

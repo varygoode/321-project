@@ -9,6 +9,15 @@ package hotelmanagement;
  *
  * @author timothy
  */
-public class RoomFactory {
+public class RoomFactory 
+{    
+    public RoomFactory()
+    {
+        
+    }
     
+    public Room createRoom()
+    {
+        return new Room();
+    }
 }

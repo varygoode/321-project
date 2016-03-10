@@ -16,8 +16,8 @@ public class UserFactory
         
     }
     
-    public void createUser()
+    public User createUser()
     {
-        User user = new User();
+        return new User();
     }
 }
