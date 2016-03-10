@@ -5,16 +5,6 @@
  */
 package hotelmanagement;
 
-//comment for testing -rob
-//comment for more testing because it's being annoying -rob
-//this comment was on branch rob-vary-test -rob
-//testing commit - push - merge
-
-//this is a test for branch -finn
-//this is another test -finn
-//this is a test performed on a tuesday -finn
-
-//this a test for branch finn
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -30,10 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-/**
- *
- * @author Rob
- */
+
 public class HotelManagement extends JApplet {
     
     private static final int JFXPANEL_WIDTH_INT = 300;
