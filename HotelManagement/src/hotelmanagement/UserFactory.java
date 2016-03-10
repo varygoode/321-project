@@ -9,6 +9,15 @@ package hotelmanagement;
  *
  * @author timothy
  */
-public class UserFactory {
+public class UserFactory 
+{
+    public UserFactory()
+    {
+        
+    }
     
+    public void createUser()
+    {
+        User user = new User();
+    }
 }
