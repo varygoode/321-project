@@ -11,13 +11,31 @@ package hotelmanagement;
  */
 public class ReservationFactory 
 {
-    public ReservationFactory()
+    static private ReservationFactory singletonFactory = new ReservationFactory();
+    private Reservation reservation = null;
+    
+    private ReservationFactory()
     {
-        
+        System.out.print("Construction not allowed.");
     }
     
-    public Reservation createReservation()
+    public static ReservationFactory getReservationFactory()
     {
-        return new Reservation();    
+        return singletonFactory;
+    }
+            
+    public Reservation getAReservation()
+    {
+        if (this.reservation == null) 
+        {
+            synchronized(this)
+            {
+                if(this.reservation == null)
+                {
+                    this.reservation = new Reservation();
+                }
+            }
+        }    
+        return this.reservation;
     } 
 }
