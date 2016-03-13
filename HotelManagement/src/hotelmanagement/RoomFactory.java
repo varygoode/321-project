@@ -5,19 +5,25 @@
  */
 package hotelmanagement;
 
-/**
- *
- * @author timothy
- */
-public class RoomFactory 
-{    
-    public RoomFactory()
-    {
-        
+
+public class RoomFactory {
+
+    static private RoomFactory roomFactory;
+
+    private Room room;
+
+    private RoomFactory() {
+        //private constructor - don't want the class
+        // to instantiated from other classes
     }
     
-    public Room createRoom()
-    {
-        return new Room();
+    public static RoomFactory getRoomFactory() {
+        return roomFactory;
     }
+
+    public void getMessage(){
+    
+        System.out.print("You made a room");
+    }
+
 }
