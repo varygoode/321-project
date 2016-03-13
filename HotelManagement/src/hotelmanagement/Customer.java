@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package hotelmanagement;
+import java.util.*;
 
 /**
  *
@@ -11,16 +12,33 @@ package hotelmanagement;
  */
 public class Customer extends User {
     
+    Reservation ResObj = new Reservation();
+    Ledger LedgObj = new Ledger();
+    ArrayList<Reservation> reserves = new ArrayList();
+  
     	
-	public void findReservation() 
+	public ArrayList<Reservation> findReservation(int ID) 
         {
-		
+	//Customer has already logged in and passed in the Array where reservation is stored
+        //and the ArrayList containing username and password
+                      
+        return ledger.search(reserves, params);
+            
 	}
 	
 	public void cancel() 
         {
-		
-		
+	/*
+        code to return to HMS
+        */
+				
 	}
     
-}
+        
+        public void Reservation()
+        {
+            
+            
+        }
+        }
+

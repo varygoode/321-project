@@ -6,7 +6,7 @@
 package hotelmanagement;
 
 import java.util.*;
-import java.util.Date;
+
 
 
 /**
@@ -16,17 +16,19 @@ import java.util.Date;
 public class User 
 {
 
-    String username;
-    String password;
-    String firstName;
-    String lastName;
-    int ID;
+  String    username = null;
+  String    password = null;
+  String    firstName = null;
+  String    lastName = null;
+  int       ID = 0;
     
     //create a new Ledger Object
     Ledger ledger = new Ledger();
     
     //create an ArrayList full of strings
-    ArrayList<String> params = new ArrayList();
+ArrayList<String> params = new ArrayList();
+
+ArrayList<User> results = ledger.search(params, params);
 
     
     public String getUsername() {
@@ -72,42 +74,30 @@ public class User
   
     //Login()function to authenticate credentials so user can proceed to
     //main menu
-    public void Login(){
-        //receive User Name
-        Scanner user = new Scanner(System.in);
-	System.out.print("Please, enter your User Name.");
-	String u = user.nextLine();
-       
-        //receive password
-        Scanner password = new Scanner(System.in);
-        System.out.print("Please, enter your password for authentication.");
-        String pw = password.nextLine();
-        
-        //Call Authenticate function and pass user name and password
-        Authenticate(u, pw);
-        
-                     
-    }//close Login()
-    
-    
     //Authenticate function allows user 3 tries to login
     
-    public void Authenticate(String name, String password)
+    public void Login(String name, String password)
     {   int x = 1;
         //allow user 3 tries to login
         for (int i = 0; i < 3; i++)
         {
-            while(x == 0)
+            while(x != 0)
                 x = password.compareTo(getPassword(name));
                 
             if(x == 0) {
                     System.out.println("Login Successful");
-                    //enter code here to take user to main menu
+                     /*code to return to main menu is placed here
+            
+            
+                    */
                 }
                     else
                     System.out.println("User name and password did not match. Try again. Error Code: " + x);
                     //User is taken back to Login() to reenter user name and password
-                Login();
+               
+            /* enter code here to return to main menu
+                    
+                    */
                     
         }//close for loop   
     
@@ -200,21 +190,25 @@ public class User
             //thank you message
             System.out.println("Thank you for Creating an Account");
                    
-            //enter code to return to main menu here
+            /*code to return to main menu is placed here
+            
+            
+            */
  
         }//end if
                 
-            else
+        else {
             //user entered something other than 1 or 2
                     
             System.out.println("You entered something other than 1 or 2.  Try again.");
             done = false;	//boolean remains false the while loop continues until 2 is entered.
+        }//end else
         
         }//end while loop
 	
-    }
+    }//end EditInformation() 
 				
-    }
+    }//end Class User
                        
     
 
