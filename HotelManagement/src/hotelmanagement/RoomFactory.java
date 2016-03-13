@@ -25,5 +25,16 @@ public class RoomFactory {
     
         System.out.print("You made a room");
     }
-
+    
+    public Room getARoom()
+    {
+        synchronized(this) 
+        {
+            if(this.room == null)
+            {
+                this.room = new Room();
+            }
+        } 
+          return this.room;
+    }
 }
