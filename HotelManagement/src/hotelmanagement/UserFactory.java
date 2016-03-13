@@ -16,7 +16,7 @@ public class UserFactory
     
     private UserFactory()
     {
-        System.out.print("Construction not allowed.");
+
     }
     
     public static UserFactory getUserFactory()
@@ -32,17 +32,25 @@ public class UserFactory
             {
                 if(this.user == null)
                 {
-                    if (this.user.getClass().equals(hotelmanagement.User.Customer.class))
+                    if (this.user.getClass().equals(hotelmanagement.Customer.class))
                     {
                         this.user = new Customer();
                     }
-                    else if (this.user.getClass().equals(hotelmanagement.User.Employee.class))
+                    else if (this.user.getClass().equals(hotelmanagement.Employee.class))
                     {
                         this.user = new Employee();
+                    }
+                    else
+                    {
+                        this.user = new User();
                     }
                 }
             }
         }    
         return this.user;
     } 
+    public void getMessage(){
+    
+        System.out.print("You made a user");
+    }
 }

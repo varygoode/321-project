@@ -16,7 +16,7 @@ public class ReservationFactory
     
     private ReservationFactory()
     {
-        System.out.print("Construction not allowed.");
+
     }
     
     public static ReservationFactory getReservationFactory()
@@ -24,7 +24,7 @@ public class ReservationFactory
         return singletonFactory;
     }
             
-    public Reservation getAReservation()
+    public Reservation getAReservation(int room, double price, boolean payment, User user)
     {
         if (this.reservation == null) 
         {
@@ -32,10 +32,14 @@ public class ReservationFactory
             {
                 if(this.reservation == null)
                 {
-                    this.reservation = new Reservation();
+                    this.reservation = new Reservation(room, price, payment, user);
                 }
             }
         }    
         return this.reservation;
     } 
+    public void getMessage(){
+    
+        System.out.print("You made a reservation.");
+    }
 }

@@ -8,9 +8,9 @@ package hotelmanagement;
 
 public class RoomFactory {
 
-    static private RoomFactory roomFactory;
+    static private RoomFactory roomFactory = new RoomFactory();
 
-    private Room room;
+    private Room room = null;
 
     private RoomFactory() {
         //private constructor - don't want the class
@@ -26,15 +26,18 @@ public class RoomFactory {
         System.out.print("You made a room");
     }
     
-    public Room getARoom()
+    public Room getARoom(String type, int number, String description, double rate)
     {
-        synchronized(this) 
+        if (this.room == null) 
         {
-            if(this.room == null)
+            synchronized(this) 
             {
-                this.room = new Room();
-            }
-        } 
-          return this.room;
+                if(this.room == null)
+                {
+                    this.room = new Room(type, number, description, rate);
+                }
+            } 
+        }
+        return this.room;
     }
 }

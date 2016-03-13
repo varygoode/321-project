@@ -4,29 +4,39 @@
 package hotelmanagement;
 
 
-
-
 public class HotelManagement{
-    
+        
+        public void initialize(){
+            
+            int room = 101;
+            double price = 30.95;
+            boolean payment = false;
+            User user = null;
+            
+            String ty = "queen";
+            int idx = 1;
+            String desc = "queen";
+            double rt = 50.99;
+            //===============================
+            //  Factories
+            //===============================
+            //obtain the factory - Reservation
+            ReservationFactory reservationFactory = ReservationFactory.getReservationFactory();
+            reservationFactory.getMessage();
+            Reservation testres = reservationFactory.getAReservation(room, price, payment, user);
+            System.out.print(testres.getRoomNumber());
+            
 
-    public static void main(String[] args) {
+            //obtain the factory - Room
+            RoomFactory roomFactory = RoomFactory.getRoomFactory();
+            roomFactory.getMessage();
+            Room testroom = roomFactory.getARoom(ty, idx, desc, rt);
+            System.out.print(testroom.getDescription());
+
+            //obtain the factory - User
+            UserFactory userFactory = UserFactory.getUserFactory();
+            userFactory.getMessage();
+            //userFactory.getAUser();
         
-        
-    //===============================
-    //  Factories
-    //===============================
-        //obtain the factory - Reservation
-        ReservationFactory reservationFactory = ReservationFactory.getReservationFactory();
-        reservationFactory.getMessage();
-        
-        //obtain the factory - Room
-        RoomFactory roomFactory = RoomFactory.getRoomFactory();
-        roomFactory.getMessage();
-        
-        //obtain the factory - User
-        UserFactory userFactory = UserFactory.getUserFactory();
-        userFactory.getMessage();
-        
-        
-    }
+        }
 }

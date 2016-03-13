@@ -77,7 +77,8 @@ ArrayList<User> results = ledger.search(params, params);
     //Authenticate function allows user 3 tries to login
     
     public void Login(String name, String password)
-    {   int x = 1;
+    {   
+        int x = 1;
         //allow user 3 tries to login
         for (int i = 0; i < 3; i++)
         {

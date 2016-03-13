@@ -11,10 +11,26 @@ package hotelmanagement;
  */
 public class Room 
 {
-    String type;
-    int number;
-    String description;
-    double rate;
+    private String type;
+    private int number;
+    private String description;
+    private double rate;
+    
+    public Room()
+    {
+        String type = null;
+        int number = 0;
+        String description = null;
+        double rate = 0.0;
+    }
+    
+    public Room(String ty, int idx, String desc, double rt)
+    {
+        String type = ty;
+        int number = idx;
+        String description = desc;
+        double rate = rt;
+    }
     
     public String getType() {
         return type;
