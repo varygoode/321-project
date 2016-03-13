@@ -52,6 +52,11 @@ public class Reservation {
         endDate = end;
     }
     
+    public void setRoomNumber(Date end)
+    {
+        endDate = end;
+    }
+    
     public void setRoomNumber(int room)
     {
         roomNumber = room;

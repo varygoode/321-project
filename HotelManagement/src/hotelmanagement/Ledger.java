@@ -4,10 +4,9 @@
 package hotelmanagement;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
- *
+ * Public class Ledger which will search through a given list for given parameters.
  * @author rob
  */
 public class Ledger 
@@ -31,17 +30,17 @@ public class Ledger
      */
     public ArrayList search(ArrayList searchList, ArrayList<String> searchParameters)
     {
-        if (searchList.contains(Reservation.class))
+        if (searchList.get(0).getClass().equals(hotelmanagement.Reservation.class))
         {
             return searchReservations(searchList, searchParameters);
         }
         
-        else if (searchList.contains(Room.class))
+        else if (searchList.get(0).getClass().equals(hotelmanagement.Room.class))
         {
             return searchRooms(searchList, searchParameters);
         }
         
-        else if (searchList.contains(User.class))
+        else if (searchList.get(0).getClass().equals(hotelmanagement.User.class))
         {
             return searchUsers(searchList, searchParameters);
         }
@@ -65,7 +64,7 @@ public class Ledger
             properties.add(res.getEndDate().toString());
             properties.add(Integer.toString(res.getReserver().getID()));
             properties.add(Double.toString(res.getTotalPrice()));
-            properties.add(Boolean.toString(res.getPaid()));
+            properties.add(String.valueOf(res.getPaid()));
             
             //compare each search parameter to each property
             for (String parameter : searchParameters)
@@ -158,10 +157,10 @@ public class Ledger
         return filteredUsers;
     }
     
-    public ArrayList sort(ArrayList list, String sortProperty)
-    {
-        
-        
-        return list;
-    }
+//    public ArrayList sort(ArrayList list, String sortProperty)
+//    {
+//        
+//        
+//        return list;
+//    }
 }
