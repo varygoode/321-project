@@ -12,6 +12,19 @@ package hotelmanagement;
 public class User 
 {
 
+    public User()
+    {
+        
+    }
+    
+    public User(String username, String password, String firstName, String lastName, int ID) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.ID = ID;
+    }
+
     String username;
     String password;
     String firstName;
