@@ -25,9 +25,9 @@ public class ReservationFactory
         return singletonFactory;
     }
             
-    public Reservation createReservation(Date sDate, Date eDate, Room room, boolean payment, User user)
+    public Reservation createReservation(Date sDate, Date eDate, Room room, boolean payment, User user, int ID)
     {
-        return new Reservation(sDate, eDate, room, payment, user);
+        return new Reservation(sDate, eDate, room, payment, user, ID);
     } 
     public void getMessage()
     {
