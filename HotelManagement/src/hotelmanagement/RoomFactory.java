@@ -8,7 +8,7 @@ package hotelmanagement;
 
 public class RoomFactory {
 
-    static private RoomFactory roomFactory = new RoomFactory();
+    static private RoomFactory singletonFactory = new RoomFactory();
 
     private Room room = null;
 
@@ -18,7 +18,12 @@ public class RoomFactory {
     }
     
     public static RoomFactory getRoomFactory() {
-        return roomFactory;
+        
+        if (singletonFactory == null)
+        {
+            singletonFactory = new RoomFactory();
+        }
+        return singletonFactory;
     }
 
     public void getMessage(){
@@ -28,16 +33,6 @@ public class RoomFactory {
     
     public Room createRoom(String type, int number, String description, double rate)
     {
-        if (this.room == null) 
-        {
-            synchronized(this) 
-            {
-                if(this.room == null)
-                {
-                    this.room = new Room(type, number, description, rate);
-                }
-            } 
-        }
-        return this.room;
+        return new Room();
     }
 }
