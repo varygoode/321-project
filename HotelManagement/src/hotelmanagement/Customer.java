@@ -14,7 +14,7 @@ public class Customer extends User
 {
 
     Reservation ResObj = new Reservation();
-    Ledger LedgObj = new Ledger();
+    //Ledger LedgObj = new Ledger();
     ArrayList<Reservation> reserves = new ArrayList();
     
     Customer()
@@ -33,7 +33,7 @@ public class Customer extends User
 	//Customer has already logged in and passed in the Array where reservation is stored
         //and the ArrayList containing username and password
                       
-        return ledger.search(reserves, params);
+        return new ArrayList();//ledger.search(reserves, params);
             
 	}
 	

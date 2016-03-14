@@ -17,11 +17,11 @@ public class User
 {
     public User() 
     {
-        this.username = "admin";
-        this.password = "admin";
-        this.firstName = "manager";
-        this.lastName = "manager";
-        this.ID = 10000;
+        this.username = "guest";
+        this.password = "12345";
+        this.firstName = "Guest";
+        this.lastName = "Guestington";
+        this.ID = 9999;
     }
 
     public User(String username, String password, String firstName, String lastName, int ID) 
@@ -40,12 +40,12 @@ public class User
     int       ID;
     
     //create a new Ledger Object
-    Ledger ledger = new Ledger();
+    //Ledger ledger = new Ledger();
     
     //create an ArrayList full of strings
-    ArrayList<String> params = new ArrayList();
+    //ArrayList<String> params = new ArrayList();
 
-    ArrayList<User> results = ledger.search(params, params);
+    //ArrayList<User> results = ledger.search(params, params);
 
     
     public String getUsername() {

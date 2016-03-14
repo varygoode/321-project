@@ -70,7 +70,7 @@ public class Ledger
         {
             //get all current reservation properties
             ArrayList<String> properties = new ArrayList();
-            properties.add(Integer.toString(res.getRoomNumber()));
+            properties.add(Integer.toString(res.getRoom().getNumber()));
             properties.add(res.getStartDate().toString());
             properties.add(res.getEndDate().toString());
             properties.add(Integer.toString(res.getReserver().getID()));

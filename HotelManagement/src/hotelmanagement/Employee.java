@@ -15,9 +15,9 @@ import java.lang.*;
  */
 public class Employee extends User {
     
- ArrayList<String> properties = new ArrayList();
- Reservation ResObj = new Reservation();
- Room RoomObj = new Room();
+ //ArrayList<String> properties = new ArrayList();
+ //Reservation ResObj = new Reservation();
+ //Room RoomObj = new Room();
  
     Employee()
     {
@@ -42,10 +42,10 @@ public class Employee extends User {
            switch(choice)
       {
           case 1:
-              ResObj.setStartDate(day);
+              //ResObj.setStartDate(day);
               break;
           case 2:
-              ResObj.setEndDate(day);
+              //ResObj.setEndDate(day);
               break;
               default:
               /*
@@ -59,18 +59,18 @@ public class Employee extends User {
     
     public void editReservation(int room)
     {
-        ResObj.setRoomNumber(room);
+        //ResObj.setRoomNumber(room);
         
     }
     
     public void editReservation(double price)     
     {
-        ResObj.setTotalPrice(price);
+        //ResObj.setTotalPrice(price);
     }
     
     public void editReservation(boolean value)
     {
-        ResObj.setPaid(value);
+        //ResObj.setPaid(value);
     }
     
    //editRoom is an overloaded function 
@@ -83,7 +83,7 @@ public class Employee extends User {
    
     public void editRoom(int Number) 
     {
-        RoomObj.setNumber(Number);
+        //RoomObj.setNumber(Number);
 		
     }
 	
@@ -97,10 +97,10 @@ public class Employee extends User {
                 switch(choice)
       {
           case 1:
-              RoomObj.setType(Info);
+              //RoomObj.setType(Info);
               break;
           case 2:
-              RoomObj.setDescription(Info);
+              //RoomObj.setDescription(Info);
               break;
               default:
               /*
@@ -114,7 +114,7 @@ public class Employee extends User {
     
       public void editRoom(double Rate) 
     {
-        RoomObj.setRate(Rate);
+        //RoomObj.setRate(Rate);
 		
     }
     
