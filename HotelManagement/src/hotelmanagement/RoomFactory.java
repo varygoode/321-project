@@ -5,21 +5,23 @@ package hotelmanagement;
  *
  * @author timothy
  */
-public class RoomFactory 
-{
-    static private RoomFactory singletonFactory;
-    
-    private RoomFactory()
-    {
 
+
+public class RoomFactory {
+
+    static private RoomFactory singletonFactory;
+
+    private RoomFactory() {
+        //private constructor - don't want the class
+        // to instantiated from other classes
     }
     
-    public static RoomFactory getRoomFactory()
-    {
-        if (singletonFactory == null) 
+    public static RoomFactory getRoomFactory() {
+        
+        if (singletonFactory == null)
         {
-            singletonFactory = new RoomFactory();       
-        }    
+            singletonFactory = new RoomFactory();
+        }
         return singletonFactory;
     }
             
@@ -29,6 +31,6 @@ public class RoomFactory
     } 
     public void getMessage(){
     
-        System.out.print("You made a room.");
+        System.out.print("You made a room");
     }
 }
