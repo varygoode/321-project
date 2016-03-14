@@ -26,7 +26,7 @@ public class RoomFactory {
         System.out.print("You made a room");
     }
     
-    public Room getARoom(String type, int number, String description, double rate)
+    public Room createRoom(String type, int number, String description, double rate)
     {
         if (this.room == null) 
         {

@@ -23,20 +23,20 @@ public class HotelManagement{
             //obtain the factory - Reservation
             ReservationFactory reservationFactory = ReservationFactory.getReservationFactory();
             reservationFactory.getMessage();
-            Reservation testres = reservationFactory.getAReservation(room, price, payment, user);
+            Reservation testres = reservationFactory.createReservation(room, price, payment, user);
             System.out.print(testres.getRoomNumber());
             
 
             //obtain the factory - Room
             RoomFactory roomFactory = RoomFactory.getRoomFactory();
             roomFactory.getMessage();
-            Room testroom = roomFactory.getARoom(ty, idx, desc, rt);
+            Room testroom = roomFactory.createRoom(ty, idx, desc, rt);
             System.out.print(testroom.getDescription());
 
             //obtain the factory - User
             UserFactory userFactory = UserFactory.getUserFactory();
             userFactory.getMessage();
-            //userFactory.getAUser();
+            //userFactory.createUser();
         
         }
 }

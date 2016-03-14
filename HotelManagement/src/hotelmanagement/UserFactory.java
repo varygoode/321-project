@@ -1,6 +1,4 @@
-/*
- *
- */
+
 package hotelmanagement;
 
 /**
@@ -9,8 +7,8 @@ package hotelmanagement;
  */
 public class UserFactory 
 {
-    static private UserFactory singletonFactory = new UserFactory();
-    private User user = null;
+    static private UserFactory singletonFactory;
+    private User user;
     
     private UserFactory()
     {
@@ -19,32 +17,27 @@ public class UserFactory
     
     public static UserFactory getUserFactory()
     {
+        if (singletonFactory == null)
+        {
+            singletonFactory = new UserFactory();
+        } 
         return singletonFactory;
     }
             
     public User getAUser()
     {
-        if (this.user == null)
+        if (user.getClass().equals(hotelmanagement.Customer.class))
         {
-            synchronized(this)
-            {
-                if(this.user == null)
-                {
-                    if (this.user.getClass().equals(hotelmanagement.Customer.class))
-                    {
-                        this.user = new Customer();
-                    }
-                    else if (this.user.getClass().equals(hotelmanagement.Employee.class))
-                    {
-                        this.user = new Employee();
-                    }
-                    else
-                    {
-                        this.user = new User();
-                    }
-                }
-            }
-        }    
+            user = new Customer();
+        }
+        else if (user.getClass().equals(hotelmanagement.Employee.class))
+        {
+            user = new Employee();
+        }
+        else
+        {
+            user = new User();
+        }
         return this.user;
     } 
     public void getMessage(){
