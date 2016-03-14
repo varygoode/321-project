@@ -19,16 +19,7 @@ public class UserFactory
     {
         if (singletonFactory == null)
         {
-            synchronized(singletonFactory)
-            {
-                if(singletonFactory == null)
-                {
-                    if (singletonFactory == null)
-                    {
-                        singletonFactory = new UserFactory();
-                    }
-                }
-            }
+            singletonFactory = new UserFactory();
         } 
         return singletonFactory;
     }

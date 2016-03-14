@@ -19,13 +19,7 @@ public class ReservationFactory
     {
         if (singletonFactory == null) 
         {
-            synchronized(singletonFactory)
-            {
-                if(singletonFactory == null)
-                {
-                    singletonFactory = new ReservationFactory();
-                }
-            }
+            singletonFactory = new ReservationFactory();       
         }    
         return singletonFactory;
     }
