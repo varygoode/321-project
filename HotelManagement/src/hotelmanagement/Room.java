@@ -18,18 +18,18 @@ public class Room
     
     public Room()
     {
-        String type = null;
-        int number = 0;
-        String description = null;
-        double rate = 0.0;
+        type = null;
+        number = 0;
+        description = null;
+        rate = 0.0;
     }
     
     public Room(String ty, int idx, String desc, double rt)
     {
-        String type = ty;
-        int number = idx;
-        String description = desc;
-        double rate = rt;
+        type = ty;
+        number = idx;
+        description = desc;
+        rate = rt;
     }
     
     public String getType() {

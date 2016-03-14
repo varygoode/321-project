@@ -31,7 +31,7 @@ public class HotelManagement{
             RoomFactory roomFactory = RoomFactory.getRoomFactory();
             roomFactory.getMessage();
             Room testroom = roomFactory.createRoom(ty, idx, desc, rt);
-            System.out.print(testroom.getDescription());
+            System.out.print(testroom.getNumber());
 
             //obtain the factory - User
             UserFactory userFactory = UserFactory.getUserFactory();

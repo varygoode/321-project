@@ -8,7 +8,6 @@ package hotelmanagement;
 public class ReservationFactory 
 {
     static private ReservationFactory singletonFactory;
-    private Reservation reservation;
     
     private ReservationFactory()
     {
