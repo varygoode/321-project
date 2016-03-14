@@ -1,14 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package hotelmanagement;
 
 /**
  *
  * @author timothy
  */
-public class ReservationFactory {
+public class ReservationFactory 
+{
+    static private ReservationFactory singletonFactory;
     
+    private ReservationFactory()
+    {
+
+    }
+    
+    public static ReservationFactory getReservationFactory()
+    {
+        if (singletonFactory == null) 
+        {
+            singletonFactory = new ReservationFactory();       
+        }    
+        return singletonFactory;
+    }
+            
+    public Reservation createReservation(int room, double price, boolean payment, User user)
+    {
+        return new Reservation(room, price, payment, user);
+    } 
+    public void getMessage(){
+    
+        System.out.print("You made a reservation.");
+    }
 }
