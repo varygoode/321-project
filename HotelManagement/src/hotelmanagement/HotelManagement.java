@@ -17,6 +17,8 @@ public class HotelManagement{
             int idx = 1;
             String desc = "queen";
             double rt = 50.99;
+            
+            
             //===============================
             //  Factories
             //===============================
@@ -31,7 +33,7 @@ public class HotelManagement{
             RoomFactory roomFactory = RoomFactory.getRoomFactory();
             roomFactory.getMessage();
             Room testroom = roomFactory.createRoom(ty, idx, desc, rt);
-            System.out.print(testroom.getDescription());
+            System.out.print(testroom.getNumber());
 
             //obtain the factory - User
             UserFactory userFactory = UserFactory.getUserFactory();

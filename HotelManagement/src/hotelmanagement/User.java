@@ -15,20 +15,37 @@ import java.util.*;
  */
 public class User 
 {
+    public User() 
+    {
+        this.username = "admin";
+        this.password = "admin";
+        this.firstName = "manager";
+        this.lastName = "manager";
+        this.ID = 10000;
+    }
 
-  String    username = null;
-  String    password = null;
-  String    firstName = null;
-  String    lastName = null;
-  int       ID = 0;
+    public User(String username, String password, String firstName, String lastName, int ID) 
+    {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.ID = ID;
+    }
+
+    String    username;
+    String    password;
+    String    firstName;
+    String    lastName;
+    int       ID;
     
     //create a new Ledger Object
     Ledger ledger = new Ledger();
     
     //create an ArrayList full of strings
-ArrayList<String> params = new ArrayList();
+    ArrayList<String> params = new ArrayList();
 
-ArrayList<User> results = ledger.search(params, params);
+    ArrayList<User> results = ledger.search(params, params);
 
     
     public String getUsername() {
