@@ -9,4 +9,4 @@ package hotelmanagement;
  *
  * @author andreapressnell
  */
-public enum StateEnum {MAIN, SEARCH, RESERVATION, CHECKIN, CHECKOUT, CANCEL, QUIT}
+public enum StateEnum {MAIN, CUSTOMER, EMPLOYEE, SEARCH, RESERVATION, CHECKIN, CHECKOUT, CANCEL, QUIT}
