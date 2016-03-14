@@ -17,6 +17,8 @@ public class HotelManagement{
             int idx = 1;
             String desc = "queen";
             double rt = 50.99;
+            
+            
             //===============================
             //  Factories
             //===============================
