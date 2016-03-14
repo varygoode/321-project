@@ -70,6 +70,6 @@ public class HotelManagement
     
     public void run()
     {
-        display.startMenu();
+        display.update();
     }
 }
