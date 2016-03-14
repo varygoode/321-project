@@ -8,7 +8,6 @@ package hotelmanagement;
 public class UserFactory 
 {
     static private UserFactory singletonFactory;
-    private User user;
     
     private UserFactory()
     {
@@ -24,24 +23,20 @@ public class UserFactory
         return singletonFactory;
     }
             
-    public User getAUser()
+    public User createUser(Class<?> classArg, String username, String password, String fName, String lName, int ID)
     {
-        if (user.getClass().equals(hotelmanagement.Customer.class))
+        if (classArg.equals(hotelmanagement.Customer.class))
         {
-            user = new Customer();
+            return new Customer(username, password, fName, lName, ID);
         }
-        else if (user.getClass().equals(hotelmanagement.Employee.class))
+        else if (classArg.equals(hotelmanagement.Employee.class))
         {
-            user = new Employee();
+            return new Employee(username, password, fName, lName, ID);
         }
-        else
-        {
-            user = new User();
-        }
-        return this.user;
+        return new User(username, password, fName, lName, ID);
     } 
-    public void getMessage(){
-    
+    public void getMessage()
+    {
         System.out.print("You made a user");
     }
 }

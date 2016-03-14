@@ -25,9 +25,9 @@ public class RoomFactory {
         return singletonFactory;
     }
             
-    public Room createRoom(String type, int index, String description, double rate)
+    public Room createRoom(String type, int roomNum, String description, double rate)
     {
-        return new Room(type, index, description, rate);
+        return new Room(type, roomNum, description, rate);
     } 
     public void getMessage(){
     

@@ -15,7 +15,19 @@ import java.lang.*;
  */
 public class Employee extends User {
     
-    ArrayList<String> properties = new ArrayList();
+ //ArrayList<String> properties = new ArrayList();
+ //Reservation ResObj = new Reservation();
+ //Room RoomObj = new Room();
+ 
+    Employee()
+    {
+        super();
+    }
+
+    Employee(String username, String password, String fName, String lName, int ID)
+    {
+        super(username, password, fName, lName, ID);
+    }
     
     //EditReservation() is an overloaded function
     //to change StartDay pass two parameters (1, New Date)
@@ -24,16 +36,16 @@ public class Employee extends User {
     //to change total price paid pass in new total price,
     //to mark room as paid enter in true boolean
  
-    public void editReservation(Reservation ResObj, int choice, Date day) 
+    public void editReservation(int choice, Date day ) 
     {   
         
-        switch(choice)
-        {
+           switch(choice)
+      {
           case 1:
-              ResObj.setStartDate(day);
+              //ResObj.setStartDate(day);
               break;
           case 2:
-              ResObj.setEndDate(day);
+              //ResObj.setEndDate(day);
               break;
               default:
               /*
@@ -45,19 +57,20 @@ public class Employee extends User {
         
     }
     
-    public void editReservation(Reservation ResObj, int room)
+    public void editReservation(int room)
     {
-        ResObj.setRoomNumber(room); 
+        //ResObj.setRoomNumber(room);
+        
     }
     
-    public void editReservation(Reservation ResObj, double price)     
+    public void editReservation(double price)     
     {
-        ResObj.setTotalPrice(price);
+        //ResObj.setTotalPrice(price);
     }
     
-    public void editReservation(Reservation ResObj, boolean value)
+    public void editReservation(boolean value)
     {
-        ResObj.setPaid(value);
+        //ResObj.setPaid(value);
     }
     
    //editRoom is an overloaded function 
@@ -68,36 +81,40 @@ public class Employee extends User {
    //number and a double parameter is passed to change rate
     
    
-    public void editRoom(Room RoomObj, int Number) 
+    public void editRoom(int Number) 
     {
-        RoomObj.setNumber(Number);
+        //RoomObj.setNumber(Number);
 		
     }
 	
-     
-    public void editRoom(Room RoomObj, int choice, String Info) 
+    /**
+     *
+     * @param 1 to setType
+     * @param 2 to setDescription
+     */
+    public void editRoom(int choice, String Info) 
     {
-        switch(choice)
-        {
-            case 1:
-                RoomObj.setType(Info);
-                break;
-            case 2:
-                RoomObj.setDescription(Info);
-                break;
-                default:
-                /*
-                code return to Main Menu here
-                */
-
-
+                switch(choice)
+      {
+          case 1:
+              //RoomObj.setType(Info);
+              break;
+          case 2:
+              //RoomObj.setDescription(Info);
+              break;
+              default:
+              /*
+              code return to Main Menu here
+              */
+              
+          
         }
         	
     }
     
-      public void editRoom(Room RoomObj, double Rate) 
+      public void editRoom(double Rate) 
     {
-        RoomObj.setRate(Rate);
+        //RoomObj.setRate(Rate);
 		
     }
     

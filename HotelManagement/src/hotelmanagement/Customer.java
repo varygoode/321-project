@@ -10,11 +10,22 @@ import java.util.*;
  *
  * @author Monique
  */
-public class Customer extends User {
-    
+public class Customer extends User 
+{
+
     Reservation ResObj = new Reservation();
-    Ledger LedgObj = new Ledger();
+    //Ledger LedgObj = new Ledger();
     ArrayList<Reservation> reserves = new ArrayList();
+    
+    Customer()
+    {
+        super();
+    }
+    
+    Customer(String username, String password, String fName, String lName, int ID)
+    {
+        super(username, password, fName, lName, ID);
+    }
   
     	
 	public ArrayList<Reservation> findReservation(int ID) 
@@ -22,7 +33,7 @@ public class Customer extends User {
 	//Customer has already logged in and passed in the Array where reservation is stored
         //and the ArrayList containing username and password
                       
-        return ledger.search(reserves, params);
+        return new ArrayList();//ledger.search(reserves, params);
             
 	}
 	
@@ -40,5 +51,5 @@ public class Customer extends User {
             
             
         }
-}
+        }
 

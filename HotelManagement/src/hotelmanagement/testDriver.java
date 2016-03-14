@@ -16,6 +16,8 @@ public class testDriver {
         HotelManagement hms = new HotelManagement();
         
         hms.initialize();
+        
+        hms.run();
     }
     
 }

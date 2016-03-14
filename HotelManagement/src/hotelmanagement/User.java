@@ -17,11 +17,11 @@ public class User
 {
     public User() 
     {
-        this.username = "admin";
-        this.password = "admin";
-        this.firstName = "manager";
-        this.lastName = "manager";
-        this.ID = 10000;
+        this.username = "guest";
+        this.password = "12345";
+        this.firstName = "Guest";
+        this.lastName = "Guestington";
+        this.ID = 9999;
     }
 
     public User(String username, String password, String firstName, String lastName, int ID) 
@@ -40,12 +40,12 @@ public class User
     int       ID;
     
     //create a new Ledger Object
-    Ledger ledger = new Ledger();
+    //Ledger ledger = new Ledger();
     
     //create an ArrayList full of strings
-    ArrayList<String> params = new ArrayList();
+    //ArrayList<String> params = new ArrayList();
 
-    ArrayList<User> results = ledger.search(params, params);
+    //ArrayList<User> results = ledger.search(params, params);
 
     
     public String getUsername() {
@@ -225,7 +225,42 @@ public class User
         }//end while loop
 	
     }//end EditInformation() 
-				
+	
+    
+      
+   
+
+    /*
+    This is the new version of Register() was not saved on Sunday.
+    This is the updated code given Tim's work on Reservation
+    //Register() stores information passed to it by calling CreateUser() Method.
+	*/
+/*
+    public void Register(Class<?> classArg, String username, String password, String fName, String lName, int ID)
+    {
+        //Calls method from Reservation to create registered user
+        return createUser(classArg, username, password, fName,lName, ID);
+    
+    }
+*/
+    
+    
+    
+    /* 
+    Reservation Method I made was not saved apparently.  But that
+    is okay because it due to changes that happened in Reservation later.
+    Below is the Reservation Method that can be used by Employee
+    or Customer */
+   /*
+    public static Reservation(Reservation(Date sDate, Date eDate, Room room, boolean payment, User user)
+    {
+        return Reservation(sDate, eDate, room, payment, user);
+    
+    }
+    
+  */
+    
+    
     }//end Class User
                        
     
