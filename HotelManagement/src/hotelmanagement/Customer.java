@@ -10,11 +10,22 @@ import java.util.*;
  *
  * @author Monique
  */
-public class Customer extends User {
-    
+public class Customer extends User 
+{
+
     Reservation ResObj = new Reservation();
     Ledger LedgObj = new Ledger();
     ArrayList<Reservation> reserves = new ArrayList();
+    
+    Customer()
+    {
+        super();
+    }
+    
+    Customer(String username, String password, String fName, String lName, int ID)
+    {
+        super(username, password, fName, lName, ID);
+    }
   
     	
 	public ArrayList<Reservation> findReservation(int ID) 

@@ -1,6 +1,8 @@
 
 package hotelmanagement;
 
+import java.util.Date;
+
 /**
  *
  * @author timothy
@@ -23,12 +25,12 @@ public class ReservationFactory
         return singletonFactory;
     }
             
-    public Reservation createReservation(int room, double price, boolean payment, User user)
+    public Reservation createReservation(Date sDate, Date eDate, Room room, boolean payment, User user)
     {
-        return new Reservation(room, price, payment, user);
+        return new Reservation(sDate, eDate, room, payment, user);
     } 
-    public void getMessage(){
-    
+    public void getMessage()
+    {
         System.out.print("You made a reservation.");
     }
 }

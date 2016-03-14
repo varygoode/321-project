@@ -18,6 +18,16 @@ public class Employee extends User {
  ArrayList<String> properties = new ArrayList();
  Reservation ResObj = new Reservation();
  Room RoomObj = new Room();
+ 
+    Employee()
+    {
+        super();
+    }
+
+    Employee(String username, String password, String fName, String lName, int ID)
+    {
+        super(username, password, fName, lName, ID);
+    }
     
     //EditReservation() is an overloaded function
     //to change StartDay pass two parameters (1, New Date)

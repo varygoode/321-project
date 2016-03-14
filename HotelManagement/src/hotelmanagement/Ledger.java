@@ -11,15 +11,26 @@ import java.util.ArrayList;
  */
 public class Ledger 
 {    
+    static private Ledger singletonLedger;
+    
     public ArrayList<Reservation> filteredReservations;
     public ArrayList<Room> filteredRooms;
     public ArrayList<User> filteredUsers;
     
-    public Ledger()
+    private Ledger()
     {
         filteredReservations = new ArrayList();
         filteredRooms = new ArrayList();
         filteredUsers = new ArrayList();
+    }
+    
+    public static Ledger getLedger()
+    {
+        if (singletonLedger == null) 
+        {
+            singletonLedger = new Ledger();       
+        }    
+        return singletonLedger;
     }
     
     /**

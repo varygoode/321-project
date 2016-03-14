@@ -14,7 +14,7 @@ public class Reservation {
     
     private Date startDate;
     private Date endDate;
-    private int roomNumber;
+    private Room room;
     private double totalPrice;
     private boolean isPaid;
     private User reserver;
@@ -23,18 +23,18 @@ public class Reservation {
     {
         startDate = null;
         endDate = null;
-        roomNumber = 000;
+        room = null;
         totalPrice = 0.00;
         isPaid = false;
         reserver = null;
     }
     
-    public Reservation(int room, double price, boolean payment, User user)
+    public Reservation(Date sDate, Date eDate, Room room, boolean payment, User user)
     {
-        startDate = null;
-        endDate = null;
-        roomNumber = room;
-        totalPrice = price;
+        startDate = sDate;
+        endDate = eDate;
+        this.room = room;
+        totalPrice = (eDate.getDay()-sDate.getDay())*room.getRate();
         isPaid = payment;
         reserver = user;
     }
@@ -57,9 +57,9 @@ public class Reservation {
         endDate = end;
     }
     
-    public void setRoomNumber(int room)
+    public void setRoom(Room room)
     {
-        roomNumber = room;
+        this.room = room;
     }
     
     public void setTotalPrice(double price)
@@ -90,9 +90,9 @@ public class Reservation {
         return endDate;
     }
     
-    public int getRoomNumber()
+    public Room getRoom()
     {
-        return roomNumber;
+        return room;
     }
     
     public double getTotalPrice()
