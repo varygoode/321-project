@@ -36,7 +36,7 @@ public class Employee extends User {
     //to change total price paid pass in new total price,
     //to mark room as paid enter in true boolean
  
-    public void editReservation(int choice, Date day ) 
+    public void editReservation(Reservation ResObj, int choice, Date day ) 
     {   
         
            switch(choice)
@@ -57,18 +57,17 @@ public class Employee extends User {
         
     }
     
-    public void editReservation(int room)
+    public void editReservation(Reservation ResObj, int room)
     {
         //ResObj.setRoomNumber(room);
-        
     }
     
-    public void editReservation(double price)     
+    public void editReservation(Reservation ResObj, double price)     
     {
         //ResObj.setTotalPrice(price);
     }
     
-    public void editReservation(boolean value)
+    public void editReservation(Reservation ResObj, boolean value)
     {
         //ResObj.setPaid(value);
     }
@@ -81,7 +80,7 @@ public class Employee extends User {
    //number and a double parameter is passed to change rate
     
    
-    public void editRoom(int Number) 
+    public void editRoom(Room RoomObj, int Number) 
     {
         //RoomObj.setNumber(Number);
 		
@@ -92,7 +91,7 @@ public class Employee extends User {
      * @param 1 to setType
      * @param 2 to setDescription
      */
-    public void editRoom(int choice, String Info) 
+    public void editRoom(Room RoomObj, int choice, String Info) 
     {
                 switch(choice)
       {
@@ -112,7 +111,7 @@ public class Employee extends User {
         	
     }
     
-      public void editRoom(double Rate) 
+      public void editRoom(Room RoomObj, double Rate) 
     {
         //RoomObj.setRate(Rate);
 		

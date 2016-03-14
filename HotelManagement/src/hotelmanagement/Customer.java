@@ -13,9 +13,10 @@ import java.util.*;
 public class Customer extends User 
 {
 
-    Reservation ResObj = new Reservation();
-    //Ledger LedgObj = new Ledger();
-    ArrayList<Reservation> reserves = new ArrayList();
+    ReservationFactory resFactory = ReservationFactory.getReservationFactory();
+    Ledger LedgObj = Ledger.getLedger();
+    
+    ArrayList<Reservation> reserves;
     
     Customer()
     {
@@ -28,28 +29,31 @@ public class Customer extends User
     }
   
     	
-	public ArrayList<Reservation> findReservation(int ID) 
-        {
-	//Customer has already logged in and passed in the Array where reservation is stored
+    public Reservation findReservation(ArrayList<Reservation> reserveList, int ID) 
+    {
+        //Customer has already logged in and passed in the Array where reservation is stored
         //and the ArrayList containing username and password
-                      
-        return new ArrayList();//ledger.search(reserves, params);
-            
-	}
+        ArrayList<String> paramList = new ArrayList();
+        paramList.add(Integer.toString(ID));
+        ArrayList<Reservation> returnList = LedgObj.search(reserveList, paramList);      
+        Reservation returnRes = returnList.get(0);
+        return returnRes;
+    }
 	
-	public void cancel() 
-        {
-	/*
-        code to return to HMS
-        */
-				
-	}
-    
-        
-        public void Reservation()
-        {
-            
-            
-        }
-        }
+    public void cancel() 
+    {
+    /*
+    code to return to HMS
+    */
+
+    }
+
+
+    public Reservation makeReservation(Date sDate, Date eDate, Room room, boolean payment, User user, int ID)
+    {
+        Reservation ResObj = resFactory.createReservation(sDate, eDate, room, payment, user, ID);
+
+        return ResObj;
+    }
+}
 
