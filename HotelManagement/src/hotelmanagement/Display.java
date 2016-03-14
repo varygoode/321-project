@@ -9,11 +9,5 @@ package hotelmanagement;
  * @author andreapressnell
  */
 public class Display {
-    
-        public static void main(String args[])
-    {
-        
-        
-    
-    }
+
 }
