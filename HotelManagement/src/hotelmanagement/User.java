@@ -225,7 +225,42 @@ public class User
         }//end while loop
 	
     }//end EditInformation() 
-				
+	
+    
+      
+   
+
+    /*
+    This is the new version of Register() was not saved on Sunday.
+    This is the updated code given Tim's work on Reservation
+    //Register() stores information passed to it by calling CreateUser() Method.
+	*/
+/*
+    public void Register(Class<?> classArg, String username, String password, String fName, String lName, int ID)
+    {
+        //Calls method from Reservation to create registered user
+        return createUser(classArg, username, password, fName,lName, ID);
+    
+    }
+*/
+    
+    
+    
+    /* 
+    Reservation Method I made was not saved apparently.  But that
+    is okay because it due to changes that happened in Reservation later.
+    Below is the Reservation Method that can be used by Employee
+    or Customer */
+   /*
+    public static Reservation(Reservation(Date sDate, Date eDate, Room room, boolean payment, User user)
+    {
+        return Reservation(sDate, eDate, room, payment, user);
+    
+    }
+    
+  */
+    
+    
     }//end Class User
                        
     
