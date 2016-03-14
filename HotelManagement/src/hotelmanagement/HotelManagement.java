@@ -61,11 +61,11 @@ public class HotelManagement
         //===============================
         //  Initialize Reservations
         //===============================
-        allReserves.add(reservationFactory.createReservation(new Date(116,1,1), new Date(116,1,5), allRooms.get(5), true, allUsers.get(0)));
-        allReserves.add(reservationFactory.createReservation(new Date(116,2,1), new Date(116,2,4), allRooms.get(10), true, allUsers.get(1)));
-        allReserves.add(reservationFactory.createReservation(new Date(116,3,1), new Date(116,3,6), allRooms.get(15), true, allUsers.get(2)));
-        allReserves.add(reservationFactory.createReservation(new Date(116,4,1), new Date(116,4,3), allRooms.get(20), true, allUsers.get(3)));
-        allReserves.add(reservationFactory.createReservation(new Date(116,5,12), new Date(116,5,25), allRooms.get(25), true, allUsers.get(4)));
+        allReserves.add(reservationFactory.createReservation(new Date(116,1,1), new Date(116,1,5), allRooms.get(5), true, allUsers.get(0), 1000000));
+        allReserves.add(reservationFactory.createReservation(new Date(116,2,1), new Date(116,2,4), allRooms.get(10), true, allUsers.get(1), 1000001));
+        allReserves.add(reservationFactory.createReservation(new Date(116,3,1), new Date(116,3,6), allRooms.get(15), true, allUsers.get(2), 1000002));
+        allReserves.add(reservationFactory.createReservation(new Date(116,4,1), new Date(116,4,3), allRooms.get(20), true, allUsers.get(3), 1000003));
+        allReserves.add(reservationFactory.createReservation(new Date(116,5,12), new Date(116,5,25), allRooms.get(25), true, allUsers.get(4), 1000004));
     }
     
     public void run()
