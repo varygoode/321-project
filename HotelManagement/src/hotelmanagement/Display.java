@@ -10,47 +10,38 @@ import java.util.Scanner;
 /**
  * @author andreapressnell
  */
-public class Display {
+public class Display 
+{
+    private Scanner input = new Scanner(System.in);
     
-    public Display(){
-    //constructor 
+    public Display()
+    {
+        //constructor 
     }
     
-
-private Scanner input = new Scanner(System.in);
-    
-    public void startMenu(){
-
-            
-            System.out.println("Select the number items from the menu below:");
-            System.out.println("1. Go to Main Menu");
-            System.out.println("2. Search a Room");
-            System.out.println("3. Make a Reservation");
-            System.out.println("4. Check-In");
-            System.out.println("5. Check-Out");
+    public void startMenu()
+    {            
+            System.out.println("**MAIN MENU**");
+            System.out.println("=============");
+            System.out.println("1. Login");
+            System.out.println("2. Register");
+            System.out.println("3. Search");
             
             int selection = input.nextInt();
             input.nextLine();
          
-            switch(selection){
+            switch(selection)
+            {
                 case 1:
-                    //do main menu
+                    //do login
                     break;
 
                 case 2:
-                    //do search
+                    //do register
                     break;
 
                 case 3:
-                    //make reservation
-                    break;
-
-                case 4:
-                    //checkin
-                    break;
-                    
-                case 5:
-                    //checkout
+                    //do search
                     break;
                 default:
                     System.out.println("Invalid selection.");
