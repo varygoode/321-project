@@ -75,7 +75,7 @@ public class Ledger
             properties.add(res.getEndDate().toString());
             properties.add(Integer.toString(res.getReserver().getID()));
             properties.add(Double.toString(res.getTotalPrice()));
-            properties.add(String.valueOf(res.getPaid()));
+            properties.add(String.valueOf(res.getIsPaid()));
             
             //compare each search parameter to each property
             for (String parameter : searchParameters)
