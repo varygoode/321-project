@@ -15,9 +15,11 @@ import java.lang.*;
  */
 public class Employee extends User {
     
- //ArrayList<String> properties = new ArrayList();
- //Reservation ResObj = new Reservation();
- //Room RoomObj = new Room();
+    ReservationFactory resFactory = ReservationFactory.getReservationFactory();
+    Ledger LedgObj = Ledger.getLedger();
+    
+    ArrayList<Reservation> reserves;
+    ArrayList<Room> rooms;
  
     Employee()
     {
@@ -39,15 +41,15 @@ public class Employee extends User {
     public void editReservation(Reservation ResObj, int choice, Date day ) 
     {   
         
-           switch(choice)
-      {
-          case 1:
-              //ResObj.setStartDate(day);
-              break;
-          case 2:
-              //ResObj.setEndDate(day);
-              break;
-              default:
+        switch(choice)
+        { 
+            case 1:
+                //ResObj.setStartDate(day);
+                break;
+            case 2:
+                //ResObj.setEndDate(day);
+                break;
+            default:
               /*
               code return to Main Menu here
               */
@@ -57,19 +59,14 @@ public class Employee extends User {
         
     }
     
-    public void editReservation(Reservation ResObj, int room)
-    {
-        //ResObj.setRoomNumber(room);
-    }
-    
     public void editReservation(Reservation ResObj, double price)     
     {
-        //ResObj.setTotalPrice(price);
+        ResObj.setTotalPrice(price);
     }
     
     public void editReservation(Reservation ResObj, boolean value)
     {
-        //ResObj.setPaid(value);
+        ResObj.setPaid(value);
     }
     
    //editRoom is an overloaded function 
@@ -82,7 +79,7 @@ public class Employee extends User {
    
     public void editRoom(Room RoomObj, int Number) 
     {
-        //RoomObj.setNumber(Number);
+        RoomObj.setNumber(Number);
 		
     }
 	
@@ -93,15 +90,15 @@ public class Employee extends User {
      */
     public void editRoom(Room RoomObj, int choice, String Info) 
     {
-                switch(choice)
-      {
-          case 1:
-              //RoomObj.setType(Info);
-              break;
-          case 2:
-              //RoomObj.setDescription(Info);
-              break;
-              default:
+        switch(choice)
+        {
+            case 1:
+                //RoomObj.setType(Info);
+                break;
+            case 2:
+                //RoomObj.setDescription(Info);
+                break;
+            default:
               /*
               code return to Main Menu here
               */
@@ -113,7 +110,7 @@ public class Employee extends User {
     
       public void editRoom(Room RoomObj, double Rate) 
     {
-        //RoomObj.setRate(Rate);
+        RoomObj.setRate(Rate);
 		
     }
     

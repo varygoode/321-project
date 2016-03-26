@@ -66,11 +66,6 @@ public class Reservation {
         endDate = end;
     }
     
-    public void setRoomNumber(Date end)
-    {
-        endDate = end;
-    }
-    
     public void setRoom(Room room)
     {
         this.room = room;
