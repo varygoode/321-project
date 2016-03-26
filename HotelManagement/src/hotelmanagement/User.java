@@ -24,6 +24,8 @@ public class User
     private Scanner   input;
     //create a reference to the Ledger Object
     Ledger LedgObj = Ledger.getLedger();
+    HotelManagement hms = HotelManagement.getHMS();
+    UserFactory userFac = UserFactory.getUserFactory();
     
     public User() 
     {
@@ -145,7 +147,7 @@ public class User
     public void Information (){
 		
         //What is your first name?
-        System.out.println("Please register by entering your first name: ");
+        System.out.println("Please enter your first name: ");
         String f = input.nextLine();
         setFirstName(f);
 
@@ -200,7 +202,12 @@ public class User
 
                 //thank you message
                 System.out.println("Thank you for Creating an Account");
-
+                
+                // add new user to HMS arraylist
+                userFac.createUser(this.getClass(), this.username, this.password, this.username, this.lastName, this.ID);
+                hms.allUsers.add(this);
+                
+                //return to main menu
                 display.setState(StateEnum.MAIN);
                 display.update();
             }//end if

@@ -9,19 +9,39 @@ import java.util.Date;
 
 public class HotelManagement
 {
+    static private HotelManagement singletonHMS;
+    
     ArrayList<Room> allRooms;
     ArrayList<User> allUsers;
     ArrayList<Reservation> allReserves;
     Ledger theLedger;
     Display display;
     
-    public HotelManagement() 
+    
+//    public HotelManagement() 
+//    {
+//        allRooms = new ArrayList();
+//        allUsers = new ArrayList();
+//        allReserves = new ArrayList();
+//        theLedger = Ledger.getLedger();
+//        display = new Display();
+//    }
+    private HotelManagement()
     {
         allRooms = new ArrayList();
         allUsers = new ArrayList();
         allReserves = new ArrayList();
         theLedger = Ledger.getLedger();
         display = new Display();
+    }
+    
+    public static HotelManagement getHMS()
+    {
+        if (singletonHMS == null) 
+        {
+            singletonHMS = new HotelManagement();       
+        }    
+        return singletonHMS;
     }
         
     public void initialize()
