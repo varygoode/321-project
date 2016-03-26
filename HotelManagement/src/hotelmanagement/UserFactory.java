@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package hotelmanagement;
 
 /**
@@ -11,13 +7,36 @@ package hotelmanagement;
  */
 public class UserFactory 
 {
-    public UserFactory()
+    static private UserFactory singletonFactory;
+    
+    private UserFactory()
     {
-        
+
     }
     
-    public User createUser()
+    public static UserFactory getUserFactory()
     {
-        return new User();
+        if (singletonFactory == null)
+        {
+            singletonFactory = new UserFactory();
+        } 
+        return singletonFactory;
+    }
+            
+    public User createUser(Class<?> classArg, String username, String password, String fName, String lName, int ID)
+    {
+        if (classArg.equals(hotelmanagement.Customer.class))
+        {
+            return new Customer(username, password, fName, lName, ID);
+        }
+        else if (classArg.equals(hotelmanagement.Employee.class))
+        {
+            return new Employee(username, password, fName, lName, ID);
+        }
+        return new User(username, password, fName, lName, ID);
+    } 
+    public void getMessage()
+    {
+        System.out.print("You made a user");
     }
 }

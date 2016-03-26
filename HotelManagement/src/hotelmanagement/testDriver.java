@@ -13,9 +13,11 @@ public class testDriver {
     
     public static void main(String args[])
     {
-        HotelManagement hms = new HotelManagement();
+        HotelManagement hms = HotelManagement.getHMS();
         
         hms.initialize();
+        
+        hms.run();
     }
     
 }

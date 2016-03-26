@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package hotelmanagement;
+
+import java.util.Date;
 
 /**
  *
@@ -11,13 +9,28 @@ package hotelmanagement;
  */
 public class ReservationFactory 
 {
-    public ReservationFactory()
+    static private ReservationFactory singletonFactory;
+    
+    private ReservationFactory()
     {
-        
+
     }
     
-    public Reservation createReservation()
+    public static ReservationFactory getReservationFactory()
     {
-        return new Reservation();    
+        if (singletonFactory == null) 
+        {
+            singletonFactory = new ReservationFactory();       
+        }    
+        return singletonFactory;
+    }
+            
+    public Reservation createReservation(Date sDate, Date eDate, Room room, boolean payment, User user, int ID)
+    {
+        return new Reservation(sDate, eDate, room, payment, user, ID);
     } 
+    public void getMessage()
+    {
+        System.out.print("You made a reservation.");
+    }
 }
