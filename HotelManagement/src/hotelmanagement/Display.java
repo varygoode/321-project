@@ -192,6 +192,11 @@ public class Display
         return input.nextLine();
     }
     
+    public double getDoubleInput()
+    {
+        return input.nextDouble();
+    }
+    
     public void Show(String str)
     {
         System.out.println(str);
