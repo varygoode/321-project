@@ -202,6 +202,9 @@ public class HotelManagement
 
                 break;
             case 2:
+                display.setState(StateEnum.MAIN);
+                break;
+            case 3:
                 display.setState(StateEnum.QUIT);
                 break;
 
@@ -233,6 +236,9 @@ public class HotelManagement
 
                 break;
             case 7:
+                display.setState(StateEnum.MAIN);
+                break;
+            case 8:
                 display.setState(StateEnum.QUIT);
                 break;
 
@@ -252,6 +258,9 @@ public class HotelManagement
 
                 break;
             case 3:
+                display.setState(StateEnum.MAIN);
+                break;
+            case 4:
                 display.setState(StateEnum.QUIT);
                 break;
         }
@@ -270,6 +279,9 @@ public class HotelManagement
 
                 break;
             case 3:
+                display.setState(StateEnum.MAIN);
+                break;
+            case 4:
                 display.setState(StateEnum.QUIT);
                 break;
         }
@@ -288,6 +300,9 @@ public class HotelManagement
 
                 break;
             case 3:
+                display.setState(StateEnum.MAIN);
+                break;
+            case 4:
                 display.setState(StateEnum.QUIT);
                 break;
         }
@@ -306,6 +321,9 @@ public class HotelManagement
 
                 break;
             case 3:
+                display.setState(StateEnum.MAIN);
+                break;
+            case 4:
                 display.setState(StateEnum.QUIT);
                 break;
         }
@@ -324,6 +342,9 @@ public class HotelManagement
                 display.setState(StateEnum.SEARCH);
                 break;
             case 3:
+                display.setState(StateEnum.MAIN);
+                break;
+            case 4:
                 display.setState(StateEnum.QUIT);
                 break;
         }
