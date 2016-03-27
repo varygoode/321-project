@@ -74,7 +74,7 @@ public class Display
         //may need a separate search menu for employee and another for customer
             System.out.println("**SEARCH**");
             System.out.println("==========");
-            System.out.println("1. Room"); //filters to room data will be applied 
+            System.out.println("1. Search for a Room"); //filters to room data will be applied 
             System.out.println("2. Make a Reservation"); //takes you to Reservation Menu
             System.out.println("3. Return to Main Menu");
             System.out.println("4. Cancel");
@@ -88,7 +88,8 @@ public class Display
             System.out.println("====================");
             System.out.println("1. Reserve Room");
             System.out.println("2. Confirm Reservation");
-            System.out.println("3. Cancel");
+            System.out.println("3. Return to Main Menu");
+            System.out.println("4. Cancel");
             System.out.println("Please enter the digit to make a selection.");
            
     }
@@ -97,9 +98,10 @@ public class Display
     {
             System.out.println("**Check-In Menu**");
             System.out.println("=================");
-            System.out.println("1. Select Date Duration");
+            System.out.println("1. Find Reservation");
             System.out.println("2. Enter Payment information"); //hold data for checkout
-            System.out.println("3. Cancel");
+            System.out.println("3. Return to Main Menu");
+            System.out.println("4. Cancel");
             System.out.println("Please enter the digit to make a selection.");
             
     }
