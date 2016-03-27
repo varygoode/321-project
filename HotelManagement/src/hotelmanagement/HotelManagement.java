@@ -815,11 +815,14 @@ public class HotelManagement
                             }
                         }
                         
-                        checkoutComplete = (partialPayment) ? true : (reserveToCheckout.getCurrentPrice() > 0);
+                        checkoutComplete = (partialPayment) ? true : (reserveToCheckout.getCurrentPrice() <= 0.0);
                     }
                     
                     boolean reallyComplete = (!partialPayment) ? checkoutComplete : false;
-                    reserveToCheckout.setCheckedIn(reallyComplete);
+                    if(reallyComplete)
+                    {
+                        reserveToCheckout.setCheckedIn(false);
+                    }
                     
                     if(!reserveToCheckout.IsCheckedIn())
                     {
