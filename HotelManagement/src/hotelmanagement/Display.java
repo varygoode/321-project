@@ -96,8 +96,8 @@ public class Display
     {
             System.out.println("**Check-Out Menu**");
             System.out.println("==================");
-            System.out.println("1. Select Date Duration");
-            System.out.println("2. Enter Payment information"); //hold data for checkout
+            System.out.println("1. Find a Reservation");
+            System.out.println("2. Complete Check-Out");
             System.out.println("3. Return to Main Menu");
             System.out.println("4. Cancel");
             System.out.println("Please enter the digit to make a selection.");

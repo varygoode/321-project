@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package hotelmanagement;
+
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,10 +19,10 @@ public class Transaction {
     
     public Transaction()
     {
-        
     }
     /*
-    * @Param res 
+    * @Param res Reservation to be paid
+    * @Param payment The amount of the current payment
     */
     private boolean CollectPay(Reservation res, double payment) throws InsufficientFundsException
     {
