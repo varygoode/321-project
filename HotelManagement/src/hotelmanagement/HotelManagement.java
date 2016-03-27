@@ -5,6 +5,7 @@ package hotelmanagement;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.text.*;
 
 
 public class HotelManagement
@@ -90,7 +91,7 @@ public class HotelManagement
         allReserves.add(reservationFactory.createReservation(new Date(116,5,12), new Date(116,5,25), allRooms.get(25), true, allUsers.get(4), 1000004));
     }
     
-    public void run()
+    public void run() throws ParseException
     {
         display.update();
         boolean endProgram = false;
@@ -178,8 +179,7 @@ public class HotelManagement
                 //access to login needs work
                 break;
             case 2:
-                //User newUser = hms.allUsers.get(0);
-                //newUser.Register();
+                display.setState(StateEnum.RESERVATION);
                 break;
             case 3:
                 display.setState(StateEnum.SEARCH);
@@ -257,14 +257,23 @@ public class HotelManagement
         }
     }
     
-    private void reservationMenu()
+    private void reservationMenu() throws ParseException
     {
+        ReservationFactory reservationFactory = ReservationFactory.getReservationFactory();
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         int menuOption = display.getIntInput();
 
         switch(menuOption)
         {
             case 1:
-
+                display.Show("When would you like to reserve the room from? (dd/MM/yyyy)");
+                String reserveDate1 = display.getStrInput();
+                display.Show("When would you like to reserve the room until? (dd/MM/yyyy)");
+                String reserveDate2 = display.getStrInput();
+                Date d1 = df.parse(reserveDate1);
+                Date d2 = df.parse(reserveDate2);
+                Reservation newRes = reservationFactory.createReservation(d1, d2, allRooms.get(5), true, allUsers.get(0), 1000000);
+                allReserves.add(newRes);
                 break;
             case 2:
 
