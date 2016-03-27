@@ -109,7 +109,7 @@ public class Ledger
             //get all current room properties
             ArrayList<String> properties = new ArrayList();
             properties.add(Integer.toString(room.getNumber()));
-            properties.add(room.getType());
+            properties.add(room.getType().toString());
             properties.add(Double.toString(room.getRate()));
             
             //compare each search parameter to each property

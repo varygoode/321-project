@@ -11,7 +11,7 @@ package hotelmanagement;
  */
 public class Room 
 {
-    private String type;
+    private RoomTypeEnum type;
     private int number;
     private String description;
     private double rate;
@@ -24,7 +24,7 @@ public class Room
         rate = 0.0;
     }
     
-    public Room(String ty, int idx, String desc, double rt)
+    public Room(RoomTypeEnum ty, int idx, String desc, double rt)
     {
         type = ty;
         number = idx;
@@ -32,11 +32,11 @@ public class Room
         rate = rt;
     }
     
-    public String getType() {
+    public RoomTypeEnum getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(RoomTypeEnum type) {
         this.type = type;
     }
 

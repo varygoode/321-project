@@ -80,19 +80,19 @@ public class HotelManagement
             {
                 if( (i+j) % 4 == 0)
                 {
-                    allRooms.add(roomFactory.createRoom("King Suite", (i*100)+j, "A single king bed situated in a magnificent simulated suite. Perfect for the average-sized American.", 189));
+                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEKING, (i*100)+j, "A single king bed situated in a magnificent simulated suite. Perfect for the average-sized American.", 189));
                 }
                 else if((i+j) % 3 == 2)
                 {
-                    allRooms.add(roomFactory.createRoom("Honeymoon Suite", (i*100)+j, "A single king bed with plush pillows and exotic drapery situated in a romantic simulated suite. Perfect for the consummation.", 289));
+                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEKING, (i*100)+j, "A single king bed with plush pillows and exotic drapery situated in a romantic simulated suite. Perfect for the consummation.", 289));
                 }
                 else if((i*i+j*j) % 15 == 0)
                 {
-                    allRooms.add(roomFactory.createRoom("VIP Suite", (i*100)+j, "Amazing comfort & any bed, at your request, situated in an incredible simulated suite. Perfect for the top 1%.", 289));
+                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEQUEEN, (i*100)+j, "Amazing comfort & any bed, at your request, situated in an incredible simulated suite. Perfect for the top 1%.", 289));
                 }
                 else
                 {
-                    allRooms.add(roomFactory.createRoom("Double Queen", (i*100)+j, "Two beautiful queen beds situated in a glorious simulated room. Perfect for divorced couples.", 89));
+                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEQUEEN, (i*100)+j, "Two beautiful queen beds situated in a glorious simulated room. Perfect for divorced couples.", 89));
                 }
             }
         }
