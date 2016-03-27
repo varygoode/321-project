@@ -190,10 +190,7 @@ public class Display
      */
     public String getStrInput()
     {
-        String selection = input.next();
-        input.nextLine();
-        
-        return selection;
+        return input.nextLine();
     }
     
     public void Show(String str)
