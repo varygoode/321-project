@@ -41,28 +41,28 @@ public class Display
             System.out.println("4. Quit"); //endProgram
             System.out.println("Please enter the digit to make a selection.");
            
-            menuOption = getIntInput();
-            
-            switch(menuOption)
-            {
-                case 1:
-                    //User user = hms.allUsers.get(0);
-                    //user.Login(ArrayList<User> userList, String name, String password);
-                    //access to login needs work
-                    break;
-                case 2:
-                    //User newUser = hms.allUsers.get(0);
-                    //newUser.Register();
-                    break;
-                case 3:
-                    setState(StateEnum.SEARCH);
-                    break;
-                case 4:
-                    setState(StateEnum.QUIT);
-                    break;
-                
-            }
-            update();
+//            menuOption = getIntInput();
+//            
+//            switch(menuOption)
+//            {
+//                case 1:
+//                    //User user = hms.allUsers.get(0);
+//                    //user.Login(ArrayList<User> userList, String name, String password);
+//                    //access to login needs work
+//                    break;
+//                case 2:
+//                    //User newUser = hms.allUsers.get(0);
+//                    //newUser.Register();
+//                    break;
+//                case 3:
+//                    setState(StateEnum.SEARCH);
+//                    break;
+//                case 4:
+//                    setState(StateEnum.QUIT);
+//                    break;
+//                
+//            }
+//            update();
             
     }//end public function
     
@@ -74,20 +74,20 @@ public class Display
             System.out.println("2. Cancel");
             System.out.println("Please enter the digit to make a selection.");
             
-            menuOption = getIntInput();
-            
-            switch(menuOption)
-            {
-                case 1:
-                    setState(StateEnum.SEARCH);
-                    
-                    break;
-                case 2:
-                    setState(StateEnum.QUIT);
-                    break;
-                
-            }
-            update();
+//            menuOption = getIntInput();
+//            
+//            switch(menuOption)
+//            {
+//                case 1:
+//                    setState(StateEnum.SEARCH);
+//                    
+//                    break;
+//                case 2:
+//                    setState(StateEnum.QUIT);
+//                    break;
+//                
+//            }
+//            update();
     }
     
     private void empMenu()
@@ -102,34 +102,34 @@ public class Display
             System.out.println("6. Report"); //for now prints 'database'
             System.out.println("7. Cancel");
             
-            menuOption = getIntInput();
-            
-            switch(menuOption)
-            {
-                case 1:
-                    setState(StateEnum.SEARCH);
-                    break;
-                case 2:
-  
-                    break;
-                case 3:
-                    
-                    break;
-                case 4:
-                    
-                    break;
-                case 5:
-                    
-                    break;
-                case 6:
-                    
-                    break;
-                case 7:
-                    setState(StateEnum.QUIT);
-                    break;
-                
-            }
-            update();
+//            menuOption = getIntInput();
+//            
+//            switch(menuOption)
+//            {
+//                case 1:
+//                    setState(StateEnum.SEARCH);
+//                    break;
+//                case 2:
+//  
+//                    break;
+//                case 3:
+//                    
+//                    break;
+//                case 4:
+//                    
+//                    break;
+//                case 5:
+//                    
+//                    break;
+//                case 6:
+//                    
+//                    break;
+//                case 7:
+//                    setState(StateEnum.QUIT);
+//                    break;
+//                
+//            }
+//            update();
     }
     
     private void searchMenu()
@@ -142,21 +142,21 @@ public class Display
             System.out.println("3. Cancel");
             System.out.println("Please enter the digit to make a selection.");
             
-            menuOption = getIntInput();
-            
-            switch(menuOption)
-            {
-                case 1:
-            
-                    break;
-                case 2:
-  
-                    break;
-                case 3:
-                    setState(StateEnum.QUIT);
-                    break;
-            }        
-            update();
+//            menuOption = getIntInput();
+//            
+//            switch(menuOption)
+//            {
+//                case 1:
+//            
+//                    break;
+//                case 2:
+//  
+//                    break;
+//                case 3:
+//                    setState(StateEnum.QUIT);
+//                    break;
+//            }        
+//            update();
     }
     
     private void reservationMenu()
@@ -168,21 +168,21 @@ public class Display
             System.out.println("3. Cancel");
             System.out.println("Please enter the digit to make a selection.");
            
-            menuOption = getIntInput();
-            
-            switch(menuOption)
-            {
-                case 1:
-            
-                    break;
-                case 2:
-  
-                    break;
-                case 3:
-                    setState(StateEnum.QUIT);
-                    break;
-            }
-            update();
+//            menuOption = getIntInput();
+//            
+//            switch(menuOption)
+//            {
+//                case 1:
+//            
+//                    break;
+//                case 2:
+//  
+//                    break;
+//                case 3:
+//                    setState(StateEnum.QUIT);
+//                    break;
+//            }
+//            update();
     }
     
     private void checkInMenu()
@@ -194,21 +194,21 @@ public class Display
             System.out.println("3. Cancel");
             System.out.println("Please enter the digit to make a selection.");
             
-            menuOption = getIntInput();
-            
-            switch(menuOption)
-            {
-                case 1:
-            
-                    break;
-                case 2:
-  
-                    break;
-                case 3:
-                    setState(StateEnum.QUIT);
-                    break;
-            }
-            update();
+//            menuOption = getIntInput();
+//            
+//            switch(menuOption)
+//            {
+//                case 1:
+//            
+//                    break;
+//                case 2:
+//  
+//                    break;
+//                case 3:
+//                    setState(StateEnum.QUIT);
+//                    break;
+//            }
+//            update();
     }
     
     private void checkOutMenu()
@@ -220,21 +220,21 @@ public class Display
             System.out.println("3. Cancel");
             System.out.println("Please enter the digit to make a selection.");
             
-            menuOption = getIntInput();
-            
-            switch(menuOption)
-            {
-                case 1:
-            
-                    break;
-                case 2:
-  
-                    break;
-                case 3:
-                    setState(StateEnum.QUIT);
-                    break;
-            }
-            update();
+//            menuOption = getIntInput();
+//            
+//            switch(menuOption)
+//            {
+//                case 1:
+//            
+//                    break;
+//                case 2:
+//  
+//                    break;
+//                case 3:
+//                    setState(StateEnum.QUIT);
+//                    break;
+//            }
+//            update();
     }
     
     private void cancelMenu()
@@ -247,21 +247,21 @@ public class Display
             System.out.println("3. Quit"); //go to quitMenu
             System.out.println("Please enter the digit to make a selection.");
             
-            menuOption = getIntInput();
-            
-            switch(menuOption)
-            {
-                case 1:
-                    setState(StateEnum.MAIN);
-                    break;
-                case 2:
-                    setState(StateEnum.SEARCH);
-                    break;
-                case 3:
-                    setState(StateEnum.QUIT);
-                    break;
-            }
-            update();
+//            menuOption = getIntInput();
+//            
+//            switch(menuOption)
+//            {
+//                case 1:
+//                    setState(StateEnum.MAIN);
+//                    break;
+//                case 2:
+//                    setState(StateEnum.SEARCH);
+//                    break;
+//                case 3:
+//                    setState(StateEnum.QUIT);
+//                    break;
+//            }
+//            update();
     }
     
     private void quitMenu()
@@ -270,7 +270,7 @@ public class Display
             System.out.println("**Good Bye!**");
             System.out.println("=============");
             
-            System.exit(0);
+//            System.exit(0);
     }
     /**
      * Updates the display to show appropriate menu or prompt.
@@ -316,6 +316,11 @@ public class Display
     public void setState(StateEnum state)
     {
         this.state = state;
+    }
+    
+    public StateEnum getState()
+    {
+        return this.state;
     }
     
     /**

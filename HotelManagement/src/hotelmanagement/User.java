@@ -23,9 +23,9 @@ public class User
     private Display   display;
     private Scanner   input;
     //create a reference to the Ledger Object
-    Ledger LedgObj = Ledger.getLedger();
-    HotelManagement hms = HotelManagement.getHMS();
-    UserFactory userFac = UserFactory.getUserFactory();
+//    Ledger LedgObj = Ledger.getLedger();
+//    HotelManagement hms = HotelManagement.getHMS();
+//    UserFactory userFac = UserFactory.getUserFactory();
     
     public User() 
     {

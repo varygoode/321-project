@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class Ledger 
 {    
-    static private Ledger singletonLedger;
+    static private Ledger singletonLedger = null;
     
     public ArrayList<Reservation> filteredReservations;
     public ArrayList<Room> filteredRooms;

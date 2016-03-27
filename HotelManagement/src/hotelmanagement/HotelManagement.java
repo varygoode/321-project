@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class HotelManagement
 {
-    static private HotelManagement singletonHMS;
+    static private HotelManagement singletonHMS = null;
     
     ArrayList<Room> allRooms;
     ArrayList<User> allUsers;
@@ -93,6 +93,46 @@ public class HotelManagement
     public void run()
     {
         display.update();
+        boolean endProgram = false;
+        while(!endProgram)
+        {
+            switch(display.getState())
+            {
+                case MAIN:
+                    startMenu();
+                    break;
+                case CUSTOMER:
+                    custMenu();
+                    break;
+                case EMPLOYEE:
+                    empMenu();
+                    break;
+                case SEARCH:
+                    searchMenu();
+                    break;
+                case RESERVATION:
+                    reservationMenu();
+                    break;
+                case CHECKIN:
+                    checkInMenu();
+                    break;
+                case CHECKOUT:
+                    checkOutMenu();
+                    break;
+                case CANCEL:
+                    cancelMenu();
+                    break;
+                case QUIT:
+                    endProgram=true;
+                    break;
+                default:
+                    startMenu();
+                    break;
+            }
+            
+            display.update();
+        }
+        System.exit(0);
 
     }
     
@@ -124,5 +164,168 @@ public class HotelManagement
         }
         
         return currentUser;
+    }
+    
+    private void startMenu()
+    {            
+        int menuOption = display.getIntInput();
+
+        switch(menuOption)
+        {
+            case 1:
+                //User user = hms.allUsers.get(0);
+                //user.Login(ArrayList<User> userList, String name, String password);
+                //access to login needs work
+                break;
+            case 2:
+                //User newUser = hms.allUsers.get(0);
+                //newUser.Register();
+                break;
+            case 3:
+                display.setState(StateEnum.SEARCH);
+                break;
+            case 4:
+                display.setState(StateEnum.QUIT);
+                break;
+
+        }            
+    }//end public function
+    
+    private void custMenu()
+    {
+        int menuOption = display.getIntInput();
+
+        switch(menuOption)
+        {
+            case 1:
+                display.setState(StateEnum.SEARCH);
+
+                break;
+            case 2:
+                display.setState(StateEnum.QUIT);
+                break;
+
+        }
+    }
+    
+    private void empMenu()
+    {
+        int menuOption = display.getIntInput();
+
+        switch(menuOption)
+        {
+            case 1:
+                display.setState(StateEnum.SEARCH);
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            case 5:
+
+                break;
+            case 6:
+
+                break;
+            case 7:
+                display.setState(StateEnum.QUIT);
+                break;
+
+        }
+    }
+    
+    private void searchMenu()
+    {
+        int menuOption = display.getIntInput();
+            
+        switch(menuOption)
+        {
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+                display.setState(StateEnum.QUIT);
+                break;
+        }
+    }
+    
+    private void reservationMenu()
+    {
+        int menuOption = display.getIntInput();
+
+        switch(menuOption)
+        {
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+                display.setState(StateEnum.QUIT);
+                break;
+        }
+    }
+    
+    private void checkInMenu()
+    {
+        int menuOption = display.getIntInput();
+
+        switch(menuOption)
+        {
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+                display.setState(StateEnum.QUIT);
+                break;
+        }
+    }
+    
+    private void checkOutMenu()
+    {
+        int menuOption = display.getIntInput();
+
+        switch(menuOption)
+        {
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+                display.setState(StateEnum.QUIT);
+                break;
+        }
+    }
+    
+    private void cancelMenu()
+    {
+        int menuOption = display.getIntInput();
+
+        switch(menuOption)
+        {
+            case 1:
+                display.setState(StateEnum.MAIN);
+                break;
+            case 2:
+                display.setState(StateEnum.SEARCH);
+                break;
+            case 3:
+                display.setState(StateEnum.QUIT);
+                break;
+        }
     }
 }
