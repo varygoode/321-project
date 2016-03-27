@@ -56,7 +56,7 @@ public class Display
             System.out.println("4. Check-In"); 
             System.out.println("5. Check-Out");
             System.out.println("6. Report"); //for now prints 'database'
-            System.out.println("7. Cancel");System.out.println("7. Return to Main Menu"); //for now prints 'database'
+            System.out.println("7. Return to Main Menu");
             System.out.println("8. Cancel");
     }
     
