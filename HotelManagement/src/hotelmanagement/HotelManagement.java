@@ -25,6 +25,7 @@ public class HotelManagement
     ReservationFactory reservationFactory;
     DateFormat df;
     ArrayList<Room> roomResults;
+    ArrayList<Reservation> reserveResults;
     
     private HotelManagement()
     {
@@ -39,6 +40,7 @@ public class HotelManagement
         reservationFactory = ReservationFactory.getReservationFactory();
         df = new SimpleDateFormat("dd/MM/yyyy");
         roomResults = null;
+        reserveResults = null;
     }
     
     public static HotelManagement getHMS()
@@ -319,13 +321,13 @@ public class HotelManagement
             case 3:
             {    
                 display.setState(StateEnum.SEARCH);
-                break;
-            }    
+            }
+                break;    
             case 4:
             {    
                 display.setState(StateEnum.QUIT);
-                break;
-            }    
+            }
+                break;    
 
         }            
     }
@@ -337,22 +339,20 @@ public class HotelManagement
         switch(menuOption)
         {
             case 1:
-            {    
-                display.setState(StateEnum.SEARCH);
-
-                break;
-            }    
+            {
+                
+            }
+                break; 
             case 2:
             {    
-                display.setState(StateEnum.MAIN);
-                break;
-            }    
+                                
+            }   
+                break; 
             case 3:
             {    
-                display.setState(StateEnum.QUIT);
-                break;
-            }    
-
+                display.setState(StateEnum.QUIT);                
+            }   
+                break; 
         }
     }
     
@@ -597,17 +597,160 @@ public class HotelManagement
         }
     }
     
-    private void checkOutMenu()
+    private void checkOutMenu() throws ParseException
     {
         int menuOption = display.getIntInput();
 
         switch(menuOption)
         {
             case 1:
-
+            {
+                display.Show("By which parameter would you like to search?");
+                display.Show("1. Reservation ID");
+                display.Show("2. User ID");
+                display.Show("3. Room Number");
+                display.Show("4. Reservation Date Range");
+                int subMenuOption = display.getIntInput();
+                
+                ArrayList<String> params = new ArrayList<String>();
+                
+                switch(subMenuOption)
+                {
+                    case 1:
+                    case 2:
+                    case 3:
+                    {
+                        String strInput = "";
+                        while(!strInput.equals("#"))
+                        {
+                            display.Show("Input a search parameter, then press Enter. Type # and Enter when finished.");
+                            strInput = display.getStrInput();
+                            if(!strInput.equals("#"))
+                            {
+                                params.add(strInput);
+                            }
+                        }
+                        
+                        reserveResults = theLedger.search(allReserves, params);
+                    }
+                    break;
+                    case 4:
+                    {
+                        display.Show("Start Date? (DD/MM/YYYY)");
+                        String reserveDate1 = display.getStrInput();
+                        display.Show("End Date? (DD/MM/YYYY)");
+                        String reserveDate2 = display.getStrInput();
+                        Date d1 = df.parse(reserveDate1);
+                        Date d2 = df.parse(reserveDate2);
+                        
+                        params.add(d1.toString());
+                        params.add(d2.toString());
+                        
+                        reserveResults = theLedger.search(allReserves, params);
+                        
+                        for (Reservation res : reserveResults)
+                        {
+                            if(res.getStartDate().equals(d1))
+                            {
+                                if (!res.getEndDate().equals(d2))
+                                {
+                                    reserveResults.remove(res);
+                                }
+                            }
+                            
+                            if(res.getEndDate().equals(d2))
+                            {
+                                if (!res.getStartDate().equals(d1))
+                                {
+                                    reserveResults.remove(res);
+                                }
+                            }
+                        }
+                    }
+                        break;
+                }
+                
+                for(Reservation res : reserveResults)
+                {
+                    display.Show("=========================");
+                    display.Show("Result #" + reserveResults.indexOf(res) + ":");
+                    display.Show(res.toString());
+                    display.Show("=========================");
+                }
+            }
                 break;
             case 2:
-
+            {
+                if(reserveResults != null && !reserveResults.isEmpty())
+                {
+                    String response = "";
+                    Reservation reserveToCheckout = null;
+                    
+                    while(!(response.matches("Y") || response.matches("y")))
+                    {
+                        display.Show("Based on your latest search, enter the result # for the reservation you wish to check-out.");
+                        int resultIndex = display.getIntInput();
+                        
+                        if(resultIndex >= 0 && resultIndex < reserveResults.size())
+                        {
+                            display.Show("=========================");
+                            display.Show(reserveResults.get(resultIndex).toString());
+                            display.Show("=========================");
+                            display.Show("Is the above the correct reservation? Y/N");
+                            response = display.getStrInput();
+                            if(response.matches("Y") || response.matches("y"))
+                            {
+                                reserveToCheckout = reserveResults.get(resultIndex);
+                            }
+                        }
+                        else
+                        {
+                            display.Show("Please enter a valid result number. Current range: [0," + Integer.toString(roomResults.size() - 1) + "]");
+                        }
+                    }
+                    
+                    boolean checkoutComplete = false;
+                    boolean partialPayment = false;
+                    while(!checkoutComplete)
+                    {
+                        display.Show("The remaining bill for this reservation is $" + reserveToCheckout.getCurrentPrice());
+                        display.Show("Enter an amount to pay:");
+                        double payAmt = Double.parseDouble(display.getStrInput());
+                        Transaction trans = new Transaction();
+                        if(!trans.CheckOut(reserveToCheckout, payAmt))
+                        {
+                            display.Show("Thank you for partial payment. You still owe $" + reserveToCheckout.getCurrentPrice());
+                            display.Show("Payment must be in full to check-out.");
+                            display.Show("Stop check-out and return to check-out menu?");
+                            String returnInput = display.getStrInput();
+                            if(returnInput.matches("Y") || returnInput.matches("y"))
+                            {
+                                display.Show("Current reservation check-out incomplete! Returning to check-out menu...");
+                                partialPayment = true;
+                            }
+                        }
+                        
+                        checkoutComplete = (partialPayment) ? true : (reserveToCheckout.getCurrentPrice() > 0);
+                    }
+                    
+                    boolean reallyComplete = (!partialPayment) ? checkoutComplete : false;
+                    reserveToCheckout.setCheckedIn(reallyComplete);
+                    
+                    if(!reserveToCheckout.IsCheckedIn())
+                    {
+                        allReserves.remove(reserveToCheckout);
+                        display.Show("Check-out complete for reservation #" + reserveToCheckout.getReserveID());
+                    }
+                    else
+                    {
+                        display.Show("Check-out incomplete for reservation #" + reserveToCheckout.getReserveID());
+                    }
+                }
+                else
+                {
+                    display.Show("There are no current search results! Please search for a reservation before trying to make a check-out.");
+                }
+            }
                 break;
             case 3:
                 display.setState(StateEnum.MAIN);
