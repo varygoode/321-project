@@ -276,9 +276,6 @@ public class HotelManagement
                 allReserves.add(newRes);
                 break;
             case 2:
-
-                break;
-            case 3:
                 display.setState(StateEnum.QUIT);
                 break;
         }
