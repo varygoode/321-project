@@ -76,7 +76,22 @@ public class HotelManagement
         {
             for (int j = 0; j<=10; j++)
             {
-                allRooms.add(roomFactory.createRoom("Double Queen", (i*100)+j, "Two beautiful queen beds situated in a glorious simulated room. Perfect for divorced couples.", 89));
+                if( (i+j) % 4 == 0)
+                {
+                    allRooms.add(roomFactory.createRoom("King Suite", (i*100)+j, "A single king bed situated in a magnificent simulated suite. Perfect for the average-sized American.", 189));
+                }
+                else if((i+j) % 3 == 2)
+                {
+                    allRooms.add(roomFactory.createRoom("VIP Suite", (i*100)+j, "Amazing comfort & any bed, at your request, situated in an incredible simulated suite. Perfect for the top 1%.", 289));
+                }
+                else if((i*i+j*j) % 15 == 0)
+                {
+                    allRooms.add(roomFactory.createRoom("Honeymoon Suite", (i*100)+j, "A single king bed with plush pillows and exotic drapery situated in a romantic simulated suite. Perfect for the consummation.", 289));
+                }
+                else
+                {
+                    allRooms.add(roomFactory.createRoom("Double Queen", (i*100)+j, "Two beautiful queen beds situated in a glorious simulated room. Perfect for divorced couples.", 89));
+                }
             }
         }
 
@@ -362,10 +377,34 @@ public class HotelManagement
         switch(menuOption)
         {
             case 1:
-
+            {
+                ArrayList<String> params = new ArrayList<String>();
+                String strInput = "";
+                while(!strInput.equals("#"))
+                {
+                    display.Show("Input a search parameter, then press Enter. Type # and Enter when finished.");
+                    strInput = display.getStrInput();
+                    if(!strInput.equals("#"))
+                    {
+                        params.add(strInput);
+                    }
+                }
+                display.Show("Your search is processing!");
+                display.Show("Search Results:");
+                
+                ArrayList<Room> results = theLedger.search(allRooms, params);
+                
+                for(Room room : results)
+                {
+                    display.Show("=========================");
+                    display.Show("Result #" + results.indexOf(room) + ":");
+                    display.Show(room.toString());
+                    display.Show("=========================");
+                }
+            }
                 break;
             case 2:
-
+                display.setState(StateEnum.RESERVATION);
                 break;
             case 3:
                 display.setState(StateEnum.MAIN);
