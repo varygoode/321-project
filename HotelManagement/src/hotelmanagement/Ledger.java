@@ -51,7 +51,7 @@ public class Ledger
             return searchRooms(searchList, searchParameters);
         }
         
-        else if (searchList.get(0).getClass().equals(hotelmanagement.User.class))
+        else if (searchList.get(0).getClass().getSuperclass().equals(hotelmanagement.User.class))
         {
             return searchUsers(searchList, searchParameters);
         }
