@@ -123,7 +123,12 @@ public class HotelManagement
                     cancelMenu();
                     break;
                 case QUIT:
-                    endProgram=true;
+                    endProgram = true;
+                    if (endProgram==true)
+                    {   
+                      display.setState(StateEnum.QUIT);
+                      System.exit(0);
+                    }
                     break;
                 default:
                     startMenu();
@@ -132,7 +137,6 @@ public class HotelManagement
             
             display.update();
         }
-        System.exit(0);
 
     }
     
@@ -327,19 +331,19 @@ public class HotelManagement
                 display.setState(StateEnum.SEARCH);
                 break;
             case 2:
-
+                display.setState(StateEnum.RESERVATION);
                 break;
             case 3:
-
+                
                 break;
             case 4:
-
+                display.setState(StateEnum.CHECKIN);
                 break;
             case 5:
-
+                display.setState(StateEnum.CHECKOUT);
                 break;
             case 6:
-
+                
                 break;
             case 7:
                 display.setState(StateEnum.MAIN);
