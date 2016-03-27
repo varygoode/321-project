@@ -272,6 +272,15 @@ public class HotelManagement
                 else
                 {
                     display.Show("You are already logged in, " + currentUser.getFirstName() + "!");
+                    
+                    if(currentUser.getClass() == Customer.class)
+                    {
+                        display.setState(StateEnum.CUSTOMER);
+                    }
+                    else if(currentUser.getClass() == Employee.class)
+                    {
+                        display.setState(StateEnum.EMPLOYEE);
+                    }
                 }
             }
                 break;
@@ -295,6 +304,15 @@ public class HotelManagement
                 else
                 {
                     display.Show("You are already registered, " + currentUser.getFirstName() + "!");
+                    
+                    if(currentUser.getClass() == Customer.class)
+                    {
+                        display.setState(StateEnum.CUSTOMER);
+                    }
+                    else if(currentUser.getClass() == Employee.class)
+                    {
+                        display.setState(StateEnum.EMPLOYEE);
+                    }
                 }
             }
                 break;
