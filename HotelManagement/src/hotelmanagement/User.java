@@ -45,43 +45,53 @@ public class User
         this.ID = ID;
     }
     
-    public String getUsername() {
+    public String getUsername() 
+    {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(String username) 
+    {
         this.username = username;
     }
 
-    public String getPassword(String username) {
+    public String getPassword() 
+    {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password) 
+    {
         this.password = password;
     }
 
-    public String getFirstName() {
+    public String getFirstName() 
+    {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName) 
+    {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
+    public String getLastName() 
+    {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(String lastName) 
+    {
         this.lastName = lastName;
     }
 
-    public int getID() {
+    public int getID() 
+    {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(int ID) 
+    {
         this.ID = ID;
     }
     
@@ -91,143 +101,143 @@ public class User
     //Authenticate function allows user 3 tries to login
     //once login is successful, flag is set to 0 and loop exits
     
-    public void Login(ArrayList<User> userList, String name, String password)
-    {   
-        int x;
-        ArrayList<String> paramList = new ArrayList();
-        paramList.add(name);
-        ArrayList<User> returnList = LedgObj.search(userList, paramList); 
-        User returnUser = returnList.get(0);
-        
-        //allow user 3 tries to login
-        for (int i = 0; i < 3; i++)
-        {
-            x = password.compareTo(getPassword(name));
-            if(x == 0)
-            {
-                System.out.println("Login Successful");
-                if(returnUser.getClass().equals(hotelmanagement.Employee.class))
-                {
-                    display.setState(StateEnum.EMPLOYEE);
-                    display.update();
-                }
-                else if(returnUser.getClass().equals(hotelmanagement.Customer.class))
-                {
-                    display.setState(StateEnum.CUSTOMER);
-                    display.update();
-                }
-                
-            }
-            else
-            System.out.println("User name and password did not match. Try again. Error Code: " + x);
-        }//close for loop   
-        display.setState(StateEnum.MAIN);
-        display.update();
-        //code to close program?
-       
-    }//close Authenticate
-              
-    //store registration information
-    public void Register () {
-        
-    //call information method to get and store information
-    
-    Information();
-		
-    //while the user does not choose option 1 to register again or two to 
-    //return to the main menu the request loops
-		
-    EditInformation();
-    
-        
-    } 
-   
-    
-        
-    public void Information (){
-		
-        //What is your first name?
-        System.out.println("Please enter your first name: ");
-        String f = input.nextLine();
-        setFirstName(f);
-
-        //What is your last name?
-        System.out.println("Please enter your last name: ");
-        String l = input.nextLine();
-        setLastName(l);
-
-        //Create a user name
-        System.out.println("Please create a User Name to access your account with: ");
-        String u = input.nextLine();
-        setUsername(u);
-
-        //Create a unique password
-        System.out.println("Please create a unique password for your account: ");
-        String p = input.nextLine();
-        setPassword(p);
-
-        //Display output
-
-        System.out.println("Your first and last name are: " + f + " " + l );
-        System.out.println("You entered your User Name as: " + " " + u );
-        System.out.println("You entered your password as: " + " " + p );
-        
-    }
-		
-    public void EditInformation(){
-	int choice = 0;
-	boolean done = false;
-		
-	while (done = false)
-	{
-            //Enter 1 if information is incorrect
-            //and go through registration again
-            System.out.println("Enter 1 to change your information.");
-
-            //Enter 2 to return to the Main Menu
-            System.out.println("Enter 2 to return to the Main Menu");
-
-            //int  holds user's choice 
-            choice = input.nextInt();
-
-            //Confirm one or two was selected		
-            if (choice == 1 ) {
-
-                Register();//confirm funtion goes to a switch which allows to user to register again
-
-            }//end if
-
-            if (choice == 2) {
-                done = true;//change boolean to stop while loop
-
-                //thank you message
-                System.out.println("Thank you for Creating an Account");
-                
-                // add new user to HMS arraylist
-                userFac.createUser(this.getClass(), this.username, this.password, this.username, this.lastName, this.ID);
-                hms.allUsers.add(this);
-                
-                //return to main menu
-                display.setState(StateEnum.MAIN);
-                display.update();
-            }//end if
-
-            else {
-                //user entered something other than 1 or 2
-
-                System.out.println("You entered something other than 1 or 2.  Try again.");
-                done = false;	//boolean remains false the while loop continues until 2 is entered.
-            }//end else
-
-        }//end while loop
-	
-    }//end EditInformation() 
-	
-    
-      
-   
-
-    /*
+//    public void Login(ArrayList<User> userList, String name, String password)
+//    {   
+//        int x;
+//        ArrayList<String> paramList = new ArrayList();
+//        paramList.add(name);
+//        ArrayList<User> returnList = LedgObj.search(userList, paramList); 
+//        User returnUser = returnList.get(0);
+//        
+//        //allow user 3 tries to login
+//        for (int i = 0; i < 3; i++)
+//        {
+//            x = password.compareTo(getPassword(name));
+//            if(x == 0)
+//            {
+//                System.out.println("Login Successful");
+//                if(returnUser.getClass().equals(hotelmanagement.Employee.class))
+//                {
+//                    display.setState(StateEnum.EMPLOYEE);
+//                    display.update();
+//                }
+//                else if(returnUser.getClass().equals(hotelmanagement.Customer.class))
+//                {
+//                    display.setState(StateEnum.CUSTOMER);
+//                    display.update();
+//                }
+//                
+//            }
+//            else
+//            System.out.println("User name and password did not match. Try again. Error Code: " + x);
+//        }//close for loop   
+//        display.setState(StateEnum.MAIN);
+//        display.update();
+//        //code to close program?
+//       
+//    }//close Authenticate
+//              
+//    //store registration information
+//    public void Register () {
+//        
+//    //call information method to get and store information
+//    
+//    Information();
+//		
+//    //while the user does not choose option 1 to register again or two to 
+//    //return to the main menu the request loops
+//		
+//    EditInformation();
+//    
+//        
+////    } 
+//   
+//    
+//        
+//    public void Information (){
+//		
+//        //What is your first name?
+//        System.out.println("Please enter your first name: ");
+//        String f = input.nextLine();
+//        setFirstName(f);
+//
+//        //What is your last name?
+//        System.out.println("Please enter your last name: ");
+//        String l = input.nextLine();
+//        setLastName(l);
+//
+//        //Create a user name
+//        System.out.println("Please create a User Name to access your account with: ");
+//        String u = input.nextLine();
+//        setUsername(u);
+//
+//        //Create a unique password
+//        System.out.println("Please create a unique password for your account: ");
+//        String p = input.nextLine();
+//        setPassword(p);
+//
+//        //Display output
+//
+//        System.out.println("Your first and last name are: " + f + " " + l );
+//        System.out.println("You entered your User Name as: " + " " + u );
+//        System.out.println("You entered your password as: " + " " + p );
+//        
+//    }
+//		
+//    public void EditInformation(){
+//	int choice = 0;
+//	boolean done = false;
+//		
+//	while (done = false)
+//	{
+//            //Enter 1 if information is incorrect
+//            //and go through registration again
+//            System.out.println("Enter 1 to change your information.");
+//
+//            //Enter 2 to return to the Main Menu
+//            System.out.println("Enter 2 to return to the Main Menu");
+//
+//            //int  holds user's choice 
+//            choice = input.nextInt();
+//
+//            //Confirm one or two was selected		
+//            if (choice == 1 ) {
+//
+//                Register();//confirm funtion goes to a switch which allows to user to register again
+//
+//            }//end if
+//
+//            if (choice == 2) {
+//                done = true;//change boolean to stop while loop
+//
+//                //thank you message
+//                System.out.println("Thank you for Creating an Account");
+//                
+//                // add new user to HMS arraylist
+//                userFac.createUser(this.getClass(), this.username, this.password, this.username, this.lastName, this.ID);
+//                hms.allUsers.add(this);
+//                
+//                //return to main menu
+//                display.setState(StateEnum.MAIN);
+//                display.update();
+//            }//end if
+//
+//            else {
+//                //user entered something other than 1 or 2
+//
+//                System.out.println("You entered something other than 1 or 2.  Try again.");
+//                done = false;	//boolean remains false the while loop continues until 2 is entered.
+//            }//end else
+//
+//        }//end while loop
+//	
+//    }//end EditInformation() 
+//	
+//    
+//      
+//   
+//
+/*
     This is the new version of Register() was not saved on Sunday.
     This is the updated code given Tim's work on Reservation
     //Register() stores information passed to it by calling CreateUser() Method.

@@ -187,4 +187,9 @@ public class Display
         
         return selection;
     }
+    
+    public void Show(String str)
+    {
+        System.out.println(str);
+    }
 }//end display

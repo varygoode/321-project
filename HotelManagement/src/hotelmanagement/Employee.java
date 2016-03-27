@@ -13,7 +13,8 @@ import java.lang.*;
  *
  * @author Monique
  */
-public class Employee extends User {
+public class Employee extends User 
+{
     
     ReservationFactory resFactory = ReservationFactory.getReservationFactory();
     Ledger LedgObj = Ledger.getLedger();

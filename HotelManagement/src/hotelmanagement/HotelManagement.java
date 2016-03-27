@@ -16,6 +16,7 @@ public class HotelManagement
     ArrayList<Reservation> allReserves;
     Ledger theLedger;
     Display display;
+    User currentUser;
     
     
 //    public HotelManagement() 
@@ -33,6 +34,7 @@ public class HotelManagement
         allReserves = new ArrayList();
         theLedger = Ledger.getLedger();
         display = new Display();
+        currentUser = new User();
     }
     
     public static HotelManagement getHMS()
@@ -101,5 +103,35 @@ public class HotelManagement
             
         }
         System.exit(0);
+    }
+    
+    public Customer registerCustomer(String username, String password, String fName, String lName, int ID)
+    {
+        return new Customer(username, password, fName, lName, ID);
+    }
+    
+    public Employee registerEmployee(String username, String password, String fName, String lName, int ID)
+    {
+        return new Employee(username, password, fName, lName, ID);
+    }
+    
+    public User login(String username, String password)
+    {
+        ArrayList<String> params = new ArrayList<String>();
+        params.add(username);
+        ArrayList<User> results = theLedger.search(allUsers, params);
+        User tempUser = (results.isEmpty()) ? currentUser : results.get(0);
+        
+        display.Show("Enter your username:");
+        String inUsername = display.getStrInput();
+        display.Show("Enter your password:");
+        String inPassword = display.getStrInput();
+        
+        if(tempUser.getUsername() == inUsername && tempUser.getPassword() == inPassword)
+        {
+            return tempUser;
+        }
+        
+        return currentUser;
     }
 }
