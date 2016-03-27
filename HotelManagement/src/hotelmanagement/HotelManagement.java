@@ -173,13 +173,14 @@ public class HotelManagement
         switch(menuOption)
         {
             case 1:
-                //User user = hms.allUsers.get(0);
-                //user.Login(ArrayList<User> userList, String name, String password);
-                //access to login needs work
+            {
+                
+            }
                 break;
             case 2:
-                //User newUser = hms.allUsers.get(0);
-                //newUser.Register();
+            {
+                
+            }
                 break;
             case 3:
                 display.setState(StateEnum.SEARCH);
@@ -189,7 +190,7 @@ public class HotelManagement
                 break;
 
         }            
-    }//end public function
+    }
     
     private void custMenu()
     {
@@ -202,7 +203,7 @@ public class HotelManagement
 
                 break;
             case 2:
-                display.setState(StateEnum.QUIT);
+                display.setState(StateEnum.CANCEL);
                 break;
 
         }
@@ -233,7 +234,7 @@ public class HotelManagement
 
                 break;
             case 7:
-                display.setState(StateEnum.QUIT);
+                display.setState(StateEnum.CANCEL);
                 break;
 
         }
@@ -252,7 +253,7 @@ public class HotelManagement
 
                 break;
             case 3:
-                display.setState(StateEnum.QUIT);
+                display.setState(StateEnum.CANCEL);
                 break;
         }
     }
@@ -270,7 +271,7 @@ public class HotelManagement
 
                 break;
             case 3:
-                display.setState(StateEnum.QUIT);
+                display.setState(StateEnum.CANCEL);
                 break;
         }
     }
@@ -282,13 +283,15 @@ public class HotelManagement
         switch(menuOption)
         {
             case 1:
-
-                break;
+            {
+                
+            }
+            break;
             case 2:
 
                 break;
             case 3:
-                display.setState(StateEnum.QUIT);
+                display.setState(StateEnum.CANCEL);
                 break;
         }
     }
@@ -306,7 +309,7 @@ public class HotelManagement
 
                 break;
             case 3:
-                display.setState(StateEnum.QUIT);
+                display.setState(StateEnum.CANCEL);
                 break;
         }
     }
