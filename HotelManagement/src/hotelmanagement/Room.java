@@ -69,7 +69,7 @@ public class Room
         return "Number: " + number + "\nType: " + type + "\nRate: " + Double.toString(rate) + "\nDescription: " + description;
     }
     
-    public void AlterRoom(String ty, int idx, String desc, double rt)
+    public void AlterRoom(RoomTypeEnum ty, int idx, String desc, double rt)
     {   
         setType(ty);
         setNumber(idx);

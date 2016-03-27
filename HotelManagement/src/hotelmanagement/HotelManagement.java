@@ -28,6 +28,7 @@ public class HotelManagement
     ArrayList<Room> roomResults;
     ArrayList<Reservation> resResults;
     Transaction txn;
+    RoomTypeEnum type;
     
     private HotelManagement()
     {
@@ -400,7 +401,7 @@ public class HotelManagement
                     
                     while(!(response.matches("Y") || response.matches("y")))
                     {
-                        display.Show("Here is the list of rooms, enter the # for the room you wish to alter.");
+                        display.Show("Enter the # for the room you wish to alter.");
                         int resultIndex = display.getIntInput();
                         
                         if(resultIndex >= 0 && resultIndex < allRooms.size())
@@ -412,21 +413,74 @@ public class HotelManagement
                             response = display.getStrInput();
                             if(response.matches("Y") || response.matches("y"))
                             {
-                                display.Show("Please made a change to the room type.");
-                                String changeTy = display.getStrInput();
+                                RoomTypeEnum changeTy = null;
+                                aroom = allRooms.get(resultIndex);
                                 
-                                display.Show("Please made a change to the room number.");
+                                display.Show("Please make a change to the room type.");
+                                display.Show("Make a selection to change room type.");
+                                display.Show("1. Change to one twin bed.");
+                                display.Show("2. Change to one two twin beds.");
+                                display.Show("3. Change to one full bed.");
+                                display.Show("4. Change to two full bed.");
+                                display.Show("5. Change to one queen bed.");
+                                display.Show("6. Change to one king bed.");
+                                display.Show("Please enter the digit to make a selection.");
+                                
+                                int alterOption = display.getIntInput();
+                                
+                                switch(alterOption)
+                                {
+                                    case 1:
+                                    {
+                                        changeTy = type.ONETWIN;
+                                    }
+                                        break; 
+                                    case 2:
+                                    {    
+                                        changeTy = type.TWOTWIN;
+                                    }   
+                                        break; 
+                                    case 3:
+                                    {    
+                                         changeTy = type.ONEFULL;               
+                                    }   
+                                        break;
+                                    case 4:
+                                    {
+                                        changeTy = type.TWOFULL;
+                                    }
+                                        break; 
+                                    case 5:
+                                    {    
+                                        changeTy = type.ONEQUEEN;
+                                    }   
+                                        break; 
+                                    case 6:
+                                    {    
+                                         changeTy = type.ONEKING;               
+                                    }   
+                                        break;
+                                }
+                                
+                                display.Show("Please make a change to the room number.");
                                 int changeIdx = display.getIntInput();
                                 
-                                display.Show("Please made a change to the room description.");
+                                display.Show("Please make a change to the room description.");
                                 String changeDesc = display.getStrInput();
                                 
-                                display.Show("Please made a change to the room rate.");
-                                double changeRate = display.getIntInput();
+                                display.Show("Please make a change to the room rate.");
+                                double changeRate = display.getDoubleInput();
                                 
                                 aroom.AlterRoom(changeTy, changeIdx, changeDesc, changeRate);                        
+                                display.Show("===========================");
                                 display.Show("You have altered this room.");
-                                aroom = allRooms.get(resultIndex);
+                                display.Show("===========================");
+                            }
+                            else
+                            {
+                                display.Show("===========================");
+                                display.Show("No changes have been made.");
+                                display.Show("===========================");
                             }
                         }
                         else
@@ -435,26 +489,12 @@ public class HotelManagement
                         }
                     }
                     
-                    display.Show("=========================");
-                    display.Show("Reservation Details:");
+                    display.Show("==========================");
+                    display.Show("Altered Room Details:");
                     display.Show(aroom.toString());
-                    display.Show("=========================");
-                    display.Show("Confirm changes you have made to the room? Y/N");
-                    String confirm = display.getStrInput();
-
-                    if(confirm.matches("Y") || confirm.matches("y"))
-                    {
-                        String changeTy = display.getStrInput();
-                        int changeIdx = display.getIntInput();
-                        String changeDesc = display.getStrInput();
-                        double changeRate = display.getIntInput();
-                        aroom.AlterRoom(changeTy, changeIdx, changeDesc, changeRate);                        
-                        display.Show("...");
-                    }
-                }
-                else
-                {
-                    display.Show("There are no current search results! Please search for a room to alter.");
+                    display.Show("==========================");
+                    display.Show("Returning to Employee Menu");
+                    display.Show("==========================");
                 }
                 break;
             }
