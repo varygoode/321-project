@@ -299,11 +299,15 @@ public class HotelManagement
             }
                 break;
             case 3:
+            {    
                 display.setState(StateEnum.SEARCH);
                 break;
+            }    
             case 4:
+            {    
                 display.setState(StateEnum.QUIT);
                 break;
+            }    
 
         }            
     }
@@ -315,15 +319,21 @@ public class HotelManagement
         switch(menuOption)
         {
             case 1:
+            {    
                 display.setState(StateEnum.SEARCH);
 
                 break;
+            }    
             case 2:
+            {    
                 display.setState(StateEnum.MAIN);
                 break;
+            }    
             case 3:
+            {    
                 display.setState(StateEnum.QUIT);
                 break;
+            }    
 
         }
     }
@@ -335,29 +345,43 @@ public class HotelManagement
         switch(menuOption)
         {
             case 1:
+            {
                 display.setState(StateEnum.SEARCH);
                 break;
+            }    
             case 2:
+            {
                 display.setState(StateEnum.RESERVATION);
                 break;
+            }
             case 3:
-                
+            {  
                 break;
+            }
             case 4:
+            {   
                 display.setState(StateEnum.CHECKIN);
                 break;
+            }
             case 5:
+            {   
                 display.setState(StateEnum.CHECKOUT);
                 break;
+            }
             case 6:
-                
+            {   
                 break;
+            }
             case 7:
+            {
                 display.setState(StateEnum.MAIN);
                 break;
+            }
             case 8:
+            {
                 display.setState(StateEnum.QUIT);
                 break;
+            }    
 
         }
     }
