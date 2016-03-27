@@ -34,10 +34,6 @@ public class Reservation {
     private boolean checkedIn;
     private int roomNumber;
 
-
-
-
-
     
     public Reservation()
     {
@@ -57,7 +53,7 @@ public class Reservation {
         startDate = sDate;
         endDate = eDate;
         this.room = room;
-        totalPrice = (eDate.getDay()-sDate.getDay())*room.getRate();
+        totalPrice = Math.abs(sDate.getDay()-eDate.getDay())*room.getRate();
         isPaid = payment;
         reserver = user;
         reserveID = reserve;
@@ -112,6 +108,11 @@ public class Reservation {
         this.checkedIn = checkedIn;
     }
     
+    public void setReserveID(int reserveID)
+    {
+        this.reserveID = reserveID;
+    }
+    
     //===============================
     //  Accessors
     //===============================
@@ -155,5 +156,13 @@ public class Reservation {
         return checkedIn;
     }   
     
+    public int getReserveID()
+    {
+        return reserveID;
+    }
     
+    public String toString()
+    {
+        return "\nGuest Name: " + reserver.getLastName() + ", " + reserver.getFirstName() + "\nStart Date: " + startDate.toString() + "\nEnd Date: " + endDate.toString() + "\nRoom Info:\n" +  room.toString() + "\nTotal Price: " + Double.toString(totalPrice);
+    }
 }

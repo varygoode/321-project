@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class Ledger 
 {    
-    static private Ledger singletonLedger;
+    static private Ledger singletonLedger = null;
     
     public ArrayList<Reservation> filteredReservations;
     public ArrayList<Room> filteredRooms;
@@ -51,7 +51,7 @@ public class Ledger
             return searchRooms(searchList, searchParameters);
         }
         
-        else if (searchList.get(0).getClass().equals(hotelmanagement.User.class))
+        else if (searchList.get(0).getClass().getSuperclass().equals(hotelmanagement.User.class))
         {
             return searchUsers(searchList, searchParameters);
         }
@@ -167,11 +167,4 @@ public class Ledger
         
         return filteredUsers;
     }
-    
-//    public ArrayList sort(ArrayList list, String sortProperty)
-//    {
-//        
-//        
-//        return list;
-//    }
 }
