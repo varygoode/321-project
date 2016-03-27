@@ -76,6 +76,7 @@ public class Ledger
             properties.add(Integer.toString(res.getReserver().getID()));
             properties.add(Double.toString(res.getTotalPrice()));
             properties.add(String.valueOf(res.getIsPaid()));
+            properties.add(Integer.toString(res.getReserveID()));
             
             //compare each search parameter to each property
             for (String parameter : searchParameters)
