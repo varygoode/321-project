@@ -6,7 +6,6 @@
 package hotelmanagement;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 
 /**
@@ -155,10 +154,7 @@ public class Archive {
             TotalCheckins = 0;
             for (Reservation res : TheArchives)
             {
-                if(res.IsCheckedIn())
-                {
-                    TotalCheckins++;
-                }
+                TotalCheckins++;
             }
         }
 
@@ -167,10 +163,7 @@ public class Archive {
             totalIncome = 0.0000;
             for (Reservation res : TheArchives)
             {
-                if(res.getIsPaid())
-                {
-                    totalIncome += (res.getTotalPrice());
-                }
+                totalIncome += (res.getTotalPrice());
             } 
         }
                   
@@ -197,7 +190,7 @@ public class Archive {
             TotalCheckins = 0;
             for (Reservation res : TheArchives)
             {
-                if(res.IsCheckedIn() && res.getRoom().getType().equals(roomType) && (res.getStartDate().getMonth() == (month - 1)))
+                if(res.getRoom().getType().equals(roomType) && (res.getStartDate().getMonth() == (month - 1)))
                 {
                     TotalCheckins++;
                 }
@@ -221,7 +214,7 @@ public class Archive {
             totalIncome = 0.0000;
             for (Reservation res : TheArchives)
             {
-                if(res.getIsPaid() && res.getRoom().getType().equals(roomType) && (res.getStartDate().getMonth() == (month - 1)))
+                if(res.getRoom().getType().equals(roomType) && (res.getStartDate().getMonth() == (month - 1)))
                 {
                     totalIncome += (res.getTotalPrice());
                 }
@@ -252,7 +245,7 @@ public class Archive {
                         if(RoomType == roomType)
                         {
                             int count = 0;
-                            if (res.getRoom().getType().equals(RoomType))
+                            if (res.getRoom().getType().equals(roomType))
                             {
                                 count++;
                             }
