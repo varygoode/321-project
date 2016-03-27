@@ -136,6 +136,45 @@ public class HotelManagement
 
     }
     
+    public void Register()
+    {
+        display.Show("1. Register as Customer");
+        display.Show("2. Register as Employee");
+        display.Show("Please enter the digit to make a selection.");
+        
+        int userType = display.getIntInput();
+        
+        display.Show("Enter username:");
+        String username = display.getStrInput();
+        display.Show("Enter password:");
+        String password = display.getStrInput();
+        display.Show("Enter first name:");
+        String fName = display.getStrInput();
+        display.Show("Enter last name:");
+        String lName = display.getStrInput();
+        
+        int ID = (allUsers.isEmpty()) ? 10000 : allUsers.get(allUsers.size() - 1).getID() + 1;
+        
+        User tempUser = null;
+        
+        switch(userType)
+        {
+            case 1:
+            {
+                tempUser = registerCustomer(username, password, fName, lName, ID);
+            }
+            break;
+            case 2:
+            {
+                tempUser = registerEmployee(username, password, fName, lName, ID);
+            }
+            break;
+        }
+        
+        allUsers.add(tempUser);
+        currentUser = tempUser;
+    }
+    
     public Customer registerCustomer(String username, String password, String fName, String lName, int ID)
     {
         return new Customer(username, password, fName, lName, ID);
@@ -146,19 +185,19 @@ public class HotelManagement
         return new Employee(username, password, fName, lName, ID);
     }
     
-    public User login(String username, String password)
+    public User login()
     {
-        ArrayList<String> params = new ArrayList<String>();
-        params.add(username);
-        ArrayList<User> results = theLedger.search(allUsers, params);
-        User tempUser = (results.isEmpty()) ? currentUser : results.get(0);
-        
         display.Show("Enter your username:");
         String inUsername = display.getStrInput();
+        ArrayList<String> params = new ArrayList<String>();
+        params.add(inUsername);
+        ArrayList<User> results = theLedger.search(allUsers, params);
+        User tempUser = (results == null || results.isEmpty()) ? currentUser : results.get(0);
+        
         display.Show("Enter your password:");
         String inPassword = display.getStrInput();
         
-        if(tempUser.getUsername() == inUsername && tempUser.getPassword() == inPassword)
+        if(tempUser.getUsername().equals(inUsername) && tempUser.getPassword().equals(inPassword))
         {
             return tempUser;
         }
@@ -174,12 +213,78 @@ public class HotelManagement
         {
             case 1:
             {
-                
+                if(currentUser.getID() == 9999)
+                {
+                    boolean finishLogin = false;
+                    while(!finishLogin)
+                    {
+                        currentUser = login();
+                        if(currentUser.getID() == 9999)
+                        {
+                            display.Show("Login failed.");
+                            display.Show("1. Retry Login");
+                            display.Show("2. Cancel login");
+                            display.Show("Please enter the digit to make a selection.");
+                            int selection = display.getIntInput();
+
+                            if(selection == 2)
+                            {
+                                display.setState(StateEnum.MAIN);
+                                finishLogin = true;
+                            }
+                        }
+                        else
+                        {
+                            finishLogin = true;
+                        }
+                    }
+
+                    if(currentUser.getID() != 9999)
+                    {
+                        display.Show("Success! Hello, " + currentUser.getFirstName() + "!");
+
+                        if(currentUser.getClass() == Customer.class)
+                        {
+                            display.setState(StateEnum.CUSTOMER);
+                        }
+                        else if(currentUser.getClass() == Employee.class)
+                        {
+                            display.setState(StateEnum.EMPLOYEE);
+                        }
+                        else
+                        {
+                            display.Show("Couldn't recognize user type!");
+                            display.setState(StateEnum.CUSTOMER);
+                        }
+                    }
+                }
+                else
+                {
+                    display.Show("You are already logged in, " + currentUser.getFirstName() + "!");
+                }
             }
                 break;
             case 2:
             {
-                
+                if(currentUser.getID() == 9999)
+                {
+                    Register();
+
+                    if(currentUser.getClass().equals(hotelmanagement.Employee.class))
+                    {
+                        display.setState(StateEnum.EMPLOYEE);
+                    }
+                    else
+                    {
+                        display.setState(StateEnum.CUSTOMER);
+                    }
+
+                    display.Show("Thank you for registering, " + currentUser.getFirstName() + "!");
+                }
+                else
+                {
+                    display.Show("You are already registered, " + currentUser.getFirstName() + "!");
+                }
             }
                 break;
             case 3:
