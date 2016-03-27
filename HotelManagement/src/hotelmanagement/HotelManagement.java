@@ -117,9 +117,9 @@ public class HotelManagement
                 case SEARCH:
                     searchMenu();
                     break;
-                case RESERVATION:
-                    reservationMenu();
-                    break;
+//                case RESERVATION:
+//                    reservationMenu();
+//                    break;
                 case CHECKIN:
                     checkInMenu();
                     break;
@@ -367,35 +367,35 @@ public class HotelManagement
                 display.setState(StateEnum.SEARCH);
                 break;
             }    
+//            case 2:
+//            {
+//                display.setState(StateEnum.RESERVATION);
+//                break;
+//            }
             case 2:
-            {
-                display.setState(StateEnum.RESERVATION);
-                break;
-            }
-            case 3:
             {  
                 break;
             }
-            case 4:
+            case 3:
             {   
                 display.setState(StateEnum.CHECKIN);
                 break;
             }
-            case 5:
+            case 4:
             {   
                 display.setState(StateEnum.CHECKOUT);
                 break;
             }
-            case 6:
+            case 5:
             {   
                 break;
             }
-            case 7:
+            case 6:
             {
                 display.setState(StateEnum.MAIN);
                 break;
             }
-            case 8:
+            case 7:
             {
                 display.setState(StateEnum.QUIT);
                 break;
@@ -541,39 +541,39 @@ public class HotelManagement
         }
     }
     
-    private void reservationMenu() throws ParseException
-    {
-        ReservationFactory reservationFactory = ReservationFactory.getReservationFactory();
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        int menuOption = display.getIntInput();
-
-        switch(menuOption)
-        {
-            case 1:
-            {
-                display.Show("When would you like to reserve the room from? (DD/MM/YYYY)");
-                String reserveDate1 = display.getStrInput();
-                display.Show("When would you like to reserve the room until? (DD/MM/YYYY)");
-                String reserveDate2 = display.getStrInput();
-                Date d1 = df.parse(reserveDate1);
-                Date d2 = df.parse(reserveDate2);
-                Reservation newRes = reservationFactory.createReservation(d1, d2, allRooms.get(5), true, allUsers.get(0), 1000000);
-                allReserves.add(newRes);
-                break;
-            }
-            case 2:
-            {
-                display.setState(StateEnum.MAIN);
-                break;
-            }
-            case 3:
-            {
-                display.setState(StateEnum.QUIT);
-                break;
-            }
-        }
-    }
-    
+//    private void reservationMenu() throws ParseException
+//    {
+//        ReservationFactory reservationFactory = ReservationFactory.getReservationFactory();
+//        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+//        int menuOption = display.getIntInput();
+//
+//        switch(menuOption)
+//        {
+//            case 1:
+//            {
+//                display.Show("When would you like to reserve the room from? (DD/MM/YYYY)");
+//                String reserveDate1 = display.getStrInput();
+//                display.Show("When would you like to reserve the room until? (DD/MM/YYYY)");
+//                String reserveDate2 = display.getStrInput();
+//                Date d1 = df.parse(reserveDate1);
+//                Date d2 = df.parse(reserveDate2);
+//                Reservation newRes = reservationFactory.createReservation(d1, d2, allRooms.get(5), true, allUsers.get(0), 1000000);
+//                allReserves.add(newRes);
+//                break;
+//            }
+//            case 2:
+//            {
+//                display.setState(StateEnum.MAIN);
+//                break;
+//            }
+//            case 3:
+//            {
+//                display.setState(StateEnum.QUIT);
+//                break;
+//            }
+//        }
+//    }
+//    
     private void checkInMenu()
     {
         int menuOption = display.getIntInput();
