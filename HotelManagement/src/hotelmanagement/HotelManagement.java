@@ -28,6 +28,7 @@ public class HotelManagement
     ArrayList<Room> roomResults;
     ArrayList<Reservation> resResults;
     Transaction txn;
+    Archive theArchive;
     
     private HotelManagement()
     {
@@ -43,6 +44,7 @@ public class HotelManagement
         df = new SimpleDateFormat("dd/MM/yyyy");
         roomResults = null;
         resResults = null;
+        theArchive = Archive.getArchive();
     }
     
     public static HotelManagement getHMS()
@@ -373,41 +375,81 @@ public class HotelManagement
         {
             case 1:
             {
-                display.setState(StateEnum.SEARCH);
-                break;
-            }    
+                display.setState(StateEnum.SEARCH);                
+            }  
+                break;  
             case 2:
             {
  
                 display.Show("Which room would you like to alter?");
                 display.Show("Please enter the room number to alter.");
                 
-                break;
+                
             }
+                break;
             case 3:
             {   
-                display.setState(StateEnum.CHECKIN);
-                break;
+                display.setState(StateEnum.CHECKIN);                
             }
+                break;
             case 4:
             {   
                 display.setState(StateEnum.CHECKOUT);
-                break;
             }
+                break;
             case 5:
             {   
-                break;
+                display.Show("=*=*=*=*=*=*=*=*=*=*=*=*=*=NOTICE*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=");
+                display.Show("This will print a report based on all completed reservations.");
+                display.Show("It does not include data from in-progress or future reservations.");
+                display.Show("=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=");
+                
+                display.Show("\n\nChoose an option below:");
+                display.Show("1. Report by room type and month");
+                display.Show("2. All-Time Report");
+                int choice = display.getIntInput();
+                
+                switch(choice)
+                {
+                    case 1:
+                    {
+                        display.Show("Enter room type:");
+                        RoomTypeEnum type = RoomTypeEnum.valueOf(display.getStrInput());
+                        display.Show("Enter month by number (Jan = 1, Feb = 2, ... Dec = 12):");
+                        int month = display.getIntInput();
+                        
+                        display.Show("**" + (new DateFormatSymbols().getMonths()[month-1]).toUpperCase() + " REPORT**");
+                        display.Show("=================");
+                        display.Show("Most Occupied Room: " + theArchive.getReport().getMostOccupied(type, month).toString());
+                        display.Show("Total Checkins: " + theArchive.getReport().getTotalCheckins(type, month));
+                        display.Show("Total Income: " + theArchive.getReport().getTotalIncome(type, month));
+                    }
+                        break;
+                    case 2:
+                    {
+                        display.Show("**ALL-TIME REPORT**");
+                        display.Show("=================");
+                        display.Show("Most Occupied Room: " + theArchive.getReport().getMostOccupiedRoom().toString());
+                        display.Show("Most Occupied Room Amount: " + theArchive.getReport().getMostOccupiedRoomAmount());
+                        display.Show("Total Checkins: " + theArchive.getReport().getTotalCheckins());
+                        display.Show("Total Income: " + theArchive.getReport().getTotalIncome());
+                    }
+                        break;
+                }
+                
+                
             }
+                break;
             case 6:
             {
                 display.setState(StateEnum.MAIN);
-                break;
             }
+                break;
             case 7:
             {
                 display.setState(StateEnum.QUIT);
-                break;
-            }    
+            }
+                break;    
 
         }
     }
