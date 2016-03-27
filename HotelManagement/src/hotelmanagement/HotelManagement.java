@@ -93,16 +93,7 @@ public class HotelManagement
     public void run()
     {
         display.update();
-        boolean endProgram = false;
-        while(endProgram != true)
-        {
-            String menuOption = display.getStrInput();
-            display.setState(StateEnum.valueOf(menuOption));
-            display.update();
-            
-            
-        }
-        System.exit(0);
+
     }
     
     public Customer registerCustomer(String username, String password, String fName, String lName, int ID)
