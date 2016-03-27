@@ -68,4 +68,16 @@ public class Room
     {
         return "Number: " + number + "\nType: " + type + "\nRate: " + Double.toString(rate) + "\nDescription: " + description;
     }
+    
+    public Room AlterRoom(String ty, int idx, String desc, double rt)
+    {   
+        
+        //need to get the room object to change parameters setState(StateEnum.SEARCH);
+        
+        setDescription(description);
+        setRate(rate);
+        toString();
+        
+        return AlterRoom( ty, idx, desc, rt);
+    }
 }

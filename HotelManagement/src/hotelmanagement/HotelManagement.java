@@ -63,8 +63,13 @@ public class HotelManagement
         allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user3","pass3","Harold","Truman",10003));
         allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user4","pass4","Barbara","Bush",10004));
         allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user5","pass5","Millard","Fillmore",10005));
-        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"emp1","pass1","Bob","Sagat",20001));
-
+        
+        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl1", "epass1", "John", "Oliver", 11001));
+        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl2", "epass2", "Morgan", "Freemon", 11002));
+        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl3", "epass3", "Meryl", "Streep", 11003));
+        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl4", "epass4", "Cate", "Blanchett", 11004));
+        
+        
         //===============================
         //  Initialize Rooms
         //===============================
@@ -372,13 +377,12 @@ public class HotelManagement
                 display.setState(StateEnum.SEARCH);
                 break;
             }    
-//            case 2:
-//            {
-//                display.setState(StateEnum.RESERVATION);
-//                break;
-//            }
             case 2:
-            {  
+            {
+ 
+                display.Show("Which room would you like to alter?");
+                display.Show("Please enter the room number to alter.");
+                
                 break;
             }
             case 3:
