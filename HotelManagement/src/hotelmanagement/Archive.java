@@ -79,7 +79,7 @@ public class Archive {
     */
     public class Report
     {
-        private String MostOccupiedRoom;
+        private RoomTypeEnum MostOccupiedRoom;
         private int MostOccupiedRoomAmount;
         private int TotalCheckins;
         private double totalIncome;
@@ -95,7 +95,7 @@ public class Archive {
          * as a string
          * @return Most used room type as string. Must convert back to enum outside
          */
-        public String getMostOccupiedRoom() 
+        public RoomTypeEnum getMostOccupiedRoom() 
         {
             setMostOccupiedRoom();
             return MostOccupiedRoom;
@@ -125,15 +125,27 @@ public class Archive {
 
         private void setMostOccupiedRoom() 
         {
+            MostOccupiedRoomAmount = 0;
             for (Reservation res : TheArchives)
             {
                 for (RoomTypeEnum RoomType : RoomTypeEnum.values())
                 {
-                    if(Collections.frequency(TheArchives, RoomType) > Collections.frequency(TheArchives, RoomTypeEnum.valueOf(MostOccupiedRoom)))
+                    int count = 0;
+                    if (res.getRoom().getType().equals(RoomType))
                     {
-                        MostOccupiedRoom = RoomType.toString();
-                        MostOccupiedRoomAmount = Collections.frequency(TheArchives, RoomType);
+                        count++;
                     }
+                    if(count > MostOccupiedRoomAmount)
+                    {
+                        MostOccupiedRoom = RoomType;
+                        MostOccupiedRoomAmount = count;
+                    }
+                    
+//                    if(Collections.frequency(TheArchives, RoomType) > Collections.frequency(TheArchives, RoomTypeEnum.valueOf(MostOccupiedRoom)))
+//                    {
+//                        MostOccupiedRoom = RoomType.toString();
+//                        MostOccupiedRoomAmount = Collections.frequency(TheArchives, RoomType);
+//                    }
                 }    
             }
         }
@@ -185,7 +197,7 @@ public class Archive {
             TotalCheckins = 0;
             for (Reservation res : TheArchives)
             {
-                if(res.IsCheckedIn() && res.getRoom().getType().equals(roomType.toString()) && (res.getStartDate().getMonth() == month))
+                if(res.IsCheckedIn() && res.getRoom().getType().equals(roomType) && (res.getStartDate().getMonth() == (month - 1)))
                 {
                     TotalCheckins++;
                 }
@@ -193,9 +205,9 @@ public class Archive {
         }
         
         /**
-         * Same as the default except filters by roomtype and month
+         * Same as the default except filters by roomtype and month.
          * @param roomType type of room in room object
-         * @param month integer corresponding to month of the gregorian year
+         * @param month integer corresponding to month of the gregorian year. January = 1 , December = 12
          * @return total amount of checkins for the month and roomtype
          */
         public int getTotalCheckins(RoomTypeEnum roomType, int month)
@@ -209,7 +221,7 @@ public class Archive {
             totalIncome = 0.0000;
             for (Reservation res : TheArchives)
             {
-                if(res.getIsPaid() && res.getRoom().getType().equals(roomType.toString()) && (res.getStartDate().getMonth() == month))
+                if(res.getIsPaid() && res.getRoom().getType().equals(roomType) && (res.getStartDate().getMonth() == (month - 1)))
                 {
                     totalIncome += (res.getTotalPrice());
                 }
@@ -220,7 +232,7 @@ public class Archive {
         /**
          * Same as the default except filters by roomtype and month
          * @param roomType type of room in room object
-         * @param month integer corresponding to the month of the gregorian year
+         * @param month integer corresponding to the month of the gregorian year. January = 1 , December = 12
          * @return total income earned from the roomtype and month
          */
         public double getTotalIncome(RoomTypeEnum roomType, int month)
@@ -229,21 +241,32 @@ public class Archive {
             return totalIncome;
         }
         
-        private void setMostOccupied(RoomTypeEnum roomType, int month)
+        private void setMostOccupiedRoom(RoomTypeEnum roomType, int month)
         {
             for (Reservation res : TheArchives)
             {
-                if(res.getRoom().getType().equals(roomType.toString()) && (res.getStartDate().getMonth() == month))
+                if(res.getRoom().getType().equals(roomType) && (res.getStartDate().getMonth() == (month - 1)))
                 {
                     for (RoomTypeEnum RoomType : RoomTypeEnum.values())
                     {
                         if(RoomType == roomType)
                         {
-                            if(Collections.frequency(TheArchives, RoomType) > Collections.frequency(TheArchives, RoomTypeEnum.valueOf(MostOccupiedRoom)))
+                            int count = 0;
+                            if (res.getRoom().getType().equals(RoomType))
                             {
-                                MostOccupiedRoom = RoomType.toString();
-                                MostOccupiedRoomAmount = Collections.frequency(TheArchives, RoomType);
+                                count++;
                             }
+                            if(count > MostOccupiedRoomAmount)
+                            {
+                                MostOccupiedRoom = RoomType;
+                                MostOccupiedRoomAmount = count;
+                            }                            
+
+//                            if(Collections.frequency(TheArchives, RoomType) > Collections.frequency(TheArchives, RoomTypeEnum.valueOf(MostOccupiedRoom)))
+//                            {
+//                                MostOccupiedRoom = RoomType.toString();
+//                                MostOccupiedRoomAmount = Collections.frequency(TheArchives, RoomType);
+//                            }
                         }
                     }    
                 }
@@ -253,12 +276,12 @@ public class Archive {
         /**
          * Same as the default except filters by roomtype and month
          * @param roomType Roomtype in room object
-         * @param month integer corresponding to the month of the gregorian year
+         * @param month integer corresponding to the month of the gregorian year. January = 1 , December = 12
          * @return Most used room type as string. Must convert back to enum outside
          */
-        public String getMostOccupied(RoomTypeEnum roomType, int month)
+        public RoomTypeEnum getMostOccupied(RoomTypeEnum roomType, int month)
         {
-            setMostOccupied(roomType, month);
+            setMostOccupiedRoom(roomType, month);
             return MostOccupiedRoom;
         }
         

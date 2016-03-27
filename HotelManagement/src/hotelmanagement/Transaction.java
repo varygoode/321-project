@@ -35,6 +35,7 @@ public class Transaction {
         else
         {
             res.setCurrentPrice(0.00);
+            res.setPaid(true);
             return true;
         }
 
