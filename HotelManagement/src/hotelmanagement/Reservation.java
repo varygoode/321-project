@@ -34,10 +34,6 @@ public class Reservation {
     private boolean checkedIn;
     private int roomNumber;
 
-
-
-
-
     
     public Reservation()
     {
