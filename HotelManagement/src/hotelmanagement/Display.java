@@ -51,13 +51,13 @@ public class Display
             System.out.println("**EMPLOYEE MENU**");
             System.out.println("=================");
             System.out.println("1. Search"); //more search options? 
-            System.out.println("2. Reserve"); //takes you to reservation menu
-            System.out.println("3. Alter Room"); 
-            System.out.println("4. Check-In"); 
-            System.out.println("5. Check-Out");
-            System.out.println("6. Report"); //for now prints 'database'
-            System.out.println("7. Return to Main Menu");
-            System.out.println("8. Cancel");
+//            System.out.println("2. Reserve"); //takes you to reservation menu
+            System.out.println("2. Alter Room"); 
+            System.out.println("3. Check-In"); 
+            System.out.println("4. Check-Out");
+            System.out.println("5. Report"); //for now prints 'database'
+            System.out.println("6. Return to Main Menu"); //for now prints 'database'
+            System.out.println("7. Cancel");
     }
     
     private void searchMenu()
@@ -72,16 +72,15 @@ public class Display
             System.out.println("Please enter the digit to make a selection.");
     }
     
-    private void reservationMenu()
-    {
-            System.out.println("**Reservation Menu**");
-            System.out.println("====================");
-            System.out.println("1. Reserve Room");
-            System.out.println("2. Confirm Reservation");
-            System.out.println("3. Return to Main Menu");
-            System.out.println("4. Cancel");
-            System.out.println("Please enter the digit to make a selection.");
-    }
+//    private void reservationMenu()
+//    {
+//            System.out.println("**Reservation Menu**");
+//            System.out.println("====================");
+//            System.out.println("1. Reserve Room");
+//            System.out.println("2. Return to Main Menu");
+//            System.out.println("3. Cancel");
+//            System.out.println("Please enter the digit to make a selection.");
+//    }
     
     private void checkInMenu()
     {
@@ -143,9 +142,9 @@ public class Display
             case SEARCH:
                 searchMenu();
                 break;
-            case RESERVATION:
-                reservationMenu();
-                break;
+//            case RESERVATION:
+//                reservationMenu();
+//                break;
             case CHECKIN:
                 checkInMenu();
                 break;
@@ -191,10 +190,7 @@ public class Display
      */
     public String getStrInput()
     {
-        String selection = input.next();
-        input.nextLine();
-        
-        return selection;
+        return input.nextLine();
     }
     
     public void Show(String str)

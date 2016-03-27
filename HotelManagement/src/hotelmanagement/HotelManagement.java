@@ -5,6 +5,9 @@ package hotelmanagement;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.text.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 
 public class HotelManagement
@@ -17,16 +20,12 @@ public class HotelManagement
     Ledger theLedger;
     Display display;
     User currentUser;
+    RoomFactory roomFactory;
+    UserFactory userFactory;
+    ReservationFactory reservationFactory;
+    DateFormat df;
+    ArrayList<Room> roomResults;
     
-    
-//    public HotelManagement() 
-//    {
-//        allRooms = new ArrayList();
-//        allUsers = new ArrayList();
-//        allReserves = new ArrayList();
-//        theLedger = Ledger.getLedger();
-//        display = new Display();
-//    }
     private HotelManagement()
     {
         allRooms = new ArrayList();
@@ -35,6 +34,11 @@ public class HotelManagement
         theLedger = Ledger.getLedger();
         display = new Display();
         currentUser = new User();
+        roomFactory = RoomFactory.getRoomFactory();
+        userFactory = UserFactory.getUserFactory();
+        reservationFactory = ReservationFactory.getReservationFactory();
+        df = new SimpleDateFormat("dd/MM/yyyy");
+        roomResults = null;
     }
     
     public static HotelManagement getHMS()
@@ -48,18 +52,6 @@ public class HotelManagement
         
     public void initialize()
     {
-        //===============================
-        //  Factories
-        //===============================
-        //obtain the factory - Room
-        RoomFactory roomFactory = RoomFactory.getRoomFactory();
-
-        //obtain the factory - User
-        UserFactory userFactory = UserFactory.getUserFactory();
-
-        //obtain the factory - Reservation
-        ReservationFactory reservationFactory = ReservationFactory.getReservationFactory();
-
         //===============================
         //  Initialize Users
         //===============================
@@ -76,21 +68,36 @@ public class HotelManagement
         {
             for (int j = 0; j<=10; j++)
             {
-                allRooms.add(roomFactory.createRoom("Double Queen", (i*100)+j, "Two beautiful queen beds situated in a glorious simulated room. Perfect for divorced couples.", 89));
+                if( (i+j) % 4 == 0)
+                {
+                    allRooms.add(roomFactory.createRoom("King Suite", (i*100)+j, "A single king bed situated in a magnificent simulated suite. Perfect for the average-sized American.", 189));
+                }
+                else if((i+j) % 3 == 2)
+                {
+                    allRooms.add(roomFactory.createRoom("Honeymoon Suite", (i*100)+j, "A single king bed with plush pillows and exotic drapery situated in a romantic simulated suite. Perfect for the consummation.", 289));
+                }
+                else if((i*i+j*j) % 15 == 0)
+                {
+                    allRooms.add(roomFactory.createRoom("VIP Suite", (i*100)+j, "Amazing comfort & any bed, at your request, situated in an incredible simulated suite. Perfect for the top 1%.", 289));
+                }
+                else
+                {
+                    allRooms.add(roomFactory.createRoom("Double Queen", (i*100)+j, "Two beautiful queen beds situated in a glorious simulated room. Perfect for divorced couples.", 89));
+                }
             }
         }
 
         //===============================
         //  Initialize Reservations
         //===============================
-        allReserves.add(reservationFactory.createReservation(new Date(116,1,1), new Date(116,1,5), allRooms.get(5), true, allUsers.get(0), 1000000));
-        allReserves.add(reservationFactory.createReservation(new Date(116,2,1), new Date(116,2,4), allRooms.get(10), true, allUsers.get(1), 1000001));
-        allReserves.add(reservationFactory.createReservation(new Date(116,3,1), new Date(116,3,6), allRooms.get(15), true, allUsers.get(2), 1000002));
-        allReserves.add(reservationFactory.createReservation(new Date(116,4,1), new Date(116,4,3), allRooms.get(20), true, allUsers.get(3), 1000003));
-        allReserves.add(reservationFactory.createReservation(new Date(116,5,12), new Date(116,5,25), allRooms.get(25), true, allUsers.get(4), 1000004));
+        allReserves.add(reservationFactory.createReservation(new Date(116,0,1), new Date(116,0,5), allRooms.get(5), true, allUsers.get(0), 1000000));
+        allReserves.add(reservationFactory.createReservation(new Date(116,1,1), new Date(116,1,4), allRooms.get(10), true, allUsers.get(1), 1000001));
+        allReserves.add(reservationFactory.createReservation(new Date(116,2,1), new Date(116,2,6), allRooms.get(15), true, allUsers.get(2), 1000002));
+        allReserves.add(reservationFactory.createReservation(new Date(116,3,1), new Date(116,3,3), allRooms.get(20), true, allUsers.get(3), 1000003));
+        allReserves.add(reservationFactory.createReservation(new Date(116,4,12), new Date(116,4,25), allRooms.get(25), true, allUsers.get(4), 1000004));
     }
     
-    public void run()
+    public void run() throws ParseException
     {
         display.update();
         boolean endProgram = false;
@@ -110,9 +117,9 @@ public class HotelManagement
                 case SEARCH:
                     searchMenu();
                     break;
-                case RESERVATION:
-                    reservationMenu();
-                    break;
+//                case RESERVATION:
+//                    reservationMenu();
+//                    break;
                 case CHECKIN:
                     checkInMenu();
                     break;
@@ -265,6 +272,15 @@ public class HotelManagement
                 else
                 {
                     display.Show("You are already logged in, " + currentUser.getFirstName() + "!");
+                    
+                    if(currentUser.getClass() == Customer.class)
+                    {
+                        display.setState(StateEnum.CUSTOMER);
+                    }
+                    else if(currentUser.getClass() == Employee.class)
+                    {
+                        display.setState(StateEnum.EMPLOYEE);
+                    }
                 }
             }
                 break;
@@ -288,15 +304,28 @@ public class HotelManagement
                 else
                 {
                     display.Show("You are already registered, " + currentUser.getFirstName() + "!");
+                    
+                    if(currentUser.getClass() == Customer.class)
+                    {
+                        display.setState(StateEnum.CUSTOMER);
+                    }
+                    else if(currentUser.getClass() == Employee.class)
+                    {
+                        display.setState(StateEnum.EMPLOYEE);
+                    }
                 }
             }
                 break;
             case 3:
+            {    
                 display.setState(StateEnum.SEARCH);
                 break;
+            }    
             case 4:
+            {    
                 display.setState(StateEnum.QUIT);
                 break;
+            }    
 
         }            
     }
@@ -308,15 +337,21 @@ public class HotelManagement
         switch(menuOption)
         {
             case 1:
+            {    
                 display.setState(StateEnum.SEARCH);
 
                 break;
+            }    
             case 2:
+            {    
                 display.setState(StateEnum.MAIN);
                 break;
+            }    
             case 3:
+            {    
                 display.setState(StateEnum.QUIT);
                 break;
+            }    
 
         }
     }
@@ -328,44 +363,174 @@ public class HotelManagement
         switch(menuOption)
         {
             case 1:
+            {
                 display.setState(StateEnum.SEARCH);
                 break;
+            }    
+//            case 2:
+//            {
+//                display.setState(StateEnum.RESERVATION);
+//                break;
+//            }
             case 2:
-                display.setState(StateEnum.RESERVATION);
+            {  
                 break;
+            }
             case 3:
-                
-                break;
-            case 4:
+            {   
                 display.setState(StateEnum.CHECKIN);
                 break;
-            case 5:
+            }
+            case 4:
+            {   
                 display.setState(StateEnum.CHECKOUT);
                 break;
-            case 6:
-                
+            }
+            case 5:
+            {   
                 break;
-            case 7:
+            }
+            case 6:
+            {
                 display.setState(StateEnum.MAIN);
                 break;
-            case 8:
+            }
+            case 7:
+            {
                 display.setState(StateEnum.QUIT);
                 break;
+            }    
 
         }
     }
     
-    private void searchMenu()
+    private void searchMenu() throws ParseException
     {
         int menuOption = display.getIntInput();
+        ArrayList<Reservation> reserveResults = null;
             
         switch(menuOption)
         {
             case 1:
-
+            {
+                ArrayList<String> params = new ArrayList<String>();
+                String strInput = "";
+                while(!strInput.equals("#"))
+                {
+                    display.Show("Input a search parameter, then press Enter. Type # and Enter when finished.");
+                    strInput = display.getStrInput();
+                    if(!strInput.equals("#"))
+                    {
+                        params.add(strInput);
+                    }
+                }
+                display.Show("Your search is processing!");
+                display.Show("Search Results:");
+                
+                roomResults = theLedger.search(allRooms, params);
+                
+                for(Room room : roomResults)
+                {
+                    display.Show("=========================");
+                    display.Show("Result #" + roomResults.indexOf(room) + ":");
+                    display.Show(room.toString());
+                    display.Show("=========================");
+                }
+            }
                 break;
             case 2:
-
+            {
+                if(currentUser.getClass() == hotelmanagement.User.class)
+                {
+                    display.Show("You must be logged in to make a reservation!");
+                    display.Show("Return to the main menu to login, then search again.");
+                }                
+                else if(roomResults != null && !roomResults.isEmpty())
+                {
+                    String response = "";
+                    Room roomToReserve = null;
+                    
+                    while(!(response.matches("Y") || response.matches("y")))
+                    {
+                        display.Show("Based on your latest search, enter the result # for the room you wish to book.");
+                        int resultIndex = display.getIntInput();
+                        
+                        if(resultIndex >= 0 && resultIndex < roomResults.size())
+                        {
+                            display.Show("=========================");
+                            display.Show(roomResults.get(resultIndex).toString());
+                            display.Show("=========================");
+                            display.Show("Is the above the correct room? Y/N");
+                            response = display.getStrInput();
+                            if(response.matches("Y") || response.matches("y"))
+                            {
+                                roomToReserve = roomResults.get(resultIndex);
+                            }
+                        }
+                        else
+                        {
+                            display.Show("Please enter a valid result number. Current range: [0," + Integer.toString(roomResults.size() - 1) + "]");
+                        }
+                    }
+                    
+                    boolean reservationComplete = false;
+                    while(!reservationComplete)
+                    {
+                        display.Show("When would you like to reserve the room from? (DD/MM/YYYY)");
+                        String reserveDate1 = display.getStrInput();
+                        display.Show("When would you like to reserve the room until? (DD/MM/YYYY)");
+                        String reserveDate2 = display.getStrInput();
+                        Date d1 = df.parse(reserveDate1);
+                        Date d2 = df.parse(reserveDate2);
+                        
+                        ArrayList<Reservation> reservesMatchingDate = new ArrayList<Reservation>();
+                        
+                        if(d2.before(d1))
+                        {
+                            display.Show("Your end date is before your start date. Please try again.");
+                        }
+                        else
+                        {
+                            ArrayList<Date> datesInRange = getDatesBetween(d1, d2);
+                            ArrayList<String> dateParams = new ArrayList<String>();
+                            for(Date date : datesInRange)
+                            {
+                                dateParams.add(date.toString());
+                            }
+                            
+                            reservesMatchingDate = theLedger.search(allReserves, dateParams);
+                            
+                            if(reservesMatchingDate.isEmpty())
+                            {
+                                display.Show("Your date is available for the chosen room.");
+                                Reservation tempRes = reservationFactory.createReservation(d1, d2, roomToReserve, false, currentUser, allReserves.get(allReserves.size() - 1).getReserveID() + 1);
+                                display.Show("=========================");
+                                display.Show("Reservation Details:");
+                                display.Show(tempRes.toString());
+                                display.Show("=========================");
+                                display.Show("Confirm reservation? Y/N");
+                                String confirm = display.getStrInput();
+                                
+                                if(confirm.matches("Y") || confirm.matches("y"))
+                                {
+                                    allReserves.add(tempRes);
+                                    reservationComplete = true;
+                                    display.Show("Thank you! Your reservation has been confirmed with reservation number " + tempRes.getReserveID() + ".");
+                                    display.Show("We look forward to your stay!");
+                                }
+                            }
+                            else
+                            {
+                                display.Show("Your dates are not available for the chosen room. Please select different dates.");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    display.Show("There are no current search results! Please search for a room before trying to make a reservation.");
+                }
+            }
                 break;
             case 3:
                 display.setState(StateEnum.MAIN);
@@ -376,27 +541,39 @@ public class HotelManagement
         }
     }
     
-    private void reservationMenu()
-    {
-        int menuOption = display.getIntInput();
-
-        switch(menuOption)
-        {
-            case 1:
-
-                break;
-            case 2:
-
-                break;
-            case 3:
-                display.setState(StateEnum.MAIN);
-                break;
-            case 4:
-                display.setState(StateEnum.QUIT);
-                break;
-        }
-    }
-    
+//    private void reservationMenu() throws ParseException
+//    {
+//        ReservationFactory reservationFactory = ReservationFactory.getReservationFactory();
+//        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+//        int menuOption = display.getIntInput();
+//
+//        switch(menuOption)
+//        {
+//            case 1:
+//            {
+//                display.Show("When would you like to reserve the room from? (DD/MM/YYYY)");
+//                String reserveDate1 = display.getStrInput();
+//                display.Show("When would you like to reserve the room until? (DD/MM/YYYY)");
+//                String reserveDate2 = display.getStrInput();
+//                Date d1 = df.parse(reserveDate1);
+//                Date d2 = df.parse(reserveDate2);
+//                Reservation newRes = reservationFactory.createReservation(d1, d2, allRooms.get(5), true, allUsers.get(0), 1000000);
+//                allReserves.add(newRes);
+//                break;
+//            }
+//            case 2:
+//            {
+//                display.setState(StateEnum.MAIN);
+//                break;
+//            }
+//            case 3:
+//            {
+//                display.setState(StateEnum.QUIT);
+//                break;
+//            }
+//        }
+//    }
+//    
     private void checkInMenu()
     {
         int menuOption = display.getIntInput();
@@ -460,5 +637,23 @@ public class HotelManagement
                 display.setState(StateEnum.QUIT);
                 break;
         }
+    }
+    
+    private ArrayList<Date> getDatesBetween(Date start, Date end)
+    {
+        ArrayList<Date> dates = new ArrayList<Date>();
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(start);
+
+        while (calendar.getTime().before(end))
+        {
+            Date result = calendar.getTime();
+            dates.add(result);
+            calendar.add(Calendar.DATE, 1);
+        }
+        
+        dates.add(calendar.getTime());
+        
+        return dates;
     }
 }

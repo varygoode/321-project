@@ -64,4 +64,8 @@ public class Room
         this.rate = rate;
     }
     
+    public String toString()
+    {
+        return "Number: " + number + "\nType: " + type + "\nRate: " + Double.toString(rate) + "\nDescription: " + description;
+    }
 }

@@ -167,11 +167,4 @@ public class Ledger
         
         return filteredUsers;
     }
-    
-//    public ArrayList sort(ArrayList list, String sortProperty)
-//    {
-//        
-//        
-//        return list;
-//    }
 }
