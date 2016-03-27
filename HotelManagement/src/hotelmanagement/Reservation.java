@@ -10,33 +10,59 @@ import java.util.Date;
  *
  * @author timothy
  */
+/**
+ * 
+ * @params
+ * startDate & endDate make up the date range for the reservation
+ * room is a reference to the Room that the reservation is for
+ * totalPrice is the calculated value from the # of days and the room rate
+ * isPaid is the the flag for payment
+ * reserver is the User making the reservation
+ * reserveID is a unique 7-digit number that makes the reservations easily searchable
+ */
+
 public class Reservation {
     
     private Date startDate;
     private Date endDate;
-    private int roomNumber;
+    private Room room;
     private double totalPrice;
     private boolean isPaid;
     private User reserver;
+    private int reserveID;
+    private double currentPrice;
+    private boolean checkedIn;
+    private int roomNumber;
+
+
+
+
+
     
     public Reservation()
     {
         startDate = null;
         endDate = null;
-        roomNumber = 000;
+        room = null;
         totalPrice = 0.00;
         isPaid = false;
         reserver = null;
+        reserveID = 999999;
+        currentPrice = 0.00;
+        checkedIn = false;
     }
     
-    public Reservation(int room, double price, boolean payment, User user)
+    public Reservation(Date sDate, Date eDate, Room room, boolean payment, User user, int reserve)
     {
-        startDate = null;
-        endDate = null;
-        roomNumber = room;
-        totalPrice = price;
+        startDate = sDate;
+        endDate = eDate;
+        this.room = room;
+        totalPrice = (eDate.getDay()-sDate.getDay())*room.getRate();
         isPaid = payment;
         reserver = user;
+        reserveID = reserve;
+        currentPrice = totalPrice;
+        checkedIn = false;
     }
  
     //===============================
@@ -52,14 +78,14 @@ public class Reservation {
         endDate = end;
     }
     
-    public void setRoomNumber(Date end)
+    public void setRoomNumber(int roomNumber)
     {
-        endDate = end;
+        this.roomNumber = roomNumber;
     }
     
-    public void setRoomNumber(int room)
+    public void setRoom(Room room)
     {
-        roomNumber = room;
+        this.room = room;
     }
     
     public void setTotalPrice(double price)
@@ -69,12 +95,21 @@ public class Reservation {
     
     public void setPaid(boolean payment)
     {
-        isPaid = payment;
+        this.isPaid = payment;
     }
     
     public void setReserver(User user)
     {
-        reserver = user;
+        this.reserver = user;
+    }
+    
+    public void setCurrentPrice(double currentPrice) 
+    {
+        this.currentPrice = currentPrice;
+    }
+
+    public void setCheckedIn(boolean checkedIn) {
+        this.checkedIn = checkedIn;
     }
     
     //===============================
@@ -90,9 +125,9 @@ public class Reservation {
         return endDate;
     }
     
-    public int getRoomNumber()
+    public Room getRoom()
     {
-        return roomNumber;
+        return room;
     }
     
     public double getTotalPrice()
@@ -100,7 +135,7 @@ public class Reservation {
         return totalPrice;
     }
     
-    public boolean getPaid()
+    public boolean getIsPaid()
     {
         return isPaid;
     }
@@ -109,5 +144,16 @@ public class Reservation {
     {
         return reserver;
     }
+    
+    public double getCurrentPrice() 
+    {
+        return currentPrice;
+    }
+    
+    public boolean IsCheckedIn() 
+    {
+        return checkedIn;
+    }   
+    
     
 }

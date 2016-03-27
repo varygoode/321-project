@@ -11,15 +11,26 @@ import java.util.ArrayList;
  */
 public class Ledger 
 {    
+    static private Ledger singletonLedger = null;
+    
     public ArrayList<Reservation> filteredReservations;
     public ArrayList<Room> filteredRooms;
     public ArrayList<User> filteredUsers;
     
-    public Ledger()
+    private Ledger()
     {
         filteredReservations = new ArrayList();
         filteredRooms = new ArrayList();
         filteredUsers = new ArrayList();
+    }
+    
+    public static Ledger getLedger()
+    {
+        if (singletonLedger == null) 
+        {
+            singletonLedger = new Ledger();       
+        }    
+        return singletonLedger;
     }
     
     /**
@@ -40,7 +51,7 @@ public class Ledger
             return searchRooms(searchList, searchParameters);
         }
         
-        else if (searchList.get(0).getClass().equals(hotelmanagement.User.class))
+        else if (searchList.get(0).getClass().getSuperclass().equals(hotelmanagement.User.class))
         {
             return searchUsers(searchList, searchParameters);
         }
@@ -59,12 +70,12 @@ public class Ledger
         {
             //get all current reservation properties
             ArrayList<String> properties = new ArrayList();
-            properties.add(Integer.toString(res.getRoomNumber()));
+            properties.add(Integer.toString(res.getRoom().getNumber()));
             properties.add(res.getStartDate().toString());
             properties.add(res.getEndDate().toString());
             properties.add(Integer.toString(res.getReserver().getID()));
             properties.add(Double.toString(res.getTotalPrice()));
-            properties.add(String.valueOf(res.getPaid()));
+            properties.add(String.valueOf(res.getIsPaid()));
             
             //compare each search parameter to each property
             for (String parameter : searchParameters)
