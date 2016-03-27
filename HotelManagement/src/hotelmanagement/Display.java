@@ -33,15 +33,16 @@ public class Display
             System.out.println("2. Register"); //creates new employee or customer
             System.out.println("3. Search"); //defaults to customer Menu
             System.out.println("4. Quit"); //endProgram
-            System.out.println("Please enter the digit to make a selection.");            
-    }//end public function
+            System.out.println("Please enter the digit to make a selection.");        
+    }
     
     private void custMenu()
     {
             System.out.println("**CUSTOMER MENU**");
             System.out.println("=================");
             System.out.println("1. Search/Reserve"); //takes you to search menu
-            System.out.println("2. Cancel");
+            System.out.println("2. Return to Main Menu");
+            System.out.println("3. Cancel");
             System.out.println("Please enter the digit to make a selection.");
     }
     
@@ -55,7 +56,8 @@ public class Display
             System.out.println("4. Check-In"); 
             System.out.println("5. Check-Out");
             System.out.println("6. Report"); //for now prints 'database'
-            System.out.println("7. Cancel");
+            System.out.println("7. Cancel");System.out.println("7. Return to Main Menu"); //for now prints 'database'
+            System.out.println("8. Cancel");
     }
     
     private void searchMenu()
@@ -65,7 +67,8 @@ public class Display
             System.out.println("==========");
             System.out.println("1. Room"); //filters to room data will be applied 
             System.out.println("2. Make a Reservation"); //takes you to Reservation Menu
-            System.out.println("3. Cancel");
+            System.out.println("3. Return to Main Menu");
+            System.out.println("4. Cancel");
             System.out.println("Please enter the digit to make a selection.");
     }
     
@@ -94,8 +97,9 @@ public class Display
             System.out.println("**Check-Out Menu**");
             System.out.println("==================");
             System.out.println("1. Select Date Duration");
-            System.out.println("2. Enter Payment information"); //hold data for checkou
-            System.out.println("3. Cancel");
+            System.out.println("2. Enter Payment information"); //hold data for checkout
+            System.out.println("3. Return to Main Menu");
+            System.out.println("4. Cancel");
             System.out.println("Please enter the digit to make a selection.");
     }
     
@@ -106,7 +110,8 @@ public class Display
             System.out.println("Select an option from the list:");
             System.out.println("1. Return to Main Menu");
             System.out.println("2. Return to Search Menu");
-            System.out.println("3. Quit"); //go to quitMenu
+            System.out.println("3. Return to Main Menu");
+            System.out.println("4. Quit"); //go to quitMenu
             System.out.println("Please enter the digit to make a selection.");
     }
     
@@ -149,7 +154,7 @@ public class Display
                 cancelMenu();
                 break;
             case QUIT:
-                quitMenu();            
+                quitMenu();
                 break;
             default:
                 startMenu();
