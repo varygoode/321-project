@@ -123,9 +123,9 @@ public class HotelManagement
                 case SEARCH:
                     searchMenu();
                     break;
-//                case RESERVATION:
-//                    reservationMenu();
-//                    break;
+//              case RESERVATION:
+//                  reservationMenu();
+//                  break;
                 case CHECKIN:
                     checkInMenu();
                     break;
@@ -591,14 +591,19 @@ public class HotelManagement
             }
             break;
             case 2:
-
+            {
                 break;
+            }
             case 3:
+            {
                 display.setState(StateEnum.MAIN);
                 break;
+            }
             case 4:
+            {
                 display.setState(StateEnum.QUIT);
                 break;
+            }    
         }
     }
     
