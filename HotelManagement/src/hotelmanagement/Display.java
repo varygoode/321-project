@@ -77,9 +77,8 @@ public class Display
             System.out.println("**Reservation Menu**");
             System.out.println("====================");
             System.out.println("1. Reserve Room");
-            System.out.println("2. Confirm Reservation");
-            System.out.println("3. Return to Main Menu");
-            System.out.println("4. Cancel");
+            System.out.println("2. Return to Main Menu");
+            System.out.println("3. Cancel");
             System.out.println("Please enter the digit to make a selection.");
     }
     

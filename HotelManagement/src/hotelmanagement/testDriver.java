@@ -5,13 +5,15 @@
  */
 package hotelmanagement;
 
+import java.text.ParseException;
+
 /**
  *
  * @author Rob
  */
 public class testDriver {
     
-    public static void main(String args[])
+    public static void main(String args[]) throws ParseException
     {
         HotelManagement hms = HotelManagement.getHMS();
         
