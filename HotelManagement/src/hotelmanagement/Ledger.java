@@ -13,9 +13,9 @@ public class Ledger
 {    
     static private Ledger singletonLedger = null;
     
-    public ArrayList<Reservation> filteredReservations;
-    public ArrayList<Room> filteredRooms;
-    public ArrayList<User> filteredUsers;
+    private ArrayList<Reservation> filteredReservations;
+    private ArrayList<Room> filteredRooms;
+    private ArrayList<User> filteredUsers;
     
     private Ledger()
     {

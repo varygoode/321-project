@@ -41,8 +41,9 @@ public class Display
             System.out.println("**CUSTOMER MENU**");
             System.out.println("=================");
             System.out.println("1. Search/Reserve"); //takes you to search menu
-            System.out.println("2. Return to Main Menu");
-            System.out.println("3. Cancel");
+            System.out.println("2. Cancel Reservation");
+            System.out.println("3. Return to Main Menu");
+            System.out.println("4. Cancel");
             System.out.println("Please enter the digit to make a selection.");
     }
     
@@ -108,10 +109,9 @@ public class Display
             System.out.println("**Cancel**");
             System.out.println("==========");
             System.out.println("Select an option from the list:");
-            System.out.println("1. Return to Main Menu");
-            System.out.println("2. Return to Search Menu");
-            System.out.println("3. Return to Main Menu");
-            System.out.println("4. Quit"); //go to quitMenu
+            System.out.println("1. Go to Main Menu");
+            System.out.println("2. Go to Search Menu");
+            System.out.println("3. Quit"); //go to quitMenu
             System.out.println("Please enter the digit to make a selection.");
     }
     

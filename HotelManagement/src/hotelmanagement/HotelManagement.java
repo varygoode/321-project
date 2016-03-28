@@ -6,6 +6,7 @@ package hotelmanagement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.*;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import newExceptions.DateOutOfRangeException;
@@ -352,17 +353,73 @@ public class HotelManagement
         {
             case 1:
             {
-                
+                display.setState(StateEnum.SEARCH);
             }
                 break; 
             case 2:
             {    
-                                
+                resResults = theLedger.search(allReserves, new ArrayList<String>(Arrays.asList(Integer.toString(currentUser.getID()))));
+                
+                if(resResults != null && !resResults.isEmpty())
+                {
+                    for(Reservation res : resResults)
+                    {
+                        display.Show("=========================");
+                        display.Show("Result #" + resResults.indexOf(res) + ":");
+                        display.Show(res.toString());
+                        display.Show("=========================");
+                    }
+                    
+                    display.Show("Based on your the above list, enter the result # for the reservation you wish to cancel.");
+                    int resultIndex = display.getIntInput();
+                    
+                    String response = "";
+                    Reservation resToCancel = null;
+                    
+                    while (!(response.matches("Y") || response.matches("y")))
+                    {
+                        if(resultIndex >= 0 && resultIndex < resResults.size())
+                        {
+                            display.Show("=========================");
+                            display.Show(resResults.get(resultIndex).toString());
+                            display.Show("=========================");
+                            display.Show("Is the above the correct room? Y/N");
+                            response = display.getStrInput();
+                            if(response.matches("Y") || response.matches("y"))
+                            {
+                                resToCancel = resResults.get(resultIndex);
+                            }
+                        }
+                        else
+                        {
+                            display.Show("Please enter a valid result number. Current range: [0," + Integer.toString(resResults.size() - 1) + "]");
+                        }
+                    }
+                    
+                    if(resToCancel != null)
+                    {
+                        allReserves.remove(resToCancel);
+                        display.Show("Reservation with ID #" + resToCancel.getReserveID() + " has been cancelled.");
+                    }
+                    else
+                    {
+                        display.Show("No reservation has been cancelled.");
+                    }
+                }
+                else
+                {
+                    display.Show("You have no reservations!");
+                }
             }   
-                break; 
+                break;
             case 3:
             {    
-                display.setState(StateEnum.QUIT);                
+                                
+            }   
+                break;
+            case 4:
+            {    
+                display.setState(StateEnum.CANCEL);                
             }   
                 break; 
         }
@@ -561,7 +618,7 @@ public class HotelManagement
                 break;
             case 7:
             {
-                display.setState(StateEnum.QUIT);
+                display.setState(StateEnum.CANCEL);
             }
                 break;    
 
@@ -707,7 +764,7 @@ public class HotelManagement
                 display.setState(StateEnum.MAIN);
                 break;
             case 4:
-                display.setState(StateEnum.QUIT);
+                display.setState(StateEnum.CANCEL);
                 break;
         }
     }
@@ -825,7 +882,7 @@ public class HotelManagement
             break;
             case 3:
             {
-                display.setState(StateEnum.QUIT);
+                display.setState(StateEnum.CANCEL);
             }
             break;
         }
@@ -1000,7 +1057,7 @@ public class HotelManagement
                 display.setState(StateEnum.MAIN);
                 break;
             case 4:
-                display.setState(StateEnum.QUIT);
+                display.setState(StateEnum.CANCEL);
                 break;
         }
     }
@@ -1018,9 +1075,6 @@ public class HotelManagement
                 display.setState(StateEnum.SEARCH);
                 break;
             case 3:
-                display.setState(StateEnum.MAIN);
-                break;
-            case 4:
                 display.setState(StateEnum.QUIT);
                 break;
         }
