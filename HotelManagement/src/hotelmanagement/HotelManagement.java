@@ -580,34 +580,40 @@ public class HotelManagement
                 display.Show("2. All-Time Report");
                 int choice = display.getIntInput();
                 
-                switch(choice)
+                if(theArchive.TheArchives.isEmpty())
                 {
-                    case 1:
-                    {
-                        display.Show("Enter room type:");
-                        RoomTypeEnum type = RoomTypeEnum.valueOf(display.getStrInput());
-                        display.Show("Enter month by number (Jan = 1, Feb = 2, ... Dec = 12):");
-                        int month = display.getIntInput();
-                        
-                        display.Show("**" + (new DateFormatSymbols().getMonths()[month-1]).toUpperCase() + " REPORT**");
-                        display.Show("=================");
-                        display.Show("Most Occupied Room: " + theArchive.getReport().getMostOccupied(type, month).toString());
-                        display.Show("Total Checkins: " + theArchive.getReport().getTotalCheckins(type, month));
-                        display.Show("Total Income: " + theArchive.getReport().getTotalIncome(type, month));
-                    }
-                        break;
-                    case 2:
-                    {
-                        display.Show("**ALL-TIME REPORT**");
-                        display.Show("=================");
-                        display.Show("Most Occupied Room: " + theArchive.getReport().getMostOccupiedRoom().toString());
-                        display.Show("Most Occupied Room Amount: " + theArchive.getReport().getMostOccupiedRoomAmount());
-                        display.Show("Total Checkins: " + theArchive.getReport().getTotalCheckins());
-                        display.Show("Total Income: " + theArchive.getReport().getTotalIncome());
-                    }
-                        break;
+                    display.Show("There are no Archives right now. You must check out some Reservations first.");
                 }
-                
+                else
+                {
+                    switch(choice)
+                    {
+                        case 1:
+                        {
+                            display.Show("Enter room type:");
+                            RoomTypeEnum type = RoomTypeEnum.valueOf(display.getStrInput());
+                            display.Show("Enter month by number (Jan = 1, Feb = 2, ... Dec = 12):");
+                            int month = display.getIntInput();
+
+                            display.Show("**" + (new DateFormatSymbols().getMonths()[month-1]).toUpperCase() + " REPORT**");
+                            display.Show("=================");
+                            display.Show("Most Occupied Room: " + theArchive.getReport().getMostOccupied(type, month).toString());
+                            display.Show("Total Checkins: " + theArchive.getReport().getTotalCheckins(type, month));
+                            display.Show("Total Income: " + theArchive.getReport().getTotalIncome(type, month));
+                        }
+                            break;
+                        case 2:
+                        {
+                            display.Show("**ALL-TIME REPORT**");
+                            display.Show("=================");
+                            display.Show("Most Occupied Room: " + theArchive.getReport().getMostOccupiedRoom().toString());
+                            display.Show("Most Occupied Room Amount: " + theArchive.getReport().getMostOccupiedRoomAmount());
+                            display.Show("Total Checkins: " + theArchive.getReport().getTotalCheckins());
+                            display.Show("Total Income: " + theArchive.getReport().getTotalIncome());
+                        }
+                            break;
+                    }
+                }
                 
             }
                 break;
