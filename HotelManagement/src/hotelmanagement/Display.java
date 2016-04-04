@@ -5,121 +5,525 @@
  */
 package hotelmanagement;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.text.ParseException;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.*;
+import newExceptions.DateOutOfRangeException;
 
 /**
  * @author andreapressnell
  */
-public class Display 
+public class Display
 {
-    private Scanner input = new Scanner(System.in);
     private StateEnum state;
     int menuOption;
+    JPanel menuPanel, submenuPanel;
+    JFrame frame;
+    JButton login, register, search, quit, searchOrRes, cancelRes;
+    JButton returnToMain, cancel, alterRoom, checkIn, checkOut;
+    JButton report, searchRooms, makeRes, findRes, completeCheckout;
+    JButton submit, enter;
+    JTextField input;
+    boolean submitClicked;
+    HotelManagement hms;
+    String prompt;
     
-    //HotelManagement hms = HotelManagement.getHMS();
-    
-    public Display()
+    public Display(HotelManagement hms)
     {
         //constructor 
         state = StateEnum.MAIN;
+        submitClicked = false;
+        this.hms = hms;
+        prompt = "";
+        
+        menuPanel = new JPanel();
+        submenuPanel = new JPanel();
+        frame = new JFrame();
+        
+        menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
+        menuPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        ////////////SET UP BUTTONS///////////////
+        login = new JButton("Login");
+        register = new JButton("Register");
+        search = new JButton("Search");
+        quit = new JButton("Quit");
+        searchOrRes = new JButton("Search/Reserve");
+        cancelRes = new JButton("Cancel Reservation");
+        returnToMain = new JButton("Main Menu");
+        cancel = new JButton("Cancel Menu");
+        alterRoom = new JButton("Alter Room");
+        checkIn = new JButton("Check-In");
+        checkOut = new JButton("Check-Out");
+        report = new JButton("Report");
+        searchRooms = new JButton("Search Rooms");
+        makeRes = new JButton("Make Reservation");
+        findRes = new JButton("Find Reservation");
+        completeCheckout = new JButton("Complete Checkout");
+        enter = new JButton("Enter");
+        submit = new JButton("Submit");
+        ////////END SET UP BUTTONS///////////////
+        
+        /////INPUT BOX/////
+        input = new JTextField(32);
+        
+        frame.setSize(400, 500);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
+        frame.add(menuPanel, BorderLayout.NORTH);
+        frame.add(submenuPanel, BorderLayout.AFTER_LAST_LINE);
+        
+        //frame.pack();
+        frame.setVisible(true);
     }
     
     private void startMenu()
     {            
-            System.out.println("**MAIN MENU**");
-            System.out.println("=============");
-            System.out.println("1. Login"); //returning user
-            System.out.println("2. Register"); //creates new employee or customer
-            System.out.println("3. Search"); //defaults to customer Menu
-            System.out.println("4. Quit"); //endProgram
-            System.out.println("Please enter the digit to make a selection.");        
-    }
+        menuOption = 0;
+        menuPanel.removeAll();
+        menuPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        menuPanel.add(new JLabel("**MAIN MENU**"));
+        menuPanel.add(new JLabel("============="));
+        menuPanel.add(login); //returning user
+        menuPanel.add(register); //creates new employee or customer
+        menuPanel.add(search); //defaults to customer Menu
+        menuPanel.add(quit); //endProgram
+        login.removeAll();
+        register.removeAll();
+        search.removeAll();
+        quit.removeAll();
+        login.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 1;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        register.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 2;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        search.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 3;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        quit.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 4;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        frame.add(menuPanel);
+        frame.revalidate();
+        frame.repaint();
+}
     
     private void custMenu()
     {
-            System.out.println("**CUSTOMER MENU**");
-            System.out.println("=================");
-            System.out.println("1. Search/Reserve"); //takes you to search menu
-            System.out.println("2. Cancel Reservation");
-            System.out.println("3. Return to Main Menu");
-            System.out.println("4. Cancel");
-            System.out.println("Please enter the digit to make a selection.");
+        menuOption = 0;
+        menuPanel.removeAll();
+        menuPanel.add(new JLabel("**CUSTOMER MENU**"));
+        menuPanel.add(new JLabel("================="));
+        menuPanel.add(searchOrRes); //takes you to search menu
+        menuPanel.add(cancelRes);
+        menuPanel.add(returnToMain);
+        menuPanel.add(cancel);
+        searchOrRes.removeAll();
+        cancelRes.removeAll();
+        returnToMain.removeAll();
+        cancel.removeAll();
+        searchOrRes.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 1;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        cancelRes.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 2;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        returnToMain.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 3;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        cancel.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 4;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        frame.revalidate();
+        frame.repaint();
     }
     
     private void empMenu()
     {
-            System.out.println("**EMPLOYEE MENU**");
-            System.out.println("=================");
-            System.out.println("1. Search"); //more search options? 
-//            System.out.println("2. Reserve"); //takes you to reservation menu
-            System.out.println("2. Alter Room"); 
-            System.out.println("3. Check-In"); 
-            System.out.println("4. Check-Out");
-            System.out.println("5. Report");
-            System.out.println("6. Return to Main Menu"); //for now prints 'database'
-            System.out.println("7. Cancel");
+        menuOption = 0;
+        menuPanel.removeAll();
+        menuPanel.add(new JLabel("**EMPLOYEE MENU**"));
+        menuPanel.add(new JLabel("================="));
+        menuPanel.add(search);
+        menuPanel.add(alterRoom); 
+        menuPanel.add(checkIn); 
+        menuPanel.add(checkOut);
+        menuPanel.add(report);
+        menuPanel.add(returnToMain);
+        menuPanel.add(cancel);
+        search.removeAll();
+        alterRoom.removeAll();
+        checkIn.removeAll();
+        checkOut.removeAll();
+        report.removeAll();
+        returnToMain.removeAll();
+        cancel.removeAll();
+        search.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 1;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        alterRoom.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 2;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        checkIn.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 3;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        checkOut.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 4;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        report.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 5;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        returnToMain.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 6;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        cancel.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 7;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        frame.revalidate();
+        frame.repaint();
     }
     
     private void searchMenu()
     {
-        //may need a separate search menu for employee and another for customer
-            System.out.println("**SEARCH**");
-            System.out.println("==========");
-            System.out.println("1. Search for a Room"); //filters to room data will be applied 
-            System.out.println("2. Make a Reservation"); //takes you to Reservation Menu
-            System.out.println("3. Return to Main Menu");
-            System.out.println("4. Cancel");
-            System.out.println("Please enter the digit to make a selection.");
+        menuOption = 0;
+        menuPanel.removeAll();
+        menuPanel.add(new JLabel("**SEARCH**"));
+        menuPanel.add(new JLabel("=========="));
+        menuPanel.add(searchRooms); //filters to room data will be applied 
+        menuPanel.add(makeRes); //takes you to Reservation Menu
+        menuPanel.add(returnToMain);
+        menuPanel.add(cancel);
+        searchRooms.removeAll();
+        makeRes.removeAll();
+        returnToMain.removeAll();
+        cancel.removeAll();
+        searchRooms.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 1;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        makeRes.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 2;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        returnToMain.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 3;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        cancel.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 4;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        frame.revalidate();
+        frame.repaint();
     }
-    
-//    private void reservationMenu()
-//    {
-//            System.out.println("**Reservation Menu**");
-//            System.out.println("====================");
-//            System.out.println("1. Reserve Room");
-//            System.out.println("2. Return to Main Menu");
-//            System.out.println("3. Cancel");
-//            System.out.println("Please enter the digit to make a selection.");
-//    }
     
     private void checkInMenu()
     {
-            System.out.println("**Check-In Menu**");
-            System.out.println("=================");
-            System.out.println("1. Find Reservation");
-            System.out.println("2. Return to Main Menu");
-            System.out.println("3. Cancel");
-            System.out.println("Please enter the digit to make a selection.");
+        menuOption = 0;
+        menuPanel.removeAll();
+        menuPanel.add(new JLabel("**Check-In Menu**"));
+        menuPanel.add(new JLabel("================="));
+        menuPanel.add(findRes);
+        menuPanel.add(returnToMain);
+        menuPanel.add(cancel);
+        findRes.removeAll();
+        returnToMain.removeAll();
+        cancel.removeAll();
+//        findRes.addActionListener(this);
+//        returnToMain.addActionListener(this);
+//        cancel.addActionListener(this);
+        frame.revalidate();
+        frame.repaint();
     }
     
     private void checkOutMenu()
     {
-            System.out.println("**Check-Out Menu**");
-            System.out.println("==================");
-            System.out.println("1. Find a Reservation");
-            System.out.println("2. Complete Check-Out");
-            System.out.println("3. Return to Main Menu");
-            System.out.println("4. Cancel");
-            System.out.println("Please enter the digit to make a selection.");
+        menuOption = 0;
+        menuPanel.removeAll();
+        menuPanel.add(new JLabel("**Check-Out Menu**"));
+        menuPanel.add(new JLabel("=================="));
+        menuPanel.add(findRes);
+        menuPanel.add(completeCheckout);
+        menuPanel.add(returnToMain);
+        menuPanel.add(cancel);
+        findRes.removeAll();
+        completeCheckout.removeAll();
+        returnToMain.removeAll();
+        cancel.removeAll();
+//        findRes.addActionListener(this);
+//        completeCheckout.addActionListener(this);
+//        returnToMain.addActionListener(this);
+//        cancel.addActionListener(this);
+        frame.revalidate();
+        frame.repaint();
     }
     
     private void cancelMenu()
     {
-            System.out.println("**Cancel**");
-            System.out.println("==========");
-            System.out.println("Select an option from the list:");
-            System.out.println("1. Go to Main Menu");
-            System.out.println("2. Go to Search Menu");
-            System.out.println("3. Quit"); //go to quitMenu
-            System.out.println("Please enter the digit to make a selection.");
+        menuOption = 0;
+        menuPanel.removeAll();
+        menuPanel.add(new JLabel("**Cancel**"));
+        menuPanel.add(new JLabel("=========="));
+        menuPanel.add(returnToMain);
+        menuPanel.add(search);
+        menuPanel.add(quit);
+        returnToMain.removeAll();
+        search.removeAll();
+        quit.removeAll();
+//        returnToMain.addActionListener(this);
+//        search.addActionListener(this);
+//        quit.addActionListener(this);
+        frame.revalidate();
+        frame.repaint();
     }
     
     private void quitMenu()
     {
-            System.out.println("=============");
-            System.out.println("**Good Bye!**");
-            System.out.println("=============");
+        menuOption = 0;
+        menuPanel.removeAll();
+        menuPanel.add(new JLabel("============="));
+        menuPanel.add(new JLabel("**Good Bye!**"));
+        menuPanel.add(new JLabel("============="));
+        frame.revalidate();
+        frame.repaint();
+        try 
+        {
+            TimeUnit.SECONDS.sleep(1);
+        } 
+        catch (InterruptedException ex) 
+        {
+            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /**
@@ -127,6 +531,8 @@ public class Display
      */
     public void update()
     {
+        System.out.println(state.toString());
+        System.out.println(menuOption);
         switch(state)
         {
             case MAIN:
@@ -141,9 +547,6 @@ public class Display
             case SEARCH:
                 searchMenu();
                 break;
-//            case RESERVATION:
-//                reservationMenu();
-//                break;
             case CHECKIN:
                 checkInMenu();
                 break;
@@ -164,7 +567,13 @@ public class Display
     
     public void setState(StateEnum state)
     {
-        this.state = state;
+//        if(!(this.state == StateEnum.CUSTOMER && state == StateEnum.MAIN) &&
+//           !(this.state == StateEnum.EMPLOYEE && state == StateEnum.MAIN))
+//        {
+            this.state = state;
+//        }
+        
+        //submenuPanel.removeAll();
     }
     
     public StateEnum getState()
@@ -178,9 +587,16 @@ public class Display
      */
     public int getIntInput()
     {
-        int selection = input.nextInt();
-        input.nextLine();     
-        return selection;
+        return Integer.valueOf(getStrInput());
+    }
+    
+    /**
+     * Public function to get menu input number based on button.
+     * @return input as an integer
+     */
+    public int getMenuInput()
+    {
+        return menuOption;
     }
     
     /**
@@ -189,16 +605,27 @@ public class Display
      */
     public String getStrInput()
     {
-        return input.nextLine();
+        String input = JOptionPane.showInputDialog(prompt);
+        prompt = "";
+        return input;
     }
     
     public double getDoubleInput()
     {
-        return input.nextDouble();
+        return Double.valueOf(getStrInput());
     }
     
-    public void Show(String str)
+    public void Show(String str, boolean isInputPrompt)
     {
-        System.out.println(str);
+        if(!prompt.isEmpty())
+        {
+            prompt += "\n";
+        }
+        prompt += str;
+        if(!isInputPrompt)
+        {
+            JOptionPane.showMessageDialog(null, prompt);
+            prompt = "";
+        }
     }
 }//end display
