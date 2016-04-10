@@ -21,6 +21,7 @@ public class testDriver {
         hms.initialize();
         
         hms.run();
+        System.out.println("test");
     }
     
 }
