@@ -30,6 +30,7 @@ public class HotelManagement
     ArrayList<Reservation> resResults;
     Transaction txn;
     Archive theArchive;
+    Database hotelDB;
     RoomTypeEnum type;
     
     private HotelManagement()
@@ -47,6 +48,7 @@ public class HotelManagement
         roomResults = null;
         resResults = null;
         theArchive = Archive.getArchive();
+        hotelDB = Database.getDB();
     }
     
     public static HotelManagement getHMS()
@@ -60,6 +62,13 @@ public class HotelManagement
         
     public void initialize()
     {
+        
+        //=================================================
+        //  Initialize database and establish connection
+        //=================================================
+        
+        hotelDB.startConnection();
+        
         //===============================
         //  Initialize Users
         //===============================
@@ -144,8 +153,9 @@ public class HotelManagement
                     endProgram = true;
                     if (endProgram==true)
                     {   
-                      display.setState(StateEnum.QUIT);
-                      System.exit(0);
+                        hotelDB.closeConnection();
+                        display.setState(StateEnum.QUIT);
+                        System.exit(0);
                     }
                     break;
                 default:
