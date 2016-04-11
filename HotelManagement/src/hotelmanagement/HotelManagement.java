@@ -153,8 +153,9 @@ public class HotelManagement
                     endProgram = true;
                     if (endProgram==true)
                     {   
-                      display.setState(StateEnum.QUIT);
-                      System.exit(0);
+                        hotelDB.closeConnection();
+                        display.setState(StateEnum.QUIT);
+                        System.exit(0);
                     }
                     break;
                 default:
