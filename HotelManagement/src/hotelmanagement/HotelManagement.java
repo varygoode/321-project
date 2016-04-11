@@ -150,10 +150,10 @@ public class HotelManagement
                     cancelMenu();
                     break;
                 case QUIT:
+                    hotelDB.closeConnection();
                     endProgram = true;
                     if (endProgram==true)
                     {   
-                        hotelDB.closeConnection();
                         display.setState(StateEnum.QUIT);
                         System.exit(0);
                     }
