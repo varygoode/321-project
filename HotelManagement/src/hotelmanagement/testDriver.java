@@ -5,6 +5,7 @@
  */
 package hotelmanagement;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 import newExceptions.DateOutOfRangeException;
 
@@ -14,7 +15,7 @@ import newExceptions.DateOutOfRangeException;
  */
 public class testDriver {
     
-    public static void main(String args[]) throws ParseException, DateOutOfRangeException
+    public static void main(String args[]) throws ParseException, DateOutOfRangeException, SQLException
     {
         HotelManagement hms = HotelManagement.getHMS();
         

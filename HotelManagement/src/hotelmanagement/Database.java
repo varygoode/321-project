@@ -5,7 +5,7 @@
  */
 package hotelmanagement;
 
-import java.io.*;
+import java.util.*;
 import java.sql.*;
 
 /**
@@ -56,6 +56,87 @@ public class Database {
         catch(SQLException ex)
         {
             System.out.println("Attempt failed");
+        }
+    }
+    
+    public void initRooms(ArrayList roomList) throws SQLException
+    {
+        Statement stmt = null;
+        String query = "select ROOMTYPE, ROOMNUMBER, RATE, DESCRIPTION " +
+                       "from " + "ROOMS";
+        try {
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                RoomTypeEnum roomType = RoomTypeEnum.valueOf( rs.getString("ROOMTYPE"));
+                int roomNum = rs.getInt("ROOMNUMBER");
+                double rate = rs.getDouble("RATE");
+                String desc = rs.getString("DESCRIPTION");
+                System.out.println(roomType + "\t" + rate +
+                                   "\t" + desc);
+            }
+        } catch (SQLException e ) {
+            //JDBCTutorialUtilities.printSQLException(e);
+            System.out.println("Failed to execute statement");
+        } finally {
+            if (stmt != null) { stmt.close(); }
+        }
+    }
+    
+    public void initUsers(ArrayList userList) throws SQLException
+    {
+        Statement stmt = null;
+        String query = "select USERID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME " +
+                       "from " + "USERS";
+        try {
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                int userID = rs.getInt("USERID");
+                String username = rs.getString("USERNAME");
+                String password = rs.getString("PASSWORD");
+                String firstName = rs.getString("FIRSTNAME");
+                String lastName = rs.getString("LASTNAME");
+                System.out.println(userID + "\t" + username +
+                                   "\t" + password + "\t" + firstName +
+                                   "\t" + lastName);
+            }
+        } catch (SQLException e ) {
+            //JDBCTutorialUtilities.printSQLException(e);
+            System.out.println("Failed to execute statement");
+        } finally {
+            if (stmt != null) { stmt.close(); }
+        }
+    }
+     
+    
+    public void initReservations(ArrayList reserveList) throws SQLException 
+    {
+        Statement stmt = null;
+        String query = "select RESERVATIONNUMBER, STARTDATE, ENDDATE, ISPAID, CURRENTPRICE, CHECKEDIN, ROOMNUMBER, TOTALPRICE " +
+                       "from " + "RESERVATIONS";
+        try {
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                int reserveNum = rs.getInt("RESERVATIONNUMBER");
+                //Date startDate = rs.getDate("STARTDATE");
+                //Date endDate = rs.getDate("ENDDATE");
+                boolean isPaid = rs.getBoolean("ISPAID");
+                double curPrice = rs.getDouble("CURRENTPRICE");
+                boolean checkedIn = rs.getBoolean("CHECKEDIN");
+                double totalPrice = rs.getDouble("TOTALPRICE");
+                System.out.println(reserveNum + 
+                                   //"\t" + startDate +
+                                   //"\t" + endDate + 
+                                   "\t" + isPaid +
+                                   "\t" + curPrice + "\t" + checkedIn + "\t" + totalPrice);
+            }
+        } catch (SQLException e ) {
+            //JDBCTutorialUtilities.printSQLException(e);
+            System.out.println("Failed to execute statement");
+        } finally {
+            if (stmt != null) { stmt.close(); }
         }
     }
 }
