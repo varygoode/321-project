@@ -15,6 +15,7 @@ import java.sql.*;
 public class Database {
     
     static private Database singletonDB = null;
+    static private Connection conn = null;
     
     private Database()
     {
@@ -35,13 +36,26 @@ public class Database {
         String connectURL = "jdbc:derby://localhost:1527/hotel";    
         try 
         {
-            Connection conn = DriverManager.getConnection(connectURL, "manager","password");
+            conn = DriverManager.getConnection(connectURL, "manager","password");
             System.out.println("Connection Established");
-            conn.close();
         }
         catch(SQLException ex)
         {
             System.out.println("Connection failed");
+        }
+    }
+    
+    public void closeConnection()
+    {
+        String connectURL = "jdbc:derby://localhost:1527/hotel";    
+        try 
+        {
+            System.out.println("Connection Closed");
+            conn.close();
+        }
+        catch(SQLException ex)
+        {
+            System.out.println("Attempt failed");
         }
     }
 }
