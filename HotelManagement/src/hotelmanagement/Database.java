@@ -154,8 +154,8 @@ public class Database {
     public void storeRooms(ArrayList<Room> roomList) throws SQLException
     {
         Statement stmt = null;
+        stmt = conn.createStatement();
         try {
-            stmt = conn.createStatement();
             // Use TRUNCATE
             String delSQL = "TRUNCATE ROOMS";
             // Execute deletion
@@ -177,10 +177,7 @@ public class Database {
                 
                 stmt.executeUpdate(sql);
             }
-            
-            //
-            // INSERT LOOP FOR PULLING VALUES OUT OF ARRAYLISTS
-            //
+
         } catch (SQLException e ) {
             //JDBCTutorialUtilities.printSQLException(e);
             System.out.println("Failed to execute statement");
@@ -192,6 +189,7 @@ public class Database {
     public void storeUsers(ArrayList<User> userList) throws SQLException
     {
         Statement stmt = null;
+        stmt = conn.createStatement();
         // Use TRUNCATE
         String delSQL = "TRUNCATE USERS";
         // Execute deletion
@@ -201,10 +199,7 @@ public class Database {
         // Execute deletion
         stmt.executeUpdate(delSQL);
         
-        String query = "INSERT INTO USERS( USERID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME )";
         try {
-            stmt = conn.createStatement();
-            stmt.executeQuery(query);
             for(int i = 0; i < userList.size(); i++)
             {
                 String sql = "INSERT INTO USERS(USERID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME) " +
@@ -230,6 +225,7 @@ public class Database {
     public void storeReservations(ArrayList<Reservation> reserveList, ArrayList<Room> roomList, ArrayList<User> userList) throws SQLException 
     {
         Statement stmt = null;
+        stmt = conn.createStatement();
         // Use TRUNCATE
         String delSQL = "TRUNCATE RESERVATIONS";
         // Execute deletion
@@ -240,7 +236,6 @@ public class Database {
         stmt.executeUpdate(delSQL);
         
         try {
-            stmt = conn.createStatement();
 
             for(int i = 0; i < reserveList.size(); i++)
             {

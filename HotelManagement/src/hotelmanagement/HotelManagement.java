@@ -158,13 +158,13 @@ public class HotelManagement
                     cancelMenu();
                     break;
                 case QUIT:
-//                    hotelDB.storeUsers(allUsers);
-//                    hotelDB.storeRooms(allRooms);
-//                    hotelDB.storeReservations(allReserves, allRooms, allUsers);
-                    hotelDB.closeConnection();
                     endProgram = true;
                     if (endProgram==true)
                     {   
+                        hotelDB.storeUsers(allUsers);
+                        hotelDB.storeRooms(allRooms);
+                        hotelDB.storeReservations(allReserves, allRooms, allUsers);
+                        hotelDB.closeConnection();
                         display.setState(StateEnum.QUIT);
                         System.exit(0);
                     }
