@@ -84,7 +84,7 @@ public class HotelManagement
 //        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl3", "epass3", "Meryl", "Streep", 11003));
 //        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl4", "epass4", "Cate", "Blanchett", 11004));
 //        
-          hotelDB.initUsers(allUsers);
+          hotelDB.initUsers(allUsers, userFactory);
 
 //        
 //        //===============================
@@ -113,7 +113,7 @@ public class HotelManagement
 //            }
 //        }
 //
-            hotelDB.initRooms(allRooms);
+            hotelDB.initRooms(allRooms, roomFactory);
 
 //        //===============================
 //        //  Initialize Reservations
@@ -125,7 +125,7 @@ public class HotelManagement
 //        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(20), true, allUsers.get(3), 1000003));
 //        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(25), true, allUsers.get(4), 1000004));
 
-            hotelDB.initReservations(allReserves);
+        hotelDB.initReservations(allReserves, allRooms, allUsers, reservationFactory);
           
     }
     
