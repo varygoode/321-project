@@ -129,7 +129,7 @@ public class HotelManagement
           
     }
     
-    public void run() throws ParseException, DateOutOfRangeException
+    public void run() throws ParseException, DateOutOfRangeException, SQLException
     {
         boolean endProgram = false;
         //while(!endProgram)
@@ -158,6 +158,9 @@ public class HotelManagement
                     cancelMenu();
                     break;
                 case QUIT:
+//                    hotelDB.storeUsers(allUsers);
+//                    hotelDB.storeRooms(allRooms);
+//                    hotelDB.storeReservations(allReserves, allRooms, allUsers);
                     hotelDB.closeConnection();
                     endProgram = true;
                     if (endProgram==true)

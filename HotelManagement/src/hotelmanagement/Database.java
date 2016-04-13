@@ -227,7 +227,7 @@ public class Database {
     }
      
     
-    public void storeReservations(ArrayList<Reservation> reserveList, ArrayList<Room> roomList, ArrayList<User> userList, ReservationFactory resfactory) throws SQLException 
+    public void storeReservations(ArrayList<Reservation> reserveList, ArrayList<Room> roomList, ArrayList<User> userList) throws SQLException 
     {
         Statement stmt = null;
         // Use TRUNCATE
