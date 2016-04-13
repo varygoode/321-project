@@ -128,10 +128,8 @@ public class Database {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 int reserveNum = rs.getInt("RESERVATIONNUMBER");
-                java.util.Date startDate;
-                startDate = rs.getDate("STARTDATE");
-                java.util.Date endDate;
-                endDate = rs.getDate("ENDDATE");
+                java.util.Date startDate = new java.util.Date(rs.getDate("STARTDATE").getTime());
+                java.util.Date endDate = new java.util.Date(rs.getDate("ENDDATE").getTime());
                 boolean isPaid = rs.getBoolean("ISPAID");
                 double curPrice = rs.getDouble("CURRENTPRICE");
                 boolean checkedIn = rs.getBoolean("CHECKEDIN");
