@@ -8,6 +8,7 @@ package hotelmanagement;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -109,6 +110,8 @@ public class Display
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
             });
@@ -123,6 +126,8 @@ public class Display
                    } catch (ParseException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
@@ -139,6 +144,8 @@ public class Display
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
             });
@@ -153,6 +160,8 @@ public class Display
                    } catch (ParseException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
@@ -188,6 +197,8 @@ public class Display
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
             });
@@ -202,6 +213,8 @@ public class Display
                    } catch (ParseException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
@@ -218,6 +231,8 @@ public class Display
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
             });
@@ -232,6 +247,8 @@ public class Display
                    } catch (ParseException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
@@ -272,6 +289,8 @@ public class Display
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
             });
@@ -286,6 +305,8 @@ public class Display
                    } catch (ParseException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
@@ -302,6 +323,8 @@ public class Display
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
             });
@@ -316,6 +339,8 @@ public class Display
                    } catch (ParseException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
@@ -332,6 +357,8 @@ public class Display
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
             });
@@ -347,6 +374,8 @@ public class Display
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
             });
@@ -361,6 +390,8 @@ public class Display
                    } catch (ParseException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
@@ -395,6 +426,8 @@ public class Display
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
             });
@@ -409,6 +442,8 @@ public class Display
                    } catch (ParseException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
@@ -425,6 +460,8 @@ public class Display
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
             });
@@ -439,6 +476,8 @@ public class Display
                    } catch (ParseException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
                        Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
                    }
                }
