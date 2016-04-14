@@ -163,7 +163,7 @@ public class HotelManagement
                     {   
                         hotelDB.storeUsers(allUsers);
                         hotelDB.storeRooms(allRooms);
-                        hotelDB.storeReservations(allReserves, allRooms, allUsers);
+                        //hotelDB.storeReservations(allReserves, allRooms, allUsers);
                         hotelDB.closeConnection();
                         display.setState(StateEnum.QUIT);
                         System.exit(0);
