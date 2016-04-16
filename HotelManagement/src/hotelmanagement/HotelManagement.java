@@ -10,6 +10,8 @@ import java.text.*;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import newExceptions.DateOutOfRangeException;
 
 
@@ -68,64 +70,64 @@ public class HotelManagement
         //  Initialize database and establish connection
         //=================================================
         
-        hotelDB.startConnection();
+//        hotelDB.startConnection();
         
-//        //===============================
-//        //  Initialize Users
-//        //===============================
-//        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user1","pass1","Andrew","Jackson",10001));
-//        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user2","pass2","Martha","Washington",10002));
-//        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user3","pass3","Harold","Truman",10003));
-//        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user4","pass4","Barbara","Bush",10004));
-//        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user5","pass5","Millard","Fillmore",10005));
-//        
-//        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl1", "epass1", "John", "Oliver", 11001));
-//        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl2", "epass2", "Morgan", "Freemon", 11002));
-//        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl3", "epass3", "Meryl", "Streep", 11003));
-//        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl4", "epass4", "Cate", "Blanchett", 11004));
-//        
-          hotelDB.initUsers(allUsers, userFactory);
+        //===============================
+        //  Initialize Users
+        //===============================
+        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user1","pass1","Andrew","Jackson",10001));
+        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user2","pass2","Martha","Washington",10002));
+        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user3","pass3","Harold","Truman",10003));
+        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user4","pass4","Barbara","Bush",10004));
+        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user5","pass5","Millard","Fillmore",10005));
+        
+        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl1", "epass1", "John", "Oliver", 11001));
+        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl2", "epass2", "Morgan", "Freemon", 11002));
+        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl3", "epass3", "Meryl", "Streep", 11003));
+        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl4", "epass4", "Cate", "Blanchett", 11004));
+        
+//          hotelDB.initUsers(allUsers, userFactory);
 
-//        
-//        //===============================
-//        //  Initialize Rooms
-//        //===============================
-//        for (int i = 1; i<=3; i++)
-//        {
-//            for (int j = 0; j<=10; j++)
-//            {
-//                if( (i+j) % 4 == 0)
-//                {
-//                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEKING, (i*100)+j, "A single king bed situated in a magnificent simulated suite. Perfect for the average-sized American.", 189));
-//                }
-//                else if((i+j) % 3 == 2)
-//                {
-//                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEKING, (i*100)+j, "A single king bed with plush pillows and exotic drapery situated in a romantic simulated suite. Perfect for the consummation.", 289));
-//                }
-//                else if((i*i+j*j) % 15 == 0)
-//                {
-//                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEQUEEN, (i*100)+j, "Amazing comfort & any bed, at your request, situated in an incredible simulated suite. Perfect for the top 1%.", 289));
-//                }
-//                else
-//                {
-//                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEQUEEN, (i*100)+j, "Two beautiful queen beds situated in a glorious simulated room. Perfect for divorced couples.", 89));
-//                }
-//            }
-//        }
-//
-            hotelDB.initRooms(allRooms, roomFactory);
+        
+        //===============================
+        //  Initialize Rooms
+        //===============================
+        for (int i = 1; i<=3; i++)
+        {
+            for (int j = 0; j<=10; j++)
+            {
+                if( (i+j) % 4 == 0)
+                {
+                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEKING, (i*100)+j, "A single king bed situated in a magnificent simulated suite. Perfect for the average-sized American.", 189));
+                }
+                else if((i+j) % 3 == 2)
+                {
+                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEKING, (i*100)+j, "A single king bed with plush pillows and exotic drapery situated in a romantic simulated suite. Perfect for the consummation.", 289));
+                }
+                else if((i*i+j*j) % 15 == 0)
+                {
+                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEQUEEN, (i*100)+j, "Amazing comfort & any bed, at your request, situated in an incredible simulated suite. Perfect for the top 1%.", 289));
+                }
+                else
+                {
+                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEQUEEN, (i*100)+j, "Two beautiful queen beds situated in a glorious simulated room. Perfect for divorced couples.", 89));
+                }
+            }
+        }
 
-//        //===============================
-//        //  Initialize Reservations
-//        //===============================
-//        //  HARDCODED DATES MUST BE SET TO THE CURRENT DATE TO AVOID TRANSACTION EXCEPTION
-//        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(5), true, allUsers.get(0), 1000000));
-//        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(10), true, allUsers.get(1), 1000001));
-//        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(15), true, allUsers.get(2), 1000002));
-//        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(20), true, allUsers.get(3), 1000003));
-//        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(25), true, allUsers.get(4), 1000004));
+//            hotelDB.initRooms(allRooms, roomFactory);
 
-        hotelDB.initReservations(allReserves, allRooms, allUsers, reservationFactory);
+        //===============================
+        //  Initialize Reservations
+        //===============================
+        //  HARDCODED DATES MUST BE SET TO THE CURRENT DATE TO AVOID TRANSACTION EXCEPTION
+        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(5), true, allUsers.get(0), 1000000));
+        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(10), true, allUsers.get(1), 1000001));
+        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(15), true, allUsers.get(2), 1000002));
+        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(20), true, allUsers.get(3), 1000003));
+        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(25), true, allUsers.get(4), 1000004));
+
+//        hotelDB.initReservations(allReserves, allRooms, allUsers, reservationFactory);
           
     }
     
@@ -247,7 +249,7 @@ public class HotelManagement
     private void startMenu()
     {            
         int menuOption = display.getMenuInput();
-
+        
         switch(menuOption)
         {
             case 1:
@@ -299,7 +301,7 @@ public class HotelManagement
                 else
                 {
                     display.Show("You are already logged in, " + currentUser.getFirstName() + "!", false);
-                    
+
                     if(currentUser.getClass() == Customer.class)
                     {
                         display.setState(StateEnum.CUSTOMER);
@@ -331,7 +333,7 @@ public class HotelManagement
                 else
                 {
                     display.Show("You are already registered, " + currentUser.getFirstName() + "!", false);
-                    
+
                     if(currentUser.getClass() == Customer.class)
                     {
                         display.setState(StateEnum.CUSTOMER);
@@ -354,7 +356,7 @@ public class HotelManagement
             }
                 break;    
 
-        }            
+        }         
     }
     
     private void custMenu()
@@ -374,15 +376,19 @@ public class HotelManagement
                 
                 if(resResults != null && !resResults.isEmpty())
                 {
+                    String resultsStr = "";
+                    
                     for(Reservation res : resResults)
                     {
-                        display.Show("=========================", true);
-                        display.Show("Result #" + resResults.indexOf(res) + ":", true);
-                        display.Show(res.toString(), true);
-                        display.Show("=========================", false);
+                        resultsStr += "=========================\n";
+                        resultsStr += "Result #" + resResults.indexOf(res) + ":\n";
+                        resultsStr += res.toString();
+                        resultsStr += "\n=========================\n";
                     }
                     
-                    display.Show("Based on your the above list, enter the result # for the reservation you wish to cancel.", true);
+                    display.ShowResults(resultsStr);
+                    
+                    display.Show("Based on your results, enter the result # for the reservation you wish to cancel.", true);
                     int resultIndex = display.getIntInput();
                     
                     String response = "";
@@ -426,7 +432,7 @@ public class HotelManagement
                 break;
             case 3:
             {    
-                                
+                display.setState(StateEnum.CUSTOMER);
             }   
                 break;
             case 4:
@@ -450,16 +456,19 @@ public class HotelManagement
                 break;  
             case 2:
             {
-                display.Show("Which room would you like to alter?", true);
-                display.Show("Please enter the room number to alter.", true);
+                String resultsStr = "";
+                resultsStr += "Which room would you like to alter?\n";
+                resultsStr += "Please enter the room number to alter.\n";
                 //System.out.println(allRooms.toString(allRooms));
                  for(Room aroom : allRooms)
                 {
-                    display.Show("=========================", true);
-                    display.Show("Result #" + allRooms.indexOf(aroom) + ":", true);
-                    display.Show(aroom.toString(), true);
-                    display.Show("=========================", false);
+                    resultsStr += "=========================\n";
+                    resultsStr += "Result #" + allRooms.indexOf(aroom) + ":\n";
+                    resultsStr += aroom.toString();
+                    resultsStr += "\n=========================\n";
                 }
+                 
+                display.ShowResults(resultsStr);
                 
                 if(currentUser.getClass() != hotelmanagement.Employee.class)
                 {
@@ -630,7 +639,7 @@ public class HotelManagement
                 break;
             case 6:
             {
-                display.setState(StateEnum.MAIN);
+                display.setState(StateEnum.EMPLOYEE);
             }
                 break;
             case 7:
@@ -662,7 +671,7 @@ public class HotelManagement
                         params.add(strInput);
                     }
                 }
-                display.Show("Search Results:", false);
+                String resultsStr = "Search Results:\n";
                 
                 roomResults = theLedger.search(allRooms, params);
                 
@@ -674,11 +683,13 @@ public class HotelManagement
                 {
                     for(Room room : roomResults)
                     {
-                        display.Show("=========================", true);
-                        display.Show("Result #" + roomResults.indexOf(room) + ":", true);
-                        display.Show(room.toString(), true);
-                        display.Show("=========================", false);
+                        resultsStr += "=========================\n";
+                        resultsStr += "Result #" + roomResults.indexOf(room) + ":\n";
+                        resultsStr += room.toString();
+                        resultsStr += "\n=========================\n";
                     }
+                    
+                    display.ShowResults(resultsStr);
                 }
             }
                 break;
@@ -794,13 +805,17 @@ public class HotelManagement
         {
             case 1:
             {
+                String resultsStr = "";
+                
                 for(Reservation res : allReserves)
                 {
-                    display.Show("=========================", true);
-                    display.Show("Result #" + allReserves.indexOf(res) + ":", true);
-                    display.Show(res.toString(), true);
-                    display.Show("=========================", false);
+                    resultsStr += "=========================\n";
+                    resultsStr += "Result #" + allReserves.indexOf(res) + ":\n";
+                    resultsStr += res.toString();
+                    resultsStr += "\n=========================\n";
                 }
+                
+                display.ShowResults(resultsStr);
                 
                 if(currentUser.getClass() == hotelmanagement.User.class)
                 {
@@ -950,12 +965,13 @@ public class HotelManagement
                 }
                 else
                 {
+                    String resultsStr = "";
                     for(Reservation res : resResults)
                     {
-                        display.Show("=========================", true);
-                        display.Show("Result #" + resResults.indexOf(res) + ":", true);
-                        display.Show(res.toString(), true);
-                        display.Show("=========================", false);
+                        resultsStr += "=========================\n";
+                        resultsStr += "Result #" + resResults.indexOf(res) + ":\n";
+                        resultsStr += res.toString();
+                        resultsStr += "\n=========================\n";
                     }
                 }
             }
@@ -1052,7 +1068,20 @@ public class HotelManagement
         switch(menuOption)
         {
             case 1:
-                display.setState(StateEnum.MAIN);
+            {
+                if(currentUser.getClass() == Customer.class)
+                {
+                    display.setState(StateEnum.CUSTOMER);
+                }
+                else if (currentUser.getClass() == Employee.class)
+                {
+                    display.setState(StateEnum.EMPLOYEE);
+                }
+                else
+                {
+                    display.setState(StateEnum.MAIN);
+                }
+            }
                 break;
             case 2:
                 display.setState(StateEnum.SEARCH);
