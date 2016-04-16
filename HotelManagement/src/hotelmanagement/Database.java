@@ -68,8 +68,7 @@ public class Database {
     public void initRooms(ArrayList roomList, RoomFactory roomfactory) throws SQLException
     {
         Statement stmt = null;
-        String query = "select ROOMTYPE, ROOMNUMBER, RATE, DESCRIPTION " +
-                       "from " + "ROOMS";
+        String query = "select * from ROOMS";
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -94,8 +93,7 @@ public class Database {
     {
         Statement stmt = null;
         Class userType;
-        String query = "select USERID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME " +
-                       "from " + "USERS";
+        String query = "select * from USERS";
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -132,8 +130,7 @@ public class Database {
     public void initReservations(ArrayList<Reservation> reserveList, ArrayList<Room> roomList, ArrayList<User> userList, ReservationFactory resfactory, Ledger ledger) throws SQLException 
     {
         Statement stmt = null;
-        String query = "select RESERVATIONNUMBER, STARTDATE, ENDDATE, ISPAID, CURRENTPRICE, CHECKEDIN, ROOMNUMBER, TOTALPRICE, USERID " +
-                       "from " + "RESERVATIONS";
+        String query = "select * from RESERVATIONS";
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
