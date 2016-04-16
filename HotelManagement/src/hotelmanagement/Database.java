@@ -93,6 +93,7 @@ public class Database {
     public void initUsers(ArrayList userList, UserFactory userfactory) throws SQLException
     {
         Statement stmt = null;
+        Class userType;
         String query = "select USERID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME " +
                        "from " + "USERS";
         try {
@@ -104,10 +105,20 @@ public class Database {
                 String password = rs.getString("PASSWORD");
                 String firstName = rs.getString("FIRSTNAME");
                 String lastName = rs.getString("LASTNAME");
+                if ((userID%2) == 0)
+                {
+                    userType = hotelmanagement.Employee.class;
+                }
+                else
+                {
+                    userType = hotelmanagement.Customer.class;
+                }
+                
                 System.out.println(userID + "\t" + username +
                                    "\t" + password + "\t" + firstName +
                                    "\t" + lastName);
-                userList.add(userfactory.createUser(hotelmanagement.Customer.class,username,password,firstName,lastName,userID));
+                
+                userList.add(userfactory.createUser(userType,username,password,firstName,lastName,userID));
             }
         } catch (SQLException e ) {
             //JDBCTutorialUtilities.printSQLException(e);
@@ -146,7 +157,9 @@ public class Database {
                 ArrayList<Room> roomResults = ledger.search(roomList, new ArrayList<String>(Arrays.asList(Integer.toString(roomNum))));
                 ArrayList<User> userResults = ledger.search(userList, new ArrayList<String>(Arrays.asList(Integer.toString(userID))));
                 
-                reserveList.add(resfactory.createReservation(startDate, endDate, roomResults.get(0), checkedIn, userResults.get(0), reserveNum));                
+                reserveList.add(resfactory.createReservation(startDate, endDate, roomResults.get(0), checkedIn, userResults.get(0), reserveNum));
+                roomResults.clear();
+                userResults.clear();
             }
         } catch (SQLException e ) {
             //JDBCTutorialUtilities.printSQLException(e);

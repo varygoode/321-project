@@ -197,7 +197,7 @@ public class HotelManagement
         display.Show("Enter last name:", true);
         String lName = display.getStrInput();
         
-        int ID = (allUsers.isEmpty()) ? 10000 : allUsers.get(allUsers.size() - 1).getID() + 1;
+        int ID = (allUsers.isEmpty()) ? 10000 : allUsers.get(allUsers.size() - 1).getID() + 2;
         
         User tempUser = null;
         
