@@ -99,9 +99,9 @@ public class Reservation {
         this.reserver = user;
     }
     
-    public void setCurrentPrice(double currentPrice) 
+    public void setCurrentPrice(double currPrice) 
     {
-        this.currentPrice = currentPrice;
+        this.currentPrice = currPrice;
     }
 
     public void setCheckedIn(boolean checkedIn) {

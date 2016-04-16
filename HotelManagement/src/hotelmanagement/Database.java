@@ -68,8 +68,7 @@ public class Database {
     public void initRooms(ArrayList roomList, RoomFactory roomfactory) throws SQLException
     {
         Statement stmt = null;
-        String query = "select ROOMTYPE, ROOMNUMBER, RATE, DESCRIPTION " +
-                       "from " + "ROOMS";
+        String query = "select * from ROOMS";
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -93,8 +92,8 @@ public class Database {
     public void initUsers(ArrayList userList, UserFactory userfactory) throws SQLException
     {
         Statement stmt = null;
-        String query = "select USERID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME " +
-                       "from " + "USERS";
+        Class userType;
+        String query = "select * from USERS";
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -104,10 +103,20 @@ public class Database {
                 String password = rs.getString("PASSWORD");
                 String firstName = rs.getString("FIRSTNAME");
                 String lastName = rs.getString("LASTNAME");
+                if ((userID%2) == 0)
+                {
+                    userType = hotelmanagement.Employee.class;
+                }
+                else
+                {
+                    userType = hotelmanagement.Customer.class;
+                }
+                
                 System.out.println(userID + "\t" + username +
                                    "\t" + password + "\t" + firstName +
                                    "\t" + lastName);
-                userList.add(userfactory.createUser(hotelmanagement.Customer.class,username,password,firstName,lastName,userID));
+                
+                userList.add(userfactory.createUser(userType,username,password,firstName,lastName,userID));
             }
         } catch (SQLException e ) {
             //JDBCTutorialUtilities.printSQLException(e);
@@ -118,11 +127,10 @@ public class Database {
     }
      
     
-    public void initReservations(ArrayList<Reservation> reserveList, ArrayList<Room> roomList, ArrayList<User> userList, ReservationFactory resfactory) throws SQLException 
+    public void initReservations(ArrayList<Reservation> reserveList, ArrayList<Room> roomList, ArrayList<User> userList, ReservationFactory resfactory, Ledger ledger) throws SQLException 
     {
         Statement stmt = null;
-        String query = "select RESERVATIONNUMBER, STARTDATE, ENDDATE, ISPAID, CURRENTPRICE, CHECKEDIN, ROOMNUMBER, TOTALPRICE " +
-                       "from " + "RESERVATIONS";
+        String query = "select * from RESERVATIONS";
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -133,13 +141,22 @@ public class Database {
                 boolean isPaid = rs.getBoolean("ISPAID");
                 double curPrice = rs.getDouble("CURRENTPRICE");
                 boolean checkedIn = rs.getBoolean("CHECKEDIN");
+                int roomNum = rs.getInt("ROOMNUMBER");
                 double totalPrice = rs.getDouble("TOTALPRICE");
+                int userID = rs.getInt("USERID");
+                
                 System.out.println(reserveNum + 
                                    "\t" + startDate +
                                    "\t" + endDate + 
                                    "\t" + isPaid +
                                    "\t" + curPrice + "\t" + checkedIn + "\t" + totalPrice);
-                reserveList.add(resfactory.createReservation(startDate, endDate, roomList.get(0), checkedIn, userList.get(0), reserveNum));                
+
+                ArrayList<Room> roomResults = ledger.search(roomList, new ArrayList<String>(Arrays.asList(Integer.toString(roomNum))));
+                ArrayList<User> userResults = ledger.search(userList, new ArrayList<String>(Arrays.asList(Integer.toString(userID))));
+                
+                reserveList.add(resfactory.createReservation(startDate, endDate, roomResults.get(0), checkedIn, userResults.get(0), reserveNum));
+                roomResults.clear();
+                userResults.clear();
             }
         } catch (SQLException e ) {
             //JDBCTutorialUtilities.printSQLException(e);
@@ -226,7 +243,7 @@ public class Database {
 
             for(int i = 0; i < reserveList.size(); i++)
             {
-                String sql = "INSERT INTO RESERVATIONS(RESERVATIONNUMBER, STARTDATE, ENDDATE, ISPAID, CURRENTPRICE, CHECKEDIN, ROOMNUMBER, TOTALPRICE) VALUES (?,?,?,?,?)";
+                String sql = "insert into RESERVATIONS(RESERVATIONNUMBER, STARTDATE, ENDDATE, ISPAID, CURRENTPRICE, CHECKEDIN, ROOMNUMBER, TOTALPRICE, USERID) VALUES (?,?,?,?,?,?,?,?,?)";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setInt(1, reserveList.get(i).getReserveID());
                 java.sql.Date sqlStartDate = new java.sql.Date(reserveList.get(i).getStartDate().getTime());
@@ -238,12 +255,11 @@ public class Database {
                 ps.setBoolean(6, reserveList.get(i).IsCheckedIn());
                 ps.setInt(7, reserveList.get(i).getRoom().getNumber());
                 ps.setDouble(8, reserveList.get(i).getTotalPrice());
+                ps.setInt(9, reserveList.get(i).getReserver().getID());
                 
                 ps.executeUpdate();
             }
-            //
-            // INSERT LOOP FOR PULLING VALUES OUT OF ARRAYLISTS
-            //
+
         } catch (SQLException e ) {
             //JDBCTutorialUtilities.printSQLException(e);
             System.out.println("Failed to execute statement");
@@ -254,100 +270,4 @@ public class Database {
             }
         }
     }
-    
-    
-    
-    
-    private static final String SQL_SERIALIZE_OBJECT = "INSERT INTO serialized_java_objects(object_name, serialized_object) VALUES (?, ?)";
-    private static final String SQL_DESERIALIZE_OBJECT = "SELECT serialized_object FROM serialized_java_objects WHERE serialized_id = ?";
-
-    public static long serializeJavaObjectToDB(Connection connection,
-                    Object objectToSerialize) throws SQLException {
-
-            PreparedStatement pstmt = connection
-                            .prepareStatement(SQL_SERIALIZE_OBJECT);
-
-            // just setting the class name
-            pstmt.setString(1, objectToSerialize.getClass().getName());
-            pstmt.setObject(2, objectToSerialize);
-            pstmt.executeUpdate();
-            ResultSet rs = pstmt.getGeneratedKeys();
-            int serialized_id = -1;
-            if (rs.next()) {
-                    serialized_id = rs.getInt(1);
-            }
-            rs.close();
-            pstmt.close();
-            System.out.println("Java object serialized to database. Object: "
-                            + objectToSerialize);
-            return serialized_id;
-    }
-
-    /**
-     * To de-serialize a java object from database
-     *
-     * @throws SQLException
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
-    public static Object deSerializeJavaObjectFromDB(Connection connection,
-                    long serialized_id) throws SQLException, IOException,
-                    ClassNotFoundException {
-            PreparedStatement pstmt = connection
-                            .prepareStatement(SQL_DESERIALIZE_OBJECT);
-            pstmt.setLong(1, serialized_id);
-            ResultSet rs = pstmt.executeQuery();
-            rs.next();
-
-            // Object object = rs.getObject(1);
-
-            byte[] buf = rs.getBytes(1);
-            ObjectInputStream objectIn = null;
-            if (buf != null)
-                    objectIn = new ObjectInputStream(new ByteArrayInputStream(buf));
-
-            Object deSerializedObject = objectIn.readObject();
-
-            rs.close();
-            pstmt.close();
-
-            System.out.println("Java object de-serialized from database. Object: "
-                            + deSerializedObject + " Classname: "
-                            + deSerializedObject.getClass().getName());
-            return deSerializedObject;
-    }
-
-    /**
-     * Serialization and de-serialization of java object from mysql
-     *
-     * @throws ClassNotFoundException
-     * @throws SQLException
-     * @throws IOException
-     */
-    public static void test(String args[]) throws ClassNotFoundException,
-                    SQLException, IOException {
-            Connection connection = null;
-
-            String driver = "com.mysql.jdbc.Driver";
-            String url = "jdbc:mysql://localhost/javaserialization";
-            String username = "root";
-            String password = "admin";
-            Class.forName(driver);
-            connection = DriverManager.getConnection(url, username, password);
-
-            // a sample java object to serialize
-            Vector obj = new Vector();
-            obj.add("java");
-            obj.add("papers");
-
-            // serializing java object to mysql database
-            long serialized_id = serializeJavaObjectToDB(connection, obj);
-
-            // de-serializing java object from mysql database
-            Vector objFromDatabase = (Vector) deSerializeJavaObjectFromDB(
-                            connection, serialized_id);
-
-            connection.close();
-    }
-    
 }
