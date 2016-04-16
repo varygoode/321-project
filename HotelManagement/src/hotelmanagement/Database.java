@@ -154,33 +154,24 @@ public class Database {
     public void storeRooms(ArrayList<Room> roomList) throws SQLException
     {
         Statement stmt = null;
+        stmt = conn.createStatement();
         try {
-            stmt = conn.createStatement();
             // Use TRUNCATE
-            String delSQL = "TRUNCATE ROOMS";
             // Execute deletion
-            stmt.executeUpdate(delSQL);
-            // Use DELETE
-            delSQL = "DELETE FROM ROOMS";
-            // Execute deletion
-            stmt.executeUpdate(delSQL);
+            stmt.executeUpdate("TRUNCATE TABLE ROOMS");
             
             for(int i = 0; i < roomList.size(); i++)
             {
-                String sql = "INSERT INTO ROOMS(ROOMTYPE, ROOMNUMBER, RATE, DESCRIPTION) " +
-                   "VALUES (?,?,?,?)";
+                String sql = "INSERT INTO ROOMS(ROOMTYPE, ROOMNUMBER, RATE, DESCRIPTION) VALUES (?,?,?,?)";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, roomList.get(i).getType().toString());
                 ps.setInt(2, roomList.get(i).getNumber());
                 ps.setDouble(3, roomList.get(i).getRate());
                 ps.setString(4, roomList.get(i).getDescription());
                 
-                stmt.executeUpdate(sql);
+                ps.executeUpdate();
             }
-            
-            //
-            // INSERT LOOP FOR PULLING VALUES OUT OF ARRAYLISTS
-            //
+
         } catch (SQLException e ) {
             //JDBCTutorialUtilities.printSQLException(e);
             System.out.println("Failed to execute statement");
@@ -192,23 +183,16 @@ public class Database {
     public void storeUsers(ArrayList<User> userList) throws SQLException
     {
         Statement stmt = null;
+        stmt = conn.createStatement();
         // Use TRUNCATE
-        String delSQL = "TRUNCATE USERS";
+        //String delSQL = "TRUNCATE USERS";
         // Execute deletion
-        stmt.executeUpdate(delSQL);
-        // Use DELETE
-        delSQL = "DELETE FROM USERS";
-        // Execute deletion
-        stmt.executeUpdate(delSQL);
+        stmt.executeUpdate("TRUNCATE TABLE USERS");
         
-        String query = "INSERT INTO USERS( USERID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME )";
         try {
-            stmt = conn.createStatement();
-            stmt.executeQuery(query);
             for(int i = 0; i < userList.size(); i++)
             {
-                String sql = "INSERT INTO USERS(USERID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME) " +
-                   "VALUES (?,?,?,?,?)";
+                String sql = "insert into USERS(USERID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME) VALUES (?,?,?,?,?)";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setInt(1, userList.get(i).getID());
                 ps.setString(2, userList.get(i).getUsername());
@@ -216,36 +200,33 @@ public class Database {
                 ps.setString(4, userList.get(i).getFirstName());
                 ps.setString(5, userList.get(i).getLastName());
                 
-                stmt.executeUpdate(sql);
+                ps.executeUpdate();
             }
         } catch (SQLException e ) {
             //JDBCTutorialUtilities.printSQLException(e);
             System.out.println("Failed to execute statement");
         } finally {
-            if (stmt != null) { stmt.close(); }
+            if (stmt != null) 
+            { 
+                stmt.close(); 
+            }
         }
     }
      
     
-    public void storeReservations(ArrayList<Reservation> reserveList, ArrayList<Room> roomList, ArrayList<User> userList, ReservationFactory resfactory) throws SQLException 
+    public void storeReservations(ArrayList<Reservation> reserveList, ArrayList<Room> roomList, ArrayList<User> userList) throws SQLException 
     {
         Statement stmt = null;
+        stmt = conn.createStatement();
         // Use TRUNCATE
-        String delSQL = "TRUNCATE RESERVATIONS";
         // Execute deletion
-        stmt.executeUpdate(delSQL);
-        // Use DELETE
-        delSQL = "DELETE FROM RESERVATIONS";
-        // Execute deletion
-        stmt.executeUpdate(delSQL);
+        stmt.executeUpdate("TRUNCATE TABLE RESERVATIONS");
         
         try {
-            stmt = conn.createStatement();
 
             for(int i = 0; i < reserveList.size(); i++)
             {
-                String sql = "INSERT INTO RESERVATIONS(RESERVATIONNUMBER, STARTDATE, ENDDATE, ISPAID, CURRENTPRICE, CHECKEDIN, ROOMNUMBER, TOTALPRICE) " +
-                   "VALUES (?,?,?,?,?)";
+                String sql = "INSERT INTO RESERVATIONS(RESERVATIONNUMBER, STARTDATE, ENDDATE, ISPAID, CURRENTPRICE, CHECKEDIN, ROOMNUMBER, TOTALPRICE) VALUES (?,?,?,?,?)";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setInt(1, reserveList.get(i).getReserveID());
                 java.sql.Date sqlStartDate = new java.sql.Date(reserveList.get(i).getStartDate().getTime());
@@ -258,7 +239,7 @@ public class Database {
                 ps.setInt(7, reserveList.get(i).getRoom().getNumber());
                 ps.setDouble(8, reserveList.get(i).getTotalPrice());
                 
-                stmt.executeUpdate(sql);
+                ps.executeUpdate();
             }
             //
             // INSERT LOOP FOR PULLING VALUES OUT OF ARRAYLISTS
@@ -267,7 +248,10 @@ public class Database {
             //JDBCTutorialUtilities.printSQLException(e);
             System.out.println("Failed to execute statement");
         } finally {
-            if (stmt != null) { stmt.close(); }
+            if (stmt != null) 
+            { 
+                stmt.close(); 
+            }
         }
     }
     
