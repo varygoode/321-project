@@ -166,6 +166,37 @@ public class Database {
         }
     }
     
+        public void initArchives(ArrayList<Reservation> archiveList, ArrayList<Room> roomList, ArrayList<User> userList, ReservationFactory resfactory) throws SQLException 
+    {
+        Statement stmt = null;
+        String query = "select RESERVATION_NUMBER, START_DATE, END_DATE, ROOM_NUMBER, TOTAL_PRICE " +
+                       "from " + "ARCHIVES";
+        try {
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                int reserveNum = rs.getInt("RESERVATION_NUMBER");
+                java.util.Date startDate = new java.util.Date(rs.getDate("START_DATE").getTime());
+                java.util.Date endDate = new java.util.Date(rs.getDate("END_DATE").getTime());
+                boolean isPaid = true;
+                double curPrice = 0.00;
+                boolean checkedIn = true;
+                double totalPrice = rs.getDouble("TOTAL_PRICE");
+                System.out.println(reserveNum + 
+                                   "\t" + startDate +
+                                   "\t" + endDate + 
+                                   "\t" + isPaid +
+                                   "\t" + curPrice + "\t" + checkedIn + "\t" + totalPrice);
+                archiveList.add(resfactory.createReservation(startDate, endDate, roomList.get(0), checkedIn, userList.get(0), reserveNum));                
+            }
+        } catch (SQLException e ) {
+            //JDBCTutorialUtilities.printSQLException(e);
+            System.out.println("Failed to execute statement");
+        } finally {
+            if (stmt != null) { stmt.close(); }
+        }
+    }
+    
     
     
     public void storeRooms(ArrayList<Room> roomList) throws SQLException
