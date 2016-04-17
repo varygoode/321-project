@@ -1,14 +1,14 @@
-Sat Apr 16 22:50:41 CDT 2016 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
+Sun Apr 17 12:46:43 CDT 2016 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Sat Apr 16 22:50:47 CDT 2016:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0154-2257-792e-00002263e396 
-on database directory C:\Users\Rob\Documents\NetBeansProjects\321-project\321-project\HotelManagement\Databases\Windows\hotel with class loader sun.misc.Launcher$AppClassLoader@5e2de80c 
-Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_71/db/lib/derby.jar
+Sun Apr 17 12:46:43 CDT 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0154-2554-dc96-ffffaa8da3a0 
+on database directory C:\Users\James\Desktop\CS 321\tryagain\HMSagain\321-project\HotelManagement\Databases\Windows\hotel with class loader sun.misc.Launcher$AppClassLoader@5e2de80c 
+Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_66/db/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_71-b15
-user.dir=C:\Program Files\Java\jdk1.8.0_71\db
-os.name=Windows 7
+java.runtime.version=1.8.0_66-b18
+user.dir=C:\Program Files\Java\jdk1.8.0_66\db
+os.name=Windows 8.1
 os.arch=amd64
-os.version=6.1
-derby.system.home=C:\Users\Rob\Documents\NetBeansProjects\321-project\321-project\HotelManagement\Databases\Windows
+os.version=6.3
+derby.system.home=C:\Users\James\Desktop\CS 321\tryagain\HMSagain\321-project\HotelManagement\Databases\Windows
 Database Class Loader started - derby.database.classpath=''
