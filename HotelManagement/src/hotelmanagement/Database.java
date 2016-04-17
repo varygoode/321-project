@@ -120,7 +120,7 @@ public class Database {
             }
         } catch (SQLException e ) {
             //JDBCTutorialUtilities.printSQLException(e);
-            System.out.println("Failed to execute statement");
+            System.out.println("Failed to initialize users");
         } finally {
             if (stmt != null) { stmt.close(); }
         }
@@ -160,7 +160,7 @@ public class Database {
             }
         } catch (SQLException e ) {
             //JDBCTutorialUtilities.printSQLException(e);
-            System.out.println("Failed to execute statement");
+            System.out.println("Failed to initialize reservations");
         } finally {
             if (stmt != null) { stmt.close(); }
         }
@@ -192,7 +192,7 @@ public class Database {
 
         } catch (SQLException e ) {
             //JDBCTutorialUtilities.printSQLException(e);
-            System.out.println("Failed to execute statement");
+            System.out.println("Failed to store rooms");
         } finally {
             if (stmt != null) { stmt.close(); }
         }
@@ -222,7 +222,7 @@ public class Database {
             }
         } catch (SQLException e ) {
             //JDBCTutorialUtilities.printSQLException(e);
-            System.out.println("Failed to execute statement");
+            System.out.println("Failed to store users");
         } finally {
             if (stmt != null) 
             { 
@@ -263,7 +263,7 @@ public class Database {
 
         } catch (SQLException e ) {
             //JDBCTutorialUtilities.printSQLException(e);
-            System.out.println("Failed to execute statement");
+            System.out.println("Failed to store reservations");
         } finally {
             if (stmt != null) 
             { 
