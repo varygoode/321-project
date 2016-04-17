@@ -11,11 +11,12 @@ os.name=Mac OS X
 os.arch=x86_64
 os.version=10.11.4
 derby.system.home=/Users/timothy/Google Drive/Spring 2016/CS 321/Projects/321-project/HotelManagement/.netbeans-derby
+----------------------------------------------------------------------------------------------
+Sat Apr 16 14:06:04 CDT 2016: Shutting down Derby engine
 ----------------------------------------------------------------
-Tue Apr 12 20:14:10 CDT 2016:
-Shutting down instance a816c00e-0154-0d2e-c4a4-0000078400f0 on database directory /Users/timothy/Google Drive/Spring 2016/CS 321/Projects/321-project/HotelManagement/.netbeans-derby/hotel with class loader sun.misc.Launcher$AppClassLoader@27c170f0 
-Tue Apr 12 20:14:10 CDT 2016 Thread[DRDAConnThread_2,5,main] Cleanup action starting
-java.sql.SQLException: Failed to start database 'hotel' with class loader sun.misc.Launcher$AppClassLoader@27c170f0, see the next exception for details.
+Sat Apr 16 14:06:04 CDT 2016:
+Shutting down instance a816c00e-0154-1086-f929-ffffe86cbb54 on database directory C:\Users\polyp_000\Documents\NetBeansProjects\321-project\HotelManagement\.netbeans-derby\hotel with class loader sun.misc.Launcher$AppClassLoader@5e2de80c 
+class loader sun.misc.Launcher$AppClassLoader@27c170f0, see the next exception for details.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.Util.seeNextException(Unknown Source)
