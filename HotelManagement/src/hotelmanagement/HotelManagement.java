@@ -70,64 +70,64 @@ public class HotelManagement
         //  Initialize database and establish connection
         //=================================================
         
-//        hotelDB.startConnection();
+        hotelDB.startConnection();
         
         //===============================
         //  Initialize Users
         //===============================
-        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user1","pass1","Andrew","Jackson",10001));
-        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user2","pass2","Martha","Washington",10002));
-        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user3","pass3","Harold","Truman",10003));
-        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user4","pass4","Barbara","Bush",10004));
-        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user5","pass5","Millard","Fillmore",10005));
+//        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user1","pass1","Andrew","Jackson",10001));
+//        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user2","pass2","Martha","Washington",10002));
+//        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user3","pass3","Harold","Truman",10003));
+//        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user4","pass4","Barbara","Bush",10004));
+//        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user5","pass5","Millard","Fillmore",10005));
+//        
+//        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl1", "epass1", "John", "Oliver", 11001));
+//        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl2", "epass2", "Morgan", "Freemon", 11002));
+//        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl3", "epass3", "Meryl", "Streep", 11003));
+//        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl4", "epass4", "Cate", "Blanchett", 11004));
         
-        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl1", "epass1", "John", "Oliver", 11001));
-        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl2", "epass2", "Morgan", "Freemon", 11002));
-        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl3", "epass3", "Meryl", "Streep", 11003));
-        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl4", "epass4", "Cate", "Blanchett", 11004));
-        
-//          hotelDB.initUsers(allUsers, userFactory);
+          hotelDB.initUsers(allUsers, userFactory);
 
         
         //===============================
         //  Initialize Rooms
         //===============================
-        for (int i = 1; i<=3; i++)
-        {
-            for (int j = 0; j<=10; j++)
-            {
-                if( (i+j) % 4 == 0)
-                {
-                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEKING, (i*100)+j, "A single king bed situated in a magnificent simulated suite. Perfect for the average-sized American.", 189));
-                }
-                else if((i+j) % 3 == 2)
-                {
-                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEKING, (i*100)+j, "A single king bed with plush pillows and exotic drapery situated in a romantic simulated suite. Perfect for the consummation.", 289));
-                }
-                else if((i*i+j*j) % 15 == 0)
-                {
-                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEQUEEN, (i*100)+j, "Amazing comfort & any bed, at your request, situated in an incredible simulated suite. Perfect for the top 1%.", 289));
-                }
-                else
-                {
-                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEQUEEN, (i*100)+j, "Two beautiful queen beds situated in a glorious simulated room. Perfect for divorced couples.", 89));
-                }
-            }
-        }
+//        for (int i = 1; i<=3; i++)
+//        {
+//            for (int j = 0; j<=10; j++)
+//            {
+//                if( (i+j) % 4 == 0)
+//                {
+//                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEKING, (i*100)+j, "A single king bed situated in a magnificent simulated suite. Perfect for the average-sized American.", 189));
+//                }
+//                else if((i+j) % 3 == 2)
+//                {
+//                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEKING, (i*100)+j, "A single king bed with plush pillows and exotic drapery situated in a romantic simulated suite. Perfect for the consummation.", 289));
+//                }
+//                else if((i*i+j*j) % 15 == 0)
+//                {
+//                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEQUEEN, (i*100)+j, "Amazing comfort & any bed, at your request, situated in an incredible simulated suite. Perfect for the top 1%.", 289));
+//                }
+//                else
+//                {
+//                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEQUEEN, (i*100)+j, "Two beautiful queen beds situated in a glorious simulated room. Perfect for divorced couples.", 89));
+//                }
+//            }
+//        }
 
-//            hotelDB.initRooms(allRooms, roomFactory);
+            hotelDB.initRooms(allRooms, roomFactory);
 
         //===============================
         //  Initialize Reservations
         //===============================
         //  HARDCODED DATES MUST BE SET TO THE CURRENT DATE TO AVOID TRANSACTION EXCEPTION
-        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(5), true, allUsers.get(0), 1000000));
-        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(10), true, allUsers.get(1), 1000001));
-        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(15), true, allUsers.get(2), 1000002));
-        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(20), true, allUsers.get(3), 1000003));
-        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(25), true, allUsers.get(4), 1000004));
+//        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(5), true, allUsers.get(0), 1000000));
+//        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(10), true, allUsers.get(1), 1000001));
+//        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(15), true, allUsers.get(2), 1000002));
+//        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(20), true, allUsers.get(3), 1000003));
+//        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(25), true, allUsers.get(4), 1000004));
 
-//        hotelDB.initReservations(allReserves, allRooms, allUsers, reservationFactory);
+        hotelDB.initReservations(allReserves, allRooms, allUsers, reservationFactory, theLedger);
           
     }
     
@@ -165,7 +165,7 @@ public class HotelManagement
                     {   
                         hotelDB.storeUsers(allUsers);
                         hotelDB.storeRooms(allRooms);
-                        //hotelDB.storeReservations(allReserves, allRooms, allUsers);
+                        hotelDB.storeReservations(allReserves, allRooms, allUsers);
                         hotelDB.closeConnection();
                         display.setState(StateEnum.QUIT);
                         System.exit(0);
@@ -743,7 +743,11 @@ public class HotelManagement
                         
                         ArrayList<Reservation> reservesMatchingDate = new ArrayList<Reservation>();
                         
-                        if(d2.before(d1))
+                        if(d1.before(new Date()))
+                        {
+                            display.Show("Your start date is before the current date. Please try again.", false);
+                        }
+                        else if(d2.before(d1))
                         {
                             display.Show("Your end date is before your start date. Please try again.", false);
                         }

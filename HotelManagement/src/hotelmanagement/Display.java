@@ -23,7 +23,7 @@ public class Display
 {
     private StateEnum state;
     int menuOption;
-    JPanel menuPanel, submenuPanel;
+    JPanel menuPanel;
     JFrame frame;
     JButton login, register, search, quit, searchOrRes, cancelRes;
     JButton returnToMain, cancel, alterRoom, checkIn, checkOut;
@@ -33,6 +33,7 @@ public class Display
     boolean submitClicked;
     HotelManagement hms;
     String prompt;
+    int updateCt = 0;
        
     public Display(HotelManagement hms)
     {
@@ -43,7 +44,6 @@ public class Display
         prompt = "";
         
         menuPanel = new JPanel();
-        submenuPanel = new JPanel();
         frame = new JFrame();
          
         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
@@ -77,7 +77,6 @@ public class Display
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         frame.add(menuPanel, BorderLayout.NORTH);
-        frame.add(submenuPanel, BorderLayout.AFTER_LAST_LINE);
         
         //frame.pack();
         frame.setVisible(true);
@@ -86,6 +85,10 @@ public class Display
     private void startMenu()
     {            
         menuOption = 0;
+        login.removeAll();
+        register.removeAll();
+        search.removeAll();
+        quit.removeAll();
         menuPanel.removeAll();
         menuPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         menuPanel.add(new JLabel("**MAIN MENU**"));
@@ -94,10 +97,6 @@ public class Display
         menuPanel.add(register); //creates new employee or customer
         menuPanel.add(search); //defaults to customer Menu
         menuPanel.add(quit); //endProgram
-        login.removeAll();
-        register.removeAll();
-        search.removeAll();
-        quit.removeAll();
         login.addActionListener(new 
             ActionListener()
             {
@@ -166,7 +165,8 @@ public class Display
                    }
                }
             });
-        frame.add(menuPanel);
+        menuPanel.revalidate();
+        menuPanel.repaint();
         frame.revalidate();
         frame.repaint();
 }
@@ -174,6 +174,10 @@ public class Display
     private void custMenu()
     {
         menuOption = 0;
+        searchOrRes.removeAll();
+        cancelRes.removeAll();
+        returnToMain.removeAll();
+        cancel.removeAll();
         menuPanel.removeAll();
         menuPanel.add(new JLabel("**CUSTOMER MENU**"));
         menuPanel.add(new JLabel("================="));
@@ -181,10 +185,6 @@ public class Display
         menuPanel.add(cancelRes);
         menuPanel.add(returnToMain);
         menuPanel.add(cancel);
-        searchOrRes.removeAll();
-        cancelRes.removeAll();
-        returnToMain.removeAll();
-        cancel.removeAll();
         searchOrRes.addActionListener(new 
             ActionListener()
             {
@@ -253,6 +253,8 @@ public class Display
                    }
                }
             });
+        menuPanel.revalidate();
+        menuPanel.repaint();
         frame.revalidate();
         frame.repaint();
     }
@@ -260,6 +262,13 @@ public class Display
     private void empMenu()
     {
         menuOption = 0;
+        search.removeAll();
+        alterRoom.removeAll();
+        checkIn.removeAll();
+        checkOut.removeAll();
+        report.removeAll();
+        returnToMain.removeAll();
+        cancel.removeAll();
         menuPanel.removeAll();
         menuPanel.add(new JLabel("**EMPLOYEE MENU**"));
         menuPanel.add(new JLabel("================="));
@@ -270,13 +279,6 @@ public class Display
         menuPanel.add(report);
         menuPanel.add(returnToMain);
         menuPanel.add(cancel);
-        search.removeAll();
-        alterRoom.removeAll();
-        checkIn.removeAll();
-        checkOut.removeAll();
-        report.removeAll();
-        returnToMain.removeAll();
-        cancel.removeAll();
         search.addActionListener(new 
             ActionListener()
             {
@@ -396,6 +398,8 @@ public class Display
                    }
                }
             });
+        menuPanel.revalidate();
+        menuPanel.repaint();
         frame.revalidate();
         frame.repaint();
     }
@@ -403,6 +407,10 @@ public class Display
     private void searchMenu()
     {
         menuOption = 0;
+        searchRooms.removeAll();
+        makeRes.removeAll();
+        returnToMain.removeAll();
+        cancel.removeAll();
         menuPanel.removeAll();
         menuPanel.add(new JLabel("**SEARCH**"));
         menuPanel.add(new JLabel("=========="));
@@ -410,10 +418,6 @@ public class Display
         menuPanel.add(makeRes); //takes you to Reservation Menu
         menuPanel.add(returnToMain);
         menuPanel.add(cancel);
-        searchRooms.removeAll();
-        makeRes.removeAll();
-        returnToMain.removeAll();
-        cancel.removeAll();
         searchRooms.addActionListener(new 
             ActionListener()
             {
@@ -482,6 +486,8 @@ public class Display
                    }
                }
             });
+        menuPanel.revalidate();
+        menuPanel.repaint();
         frame.revalidate();
         frame.repaint();
     }
@@ -489,15 +495,15 @@ public class Display
     private void checkInMenu()
     {
         menuOption = 0;
+        findRes.removeAll();
+        returnToMain.removeAll();
+        cancel.removeAll();
         menuPanel.removeAll();
         menuPanel.add(new JLabel("**Check-In Menu**"));
         menuPanel.add(new JLabel("================="));
         menuPanel.add(findRes);
         menuPanel.add(returnToMain);
         menuPanel.add(cancel);
-        findRes.removeAll();
-        returnToMain.removeAll();
-        cancel.removeAll();
         findRes.addActionListener(new 
             ActionListener()
             {
@@ -549,6 +555,8 @@ public class Display
                    }
                }
             });
+        menuPanel.revalidate();
+        menuPanel.repaint();
         frame.revalidate();
         frame.repaint();
     }
@@ -556,6 +564,10 @@ public class Display
     private void checkOutMenu()
     {
         menuOption = 0;
+        findRes.removeAll();
+        completeCheckout.removeAll();
+        returnToMain.removeAll();
+        cancel.removeAll();
         menuPanel.removeAll();
         menuPanel.add(new JLabel("**Check-Out Menu**"));
         menuPanel.add(new JLabel("=================="));
@@ -563,10 +575,6 @@ public class Display
         menuPanel.add(completeCheckout);
         menuPanel.add(returnToMain);
         menuPanel.add(cancel);
-        findRes.removeAll();
-        completeCheckout.removeAll();
-        returnToMain.removeAll();
-        cancel.removeAll();
         findRes.addActionListener(new 
             ActionListener()
             {
@@ -635,6 +643,8 @@ public class Display
                    }
                }
             });
+        menuPanel.revalidate();
+        menuPanel.repaint();
         frame.revalidate();
         frame.repaint();
     }
@@ -642,15 +652,15 @@ public class Display
     private void cancelMenu()
     {
         menuOption = 0;
+        returnToMain.removeAll();
+        search.removeAll();
+        quit.removeAll();
         menuPanel.removeAll();
         menuPanel.add(new JLabel("**Cancel**"));
         menuPanel.add(new JLabel("=========="));
         menuPanel.add(returnToMain);
         menuPanel.add(search);
         menuPanel.add(quit);
-        returnToMain.removeAll();
-        search.removeAll();
-        quit.removeAll();
         returnToMain.addActionListener(new 
             ActionListener()
             {
@@ -702,6 +712,8 @@ public class Display
                    }
                }
             });
+        menuPanel.revalidate();
+        menuPanel.repaint();
         frame.revalidate();
         frame.repaint();
     }
@@ -713,6 +725,8 @@ public class Display
         menuPanel.add(new JLabel("============="));
         menuPanel.add(new JLabel("**Good Bye!**"));
         menuPanel.add(new JLabel("============="));
+        menuPanel.revalidate();
+        menuPanel.repaint();
         frame.revalidate();
         frame.repaint();
         try 
@@ -730,6 +744,7 @@ public class Display
      */
     public void update()
     {
+        System.out.println("UPDATE #" + Integer.toString(++updateCt));
         System.out.println(state.toString());
         System.out.println(menuOption);
         switch(state)
