@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Sat Apr 16 20:25:21 CDT 2016 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
 Sat Apr 16 20:25:21 CDT 2016 Thread[DRDAConnThread_2,5,main] Cleanup action starting
 java.sql.SQLException: Database 'hotel' not found.
@@ -146,3 +147,19 @@ ERROR XJ004: Database 'hotel' not found.
 ============= end nested exception, level (1) ===========
 Cleanup action completed
 Sat Apr 16 20:36:05 CDT 2016 Thread[DRDAConnThread_2,5,main] (DATABASE = hotel), (DRDAID = {3}), Database 'hotel' not found.
+=======
+Sat Apr 16 19:46:56 CDT 2016 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Sat Apr 16 19:46:56 CDT 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0154-21af-382c-ffffa6bc5c44 
+on database directory C:\Users\polyp_000\Documents\NetBeansProjects\321-project\HotelManagement\Databases\Windows\hotel with class loader sun.misc.Launcher$AppClassLoader@5e2de80c 
+Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_71/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_71-b15
+user.dir=C:\Program Files\Java\jdk1.8.0_71\db
+os.name=Windows 8.1
+os.arch=amd64
+os.version=6.3
+derby.system.home=C:\Users\polyp_000\Documents\NetBeansProjects\321-project\HotelManagement\Databases\Windows
+Database Class Loader started - derby.database.classpath=''
+>>>>>>> master/master
