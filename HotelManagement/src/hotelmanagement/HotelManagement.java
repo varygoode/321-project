@@ -70,26 +70,65 @@ public class HotelManagement
         //  Initialize database and establish connection
         //=================================================
         
-        hotelDB.startConnection();
+//        hotelDB.startConnection();
         
         //===============================
         //  Initialize Users
         //===============================
-        hotelDB.initUsers(allUsers, userFactory);
+        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user1","pass1","Andrew","Jackson",10001));
+        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user2","pass2","Martha","Washington",10002));
+        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user3","pass3","Harold","Truman",10003));
+        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user4","pass4","Barbara","Bush",10004));
+        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user5","pass5","Millard","Fillmore",10005));
+        
+        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl1", "epass1", "John", "Oliver", 11001));
+        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl2", "epass2", "Morgan", "Freemon", 11002));
+        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl3", "epass3", "Meryl", "Streep", 11003));
+        allUsers.add(userFactory.createUser(hotelmanagement.Employee.class,"empl4", "epass4", "Cate", "Blanchett", 11004));
+        
+//          hotelDB.initUsers(allUsers, userFactory);
 
         
         //===============================
         //  Initialize Rooms
         //===============================
-        hotelDB.initRooms(allRooms, roomFactory);
+        for (int i = 1; i<=3; i++)
+        {
+            for (int j = 0; j<=10; j++)
+            {
+                if( (i+j) % 4 == 0)
+                {
+                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEKING, (i*100)+j, "A single king bed situated in a magnificent simulated suite. Perfect for the average-sized American.", 189));
+                }
+                else if((i+j) % 3 == 2)
+                {
+                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEKING, (i*100)+j, "A single king bed with plush pillows and exotic drapery situated in a romantic simulated suite. Perfect for the consummation.", 289));
+                }
+                else if((i*i+j*j) % 15 == 0)
+                {
+                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEQUEEN, (i*100)+j, "Amazing comfort & any bed, at your request, situated in an incredible simulated suite. Perfect for the top 1%.", 289));
+                }
+                else
+                {
+                    allRooms.add(roomFactory.createRoom(RoomTypeEnum.ONEQUEEN, (i*100)+j, "Two beautiful queen beds situated in a glorious simulated room. Perfect for divorced couples.", 89));
+                }
+            }
+        }
+
+//            hotelDB.initRooms(allRooms, roomFactory);
 
         //===============================
         //  Initialize Reservations
         //===============================
-        hotelDB.initReservations(allReserves, allRooms, allUsers, reservationFactory, theLedger);
-        
-        
-        hotelDB.initArchives(theArchive.TheArchives, allRooms, allUsers, reservationFactory, theLedger);
+        //  HARDCODED DATES MUST BE SET TO THE CURRENT DATE TO AVOID TRANSACTION EXCEPTION
+        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(5), true, allUsers.get(0), 1000000));
+        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(10), true, allUsers.get(1), 1000001));
+        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(15), true, allUsers.get(2), 1000002));
+        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(20), true, allUsers.get(3), 1000003));
+        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(25), true, allUsers.get(4), 1000004));
+
+//        hotelDB.initReservations(allReserves, allRooms, allUsers, reservationFactory);
+          
     }
     
     public void run() throws ParseException, DateOutOfRangeException, SQLException
@@ -126,8 +165,7 @@ public class HotelManagement
                     {   
                         hotelDB.storeUsers(allUsers);
                         hotelDB.storeRooms(allRooms);
-                        hotelDB.storeReservations(allReserves, allRooms, allUsers);
-                        hotelDB.storeArchives(theArchive.TheArchives, roomResults, allUsers);
+                        //hotelDB.storeReservations(allReserves, allRooms, allUsers);
                         hotelDB.closeConnection();
                         display.setState(StateEnum.QUIT);
                         System.exit(0);
@@ -159,7 +197,7 @@ public class HotelManagement
         display.Show("Enter last name:", true);
         String lName = display.getStrInput();
         
-        int ID = (allUsers.isEmpty()) ? 10000 : allUsers.get(allUsers.size() - 1).getID() + 2;
+        int ID = (allUsers.isEmpty()) ? 10000 : allUsers.get(allUsers.size() - 1).getID() + 1;
         
         User tempUser = null;
         
@@ -229,7 +267,7 @@ public class HotelManagement
                         {
                             display.Show("Login failed.", true);
                             display.Show("1. Retry Login", true);
-                            display.Show("2. Cancel login", true);
+                            display.Show("2. Cancel Login", true);
                             int selection = display.getIntInput();
 
                             if(selection == 2)
@@ -353,7 +391,7 @@ public class HotelManagement
                     
                     display.ShowResults(resultsStr);
                     
-                    display.Show("Based on your results, enter the result # for the reservation you wish to cancel.", true);
+                    display.Show("Based on your results, enter the result number for the reservation you wish to cancel.", true);
                     int resultIndex = display.getIntInput();
                     
                     String response = "";
@@ -446,7 +484,7 @@ public class HotelManagement
                     
                     while(!(response.matches("Y") || response.matches("y")))
                     {
-                        display.Show("Enter the # for the room you wish to alter.", true);
+                        display.Show("Enter the number for the room you wish to alter.", true);
                         int resultIndex = display.getIntInput();
                         
                         if(resultIndex >= 0 && resultIndex < allRooms.size())
@@ -672,7 +710,7 @@ public class HotelManagement
                     
                     while(!(response.matches("Y") || response.matches("y")))
                     {
-                        display.Show("Based on your latest search, enter the result # for the room you wish to book.", true);
+                        display.Show("Based on your latest search, enter the result number for the room you wish to book.", true);
                         int resultIndex = display.getIntInput();
                         
                         if(resultIndex >= 0 && resultIndex < roomResults.size())
@@ -794,7 +832,7 @@ public class HotelManagement
                     
                     while(!(response.matches("Y") || response.matches("y")))
                     {
-                        display.Show("Based on your latest search, enter the result # for the reservation.", true);
+                        display.Show("Based on your latest search, enter the result number you wish to check in.", true);
                         int resultIndex = display.getIntInput();
                         
                         if(resultIndex >= 0 && resultIndex < allReserves.size())
@@ -950,7 +988,7 @@ public class HotelManagement
                     
                     while(!(response.matches("Y") || response.matches("y")))
                     {
-                        display.Show("Based on your latest search, enter the result # for the reservation you wish to check-out.", true);
+                        display.Show("Based on your latest search, enter the result number for the reservation you wish to check-out.", true);
                         int resultIndex = display.getIntInput();
                         
                         if(resultIndex >= 0 && resultIndex < resResults.size())

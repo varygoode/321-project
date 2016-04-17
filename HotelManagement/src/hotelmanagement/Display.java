@@ -33,7 +33,7 @@ public class Display
     boolean submitClicked;
     HotelManagement hms;
     String prompt;
-    
+       
     public Display(HotelManagement hms)
     {
         //constructor 
@@ -45,7 +45,7 @@ public class Display
         menuPanel = new JPanel();
         submenuPanel = new JPanel();
         frame = new JFrame();
-        
+         
         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
         menuPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
