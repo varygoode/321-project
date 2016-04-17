@@ -166,6 +166,7 @@ public class HotelManagement
                         hotelDB.storeUsers(allUsers);
                         hotelDB.storeRooms(allRooms);
                         hotelDB.storeReservations(allReserves, allRooms, allUsers);
+                        hotelDB.storeArchives(theArchive.TheArchives, allRooms, allUsers);
                         hotelDB.closeConnection();
                         display.setState(StateEnum.QUIT);
                         System.exit(0);
