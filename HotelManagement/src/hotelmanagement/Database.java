@@ -16,7 +16,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author polyp_000
+ * @author timothy
  */
 public class Database {
     
@@ -27,7 +27,9 @@ public class Database {
     {
         
     }
-    
+    ////////////////////////////////////
+    // Creates singleton database
+    ////////////////////////////////////
     public static Database getDB()
     {
         if (singletonDB == null) 
@@ -37,6 +39,9 @@ public class Database {
         return singletonDB;
     }
     
+    ////////////////////////////////////
+    // Initializes connection with JDBC
+    ////////////////////////////////////    
     public void startConnection()
     {
         String connectURL = "jdbc:derby://localhost:1527/hotel";    
@@ -51,6 +56,9 @@ public class Database {
         }
     }
     
+    ////////////////////////////////////
+    // Terminates connection with JDBC
+    ////////////////////////////////////
     public void closeConnection()
     {
         String connectURL = "jdbc:derby://localhost:1527/hotel";    
@@ -65,6 +73,9 @@ public class Database {
         }
     }
     
+    ////////////////////////////////////
+    // Pulls Room data from DB and initializes Room objects
+    ////////////////////////////////////    
     public void initRooms(ArrayList roomList, RoomFactory roomfactory) throws SQLException
     {
         Statement stmt = null;
@@ -89,6 +100,9 @@ public class Database {
         }
     }
     
+    ////////////////////////////////////
+    // Pulls User data from DB and initializes User objects
+    ////////////////////////////////////    
     public void initUsers(ArrayList userList, UserFactory userfactory) throws SQLException
     {
         Statement stmt = null;
@@ -126,7 +140,9 @@ public class Database {
         }
     }
      
-    
+    ////////////////////////////////////
+    // Pulls Reservation data from DB and initializes Reservation objects
+    ////////////////////////////////////    
     public void initReservations(ArrayList<Reservation> reserveList, ArrayList<Room> roomList, ArrayList<User> userList, ReservationFactory resfactory, Ledger ledger) throws SQLException 
     {
         Statement stmt = null;
@@ -159,16 +175,15 @@ public class Database {
                 userResults.clear();
             }
         } catch (SQLException e ) {
-            //JDBCTutorialUtilities.printSQLException(e);
             System.out.println("Failed to initialize reservations");
         } finally {
             if (stmt != null) { stmt.close(); }
         }
     }
     
-
-    
-    
+    ////////////////////////////////////
+    // Stores Room data in DB
+    ////////////////////////////////////
     public void storeRooms(ArrayList<Room> roomList) throws SQLException
     {
         Statement stmt = null;
@@ -198,6 +213,9 @@ public class Database {
         }
     }
     
+    ////////////////////////////////////
+    // Stores Users data in DB
+    ////////////////////////////////////    
     public void storeUsers(ArrayList<User> userList) throws SQLException
     {
         Statement stmt = null;
@@ -231,7 +249,9 @@ public class Database {
         }
     }
      
-    
+    ////////////////////////////////////
+    // Stores Reservation data in DB
+    ////////////////////////////////////    
     public void storeReservations(ArrayList<Reservation> reserveList, ArrayList<Room> roomList, ArrayList<User> userList) throws SQLException 
     {
         Statement stmt = null;
@@ -271,7 +291,10 @@ public class Database {
             }
         }
     }
-    
+
+    ////////////////////////////////////
+    // Pulls Archive data from DB and initializes Archive objects
+    ////////////////////////////////////    
     public void initArchives(ArrayList<Reservation> archiveList, ArrayList<Room> roomList, ArrayList<User> userList, ReservationFactory resfactory, Ledger ledger) throws SQLException 
     {
         Statement stmt = null;
@@ -303,7 +326,9 @@ public class Database {
         }
     }
     
-    
+    ////////////////////////////////////
+    // Stores Archive data in DB
+    ////////////////////////////////////    
     public void storeArchives(ArrayList<Reservation> archiveList, ArrayList<Room> roomList, ArrayList<User> userList) throws SQLException 
     {
         Statement stmt = null;

@@ -39,6 +39,9 @@ public class User
         this.ID = ID;
     }
     
+    ////////////////////////////////////
+    // Mutators & Accessors
+    ////////////////////////////////////    
     public String getUsername() 
     {
         return username;

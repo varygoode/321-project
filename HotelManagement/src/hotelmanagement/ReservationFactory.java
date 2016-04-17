@@ -16,6 +16,9 @@ public class ReservationFactory
 
     }
     
+    ////////////////////////////////////
+    // Creates singleton instance of ReservationFactory
+    ////////////////////////////////////    
     public static ReservationFactory getReservationFactory()
     {
         if (singletonFactory == null) 
@@ -24,7 +27,10 @@ public class ReservationFactory
         }    
         return singletonFactory;
     }
-            
+         
+    ////////////////////////////////////
+    // Creates reservations
+    ////////////////////////////////////    
     public Reservation createReservation(Date sDate, Date eDate, Room room, boolean payment, User user, int ID)
     {
         return new Reservation(sDate, eDate, room, payment, user, ID);

@@ -14,6 +14,9 @@ public class UserFactory
 
     }
     
+    ////////////////////////////////////
+    // Creates singleton instance of UserFactory
+    ////////////////////////////////////    
     public static UserFactory getUserFactory()
     {
         if (singletonFactory == null)
@@ -22,7 +25,10 @@ public class UserFactory
         } 
         return singletonFactory;
     }
-            
+
+    ////////////////////////////////////
+    // Creates users
+    ////////////////////////////////////        
     public User createUser(Class<?> classArg, String username, String password, String fName, String lName, int ID)
     {
         if (classArg.equals(hotelmanagement.Customer.class))
