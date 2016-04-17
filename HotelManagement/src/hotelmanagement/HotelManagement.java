@@ -128,7 +128,7 @@ public class HotelManagement
 //        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(25), true, allUsers.get(4), 1000004));
 
         hotelDB.initReservations(allReserves, allRooms, allUsers, reservationFactory, theLedger);
-        hotelDB.initArchives(theArchive.TheArchives, roomResults, allUsers, reservationFactory);
+        hotelDB.initArchives(theArchive.TheArchives, roomResults, allUsers, reservationFactory, theLedger);
     }
     
     public void run() throws ParseException, DateOutOfRangeException, SQLException
@@ -166,6 +166,7 @@ public class HotelManagement
                         hotelDB.storeUsers(allUsers);
                         hotelDB.storeRooms(allRooms);
                         hotelDB.storeReservations(allReserves, allRooms, allUsers);
+                        hotelDB.storeArchives(theArchive.TheArchives, roomResults, allUsers);
                         hotelDB.closeConnection();
                         display.setState(StateEnum.QUIT);
                         System.exit(0);
