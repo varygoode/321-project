@@ -18,6 +18,7 @@ import newExceptions.DateOutOfRangeException;
 
 /**
  * @author andreapressnell
+ * @author rob
  */
 public class Display
 {

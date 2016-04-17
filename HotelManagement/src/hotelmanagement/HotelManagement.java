@@ -21,6 +21,8 @@ public class HotelManagement
     
     ArrayList<Room> allRooms;
     ArrayList<User> allUsers;
+    ArrayList<User> allCustomers;
+    ArrayList<User> allEmployees;
     ArrayList<Reservation> allReserves;
     Ledger theLedger;
     Display display;
@@ -40,6 +42,8 @@ public class HotelManagement
     {
         allRooms = new ArrayList();
         allUsers = new ArrayList();
+        allCustomers = new ArrayList();
+        allEmployees = new ArrayList();
         allReserves = new ArrayList();
         theLedger = Ledger.getLedger();
         display = new Display(this);
@@ -75,6 +79,19 @@ public class HotelManagement
         //  Initialize Users
         //===============================
         hotelDB.initUsers(allUsers, userFactory);
+        
+        for(User user : allUsers)
+        {
+            if(user.getClass() == Customer.class)
+            {
+                allCustomers.add(user);
+            }
+            
+            if(user.getClass() == Employee.class)
+            {
+                allEmployees.add(user);
+            }
+        }
 
         
         //===============================
@@ -156,20 +173,22 @@ public class HotelManagement
         display.Show("Enter last name:", true);
         String lName = display.getStrInput();
         
-        int ID = (allUsers.isEmpty()) ? 10000 : allUsers.get(allUsers.size() - 1).getID() + 2;
-        
         User tempUser = null;
         
         switch(userType)
         {
             case 1:
             {
+                int ID = (allUsers.isEmpty()) ? 10001 : allUsers.get(allCustomers.size() - 1).getID() + 2;
                 tempUser = registerCustomer(username, password, fName, lName, ID);
+                allCustomers.add(tempUser);
             }
             break;
             case 2:
             {
+                int ID = (allUsers.isEmpty()) ? 11000 : allUsers.get(allEmployees.size() - 1).getID() + 2;
                 tempUser = registerEmployee(username, password, fName, lName, ID);
+                allEmployees.add(tempUser);
             }
             break;
         }
@@ -591,7 +610,7 @@ public class HotelManagement
                             display.Show("Most Occupied Room: " + theArchive.getReport().getMostOccupiedRoom().toString(), true);
                             display.Show("Most Occupied Room Amount: " + theArchive.getReport().getMostOccupiedRoomAmount(), true);
                             display.Show("Total Checkins: " + theArchive.getReport().getTotalCheckins(), true);
-                            display.Show("Total Income: " + theArchive.getReport().getTotalIncome(), true);
+                            display.Show("Total Income: " + theArchive.getReport().getTotalIncome(), false);
                         }
                             break;
                     }
