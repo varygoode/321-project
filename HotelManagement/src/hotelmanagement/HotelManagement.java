@@ -763,6 +763,26 @@ public class HotelManagement
                             
                             reservesMatchingDate = theLedger.search(allReserves, dateParams);
                             
+                            if(!reservesMatchingDate.isEmpty())
+                            {
+                                ArrayList<Reservation> reservesToRemove = new ArrayList<Reservation>();
+                                for(Reservation res : reservesMatchingDate)
+                                {
+                                    if(res.getRoom().getNumber() != roomToReserve.getNumber())
+                                    {
+                                        reservesToRemove.add(res);
+                                    }
+                                }
+                                
+                                if(!reservesToRemove.isEmpty())
+                                {
+                                    for(Reservation res : reservesToRemove)
+                                    {
+                                        reservesMatchingDate.remove(res);
+                                    }
+                                }
+                            }
+                            
                             if(reservesMatchingDate.isEmpty())
                             {
                                 display.Show("Your date is available for the chosen room.", false);
