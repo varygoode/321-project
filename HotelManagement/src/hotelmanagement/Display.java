@@ -85,10 +85,10 @@ public class Display
     private void startMenu()
     {            
         menuOption = 0;
-        login.removeAll();
-        register.removeAll();
-        search.removeAll();
-        quit.removeAll();
+        removeAllActionListeners(login);
+        removeAllActionListeners(register);
+        removeAllActionListeners(search);
+        removeAllActionListeners(quit);
         menuPanel.removeAll();
         menuPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         menuPanel.add(new JLabel("**MAIN MENU**"));
@@ -102,7 +102,8 @@ public class Display
             {
                public void actionPerformed(ActionEvent event)
                {
-                  menuOption = 1;
+                   System.out.println("Count of listeners: " + login.getActionListeners().length);
+                   menuOption = 1;
                    try {
                        hms.run();
                    } catch (ParseException ex) {
@@ -174,10 +175,10 @@ public class Display
     private void custMenu()
     {
         menuOption = 0;
-        searchOrRes.removeAll();
-        cancelRes.removeAll();
-        returnToMain.removeAll();
-        cancel.removeAll();
+        removeAllActionListeners(searchOrRes);
+        removeAllActionListeners(cancelRes);
+        removeAllActionListeners(returnToMain);
+        removeAllActionListeners(cancel);
         menuPanel.removeAll();
         menuPanel.add(new JLabel("**CUSTOMER MENU**"));
         menuPanel.add(new JLabel("================="));
@@ -262,13 +263,13 @@ public class Display
     private void empMenu()
     {
         menuOption = 0;
-        search.removeAll();
-        alterRoom.removeAll();
-        checkIn.removeAll();
-        checkOut.removeAll();
-        report.removeAll();
-        returnToMain.removeAll();
-        cancel.removeAll();
+        removeAllActionListeners(search);
+        removeAllActionListeners(alterRoom);
+        removeAllActionListeners(checkIn);
+        removeAllActionListeners(checkOut);
+        removeAllActionListeners(report);
+        removeAllActionListeners(returnToMain);
+        removeAllActionListeners(cancel);
         menuPanel.removeAll();
         menuPanel.add(new JLabel("**EMPLOYEE MENU**"));
         menuPanel.add(new JLabel("================="));
@@ -407,10 +408,10 @@ public class Display
     private void searchMenu()
     {
         menuOption = 0;
-        searchRooms.removeAll();
-        makeRes.removeAll();
-        returnToMain.removeAll();
-        cancel.removeAll();
+        removeAllActionListeners(searchRooms);
+        removeAllActionListeners(makeRes);
+        removeAllActionListeners(returnToMain);
+        removeAllActionListeners(cancel);
         menuPanel.removeAll();
         menuPanel.add(new JLabel("**SEARCH**"));
         menuPanel.add(new JLabel("=========="));
@@ -564,10 +565,10 @@ public class Display
     private void checkOutMenu()
     {
         menuOption = 0;
-        findRes.removeAll();
-        completeCheckout.removeAll();
-        returnToMain.removeAll();
-        cancel.removeAll();
+        removeAllActionListeners(findRes);
+        removeAllActionListeners(completeCheckout);
+        removeAllActionListeners(returnToMain);
+        removeAllActionListeners(cancel);
         menuPanel.removeAll();
         menuPanel.add(new JLabel("**Check-Out Menu**"));
         menuPanel.add(new JLabel("=================="));
@@ -652,9 +653,9 @@ public class Display
     private void cancelMenu()
     {
         menuOption = 0;
-        returnToMain.removeAll();
-        search.removeAll();
-        quit.removeAll();
+        removeAllActionListeners(returnToMain);
+        removeAllActionListeners(search);
+        removeAllActionListeners(quit);
         menuPanel.removeAll();
         menuPanel.add(new JLabel("**Cancel**"));
         menuPanel.add(new JLabel("=========="));
@@ -731,7 +732,16 @@ public class Display
         frame.repaint();
         try 
         {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.MILLISECONDS.sleep(30);
+            try {
+                hms.run();
+            } catch (ParseException ex) {
+                Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (DateOutOfRangeException ex) {
+                Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } 
         catch (InterruptedException ex) 
         {
@@ -855,5 +865,13 @@ public class Display
         dialog.setLocation(frame.getWidth(), 0);
         
         dialog.setVisible(true);
+    }
+    
+    private void removeAllActionListeners(JButton button)
+    {
+        for(ActionListener act : button.getActionListeners()) 
+        {
+            button.removeActionListener(act);
+        }
     }
 }//end display
