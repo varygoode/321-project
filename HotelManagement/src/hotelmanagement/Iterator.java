@@ -3,7 +3,7 @@ package hotelmanagement;
 import java.util.NoSuchElementException;
 /**
  *
- * @author hzhang
+ * @author James
  */
 public interface Iterator {
     public Object next()throws NoSuchElementException;

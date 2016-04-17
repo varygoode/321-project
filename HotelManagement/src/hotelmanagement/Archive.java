@@ -6,11 +6,13 @@
 package hotelmanagement;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 
 /**
  * Archive is a singleton.
  * Has an inner report class that holds information for employee reports
+ * Uses an iterator
  * Can be searched with function. 
  * @author James
  */
@@ -35,6 +37,37 @@ public class Archive {
             instance = new Archive();
         }
         return instance;
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
+    /////////////////////////////    Setting up Iterator    ////////////////////////////////////
+    
+    private static class StepThrough implements Iterator{ 
+
+        private ArrayList<Reservation> thoseArchives;
+        private int i = 0;
+        
+        public StepThrough(Archive thoseArchives) {
+            this.thoseArchives = thoseArchives.TheArchives;
+        }
+        
+        @Override
+        public Object next(){
+            return thoseArchives.get(i++);
+        }
+
+        @Override
+        public boolean hasNext() {
+            return (i < thoseArchives.size());            
+        }
+        
+        
+    }	
+    
+    public Iterator stepThrough() {
+            return new StepThrough(this);
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////
