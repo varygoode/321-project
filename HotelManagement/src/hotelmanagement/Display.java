@@ -498,9 +498,57 @@ public class Display
         findRes.removeAll();
         returnToMain.removeAll();
         cancel.removeAll();
-//        findRes.addActionListener(this);
-//        returnToMain.addActionListener(this);
-//        cancel.addActionListener(this);
+        findRes.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 1;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        returnToMain.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 2;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        cancel.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 3;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
         frame.revalidate();
         frame.repaint();
     }
@@ -519,10 +567,74 @@ public class Display
         completeCheckout.removeAll();
         returnToMain.removeAll();
         cancel.removeAll();
-//        findRes.addActionListener(this);
-//        completeCheckout.addActionListener(this);
-//        returnToMain.addActionListener(this);
-//        cancel.addActionListener(this);
+        findRes.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 1;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        completeCheckout.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 2;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        returnToMain.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 3;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        cancel.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 4;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
         frame.revalidate();
         frame.repaint();
     }
@@ -539,9 +651,57 @@ public class Display
         returnToMain.removeAll();
         search.removeAll();
         quit.removeAll();
-//        returnToMain.addActionListener(this);
-//        search.addActionListener(this);
-//        quit.addActionListener(this);
+        returnToMain.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 1;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        search.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 2;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
+        quit.addActionListener(new 
+            ActionListener()
+            {
+               public void actionPerformed(ActionEvent event)
+               {
+                  menuOption = 3;
+                   try {
+                       hms.run();
+                   } catch (ParseException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (DateOutOfRangeException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            });
         frame.revalidate();
         frame.repaint();
     }
@@ -606,13 +766,7 @@ public class Display
     
     public void setState(StateEnum state)
     {
-//        if(!(this.state == StateEnum.CUSTOMER && state == StateEnum.MAIN) &&
-//           !(this.state == StateEnum.EMPLOYEE && state == StateEnum.MAIN))
-//        {
-            this.state = state;
-//        }
-        
-        //submenuPanel.removeAll();
+        this.state = state;
     }
     
     public StateEnum getState()
@@ -666,5 +820,25 @@ public class Display
             JOptionPane.showMessageDialog(null, prompt);
             prompt = "";
         }
+    }
+    
+    public void ShowResults(String str)
+    {
+        JDialog dialog = new JDialog(frame, false);
+        
+        JScrollPane resultsScrollPanel = new JScrollPane(new JTextArea(str)){
+                @Override
+                public Dimension getPreferredSize() {
+                    return new Dimension(480, 320);
+                }
+        };
+        
+        dialog.add(resultsScrollPanel);
+        dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        dialog.setSize(frame.getWidth(), frame.getHeight());
+        dialog.setLocationRelativeTo(frame);
+        dialog.setLocation(frame.getWidth(), 0);
+        
+        dialog.setVisible(true);
     }
 }//end display

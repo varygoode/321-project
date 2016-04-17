@@ -10,6 +10,8 @@ import java.text.*;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import newExceptions.DateOutOfRangeException;
 
 
@@ -70,9 +72,9 @@ public class HotelManagement
         
         hotelDB.startConnection();
         
-//        //===============================
-//        //  Initialize Users
-//        //===============================
+        //===============================
+        //  Initialize Users
+        //===============================
 //        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user1","pass1","Andrew","Jackson",10001));
 //        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user2","pass2","Martha","Washington",10002));
 //        allUsers.add(userFactory.createUser(hotelmanagement.Customer.class,"user3","pass3","Harold","Truman",10003));
@@ -86,10 +88,10 @@ public class HotelManagement
 //        
           hotelDB.initUsers(allUsers, userFactory);
 
-//        
-//        //===============================
-//        //  Initialize Rooms
-//        //===============================
+        
+        //===============================
+        //  Initialize Rooms
+        //===============================
 //        for (int i = 1; i<=3; i++)
 //        {
 //            for (int j = 0; j<=10; j++)
@@ -112,21 +114,21 @@ public class HotelManagement
 //                }
 //            }
 //        }
-//
+
             hotelDB.initRooms(allRooms, roomFactory);
 
-//        //===============================
-//        //  Initialize Reservations
-//        //===============================
-//        //  HARDCODED DATES MUST BE SET TO THE CURRENT DATE TO AVOID TRANSACTION EXCEPTION
+        //===============================
+        //  Initialize Reservations
+        //===============================
+        //  HARDCODED DATES MUST BE SET TO THE CURRENT DATE TO AVOID TRANSACTION EXCEPTION
 //        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(5), true, allUsers.get(0), 1000000));
 //        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(10), true, allUsers.get(1), 1000001));
 //        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(15), true, allUsers.get(2), 1000002));
 //        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(20), true, allUsers.get(3), 1000003));
 //        allReserves.add(reservationFactory.createReservation(new Date(116,2,27), new Date(116,2,30), allRooms.get(25), true, allUsers.get(4), 1000004));
 
-        hotelDB.initReservations(allReserves, allRooms, allUsers, reservationFactory);
-          
+        hotelDB.initReservations(allReserves, allRooms, allUsers, reservationFactory, theLedger);
+        hotelDB.initArchives(theArchive.TheArchives, roomResults, allUsers, reservationFactory, theLedger);
     }
     
     public void run() throws ParseException, DateOutOfRangeException, SQLException
@@ -163,7 +165,8 @@ public class HotelManagement
                     {   
                         hotelDB.storeUsers(allUsers);
                         hotelDB.storeRooms(allRooms);
-                        //hotelDB.storeReservations(allReserves, allRooms, allUsers);
+                        hotelDB.storeReservations(allReserves, allRooms, allUsers);
+                        hotelDB.storeArchives(theArchive.TheArchives, roomResults, allUsers);
                         hotelDB.closeConnection();
                         display.setState(StateEnum.QUIT);
                         System.exit(0);
@@ -195,7 +198,7 @@ public class HotelManagement
         display.Show("Enter last name:", true);
         String lName = display.getStrInput();
         
-        int ID = (allUsers.isEmpty()) ? 10000 : allUsers.get(allUsers.size() - 1).getID() + 1;
+        int ID = (allUsers.isEmpty()) ? 10000 : allUsers.get(allUsers.size() - 1).getID() + 2;
         
         User tempUser = null;
         
@@ -250,7 +253,7 @@ public class HotelManagement
     private void startMenu()
     {            
         int menuOption = display.getMenuInput();
-
+        
         switch(menuOption)
         {
             case 1:
@@ -302,7 +305,7 @@ public class HotelManagement
                 else
                 {
                     display.Show("You are already logged in, " + currentUser.getFirstName() + "!", false);
-                    
+
                     if(currentUser.getClass() == Customer.class)
                     {
                         display.setState(StateEnum.CUSTOMER);
@@ -334,7 +337,7 @@ public class HotelManagement
                 else
                 {
                     display.Show("You are already registered, " + currentUser.getFirstName() + "!", false);
-                    
+
                     if(currentUser.getClass() == Customer.class)
                     {
                         display.setState(StateEnum.CUSTOMER);
@@ -357,7 +360,7 @@ public class HotelManagement
             }
                 break;    
 
-        }            
+        }         
     }
     
     private void custMenu()
@@ -377,15 +380,19 @@ public class HotelManagement
                 
                 if(resResults != null && !resResults.isEmpty())
                 {
+                    String resultsStr = "";
+                    
                     for(Reservation res : resResults)
                     {
-                        display.Show("=========================", true);
-                        display.Show("Result #" + resResults.indexOf(res) + ":", true);
-                        display.Show(res.toString(), true);
-                        display.Show("=========================", false);
+                        resultsStr += "=========================\n";
+                        resultsStr += "Result #" + resResults.indexOf(res) + ":\n";
+                        resultsStr += res.toString();
+                        resultsStr += "\n=========================\n";
                     }
                     
-                    display.Show("Based on your the above list, enter the result # for the reservation you wish to cancel.", true);
+                    display.ShowResults(resultsStr);
+                    
+                    display.Show("Based on your results, enter the result # for the reservation you wish to cancel.", true);
                     int resultIndex = display.getIntInput();
                     
                     String response = "";
@@ -429,7 +436,7 @@ public class HotelManagement
                 break;
             case 3:
             {    
-                                
+                display.setState(StateEnum.CUSTOMER);
             }   
                 break;
             case 4:
@@ -453,16 +460,19 @@ public class HotelManagement
                 break;  
             case 2:
             {
-                display.Show("Which room would you like to alter?", true);
-                display.Show("Please enter the room number to alter.", true);
+                String resultsStr = "";
+                resultsStr += "Which room would you like to alter?\n";
+                resultsStr += "Please enter the room number to alter.\n";
                 //System.out.println(allRooms.toString(allRooms));
                  for(Room aroom : allRooms)
                 {
-                    display.Show("=========================", true);
-                    display.Show("Result #" + allRooms.indexOf(aroom) + ":", true);
-                    display.Show(aroom.toString(), true);
-                    display.Show("=========================", false);
+                    resultsStr += "=========================\n";
+                    resultsStr += "Result #" + allRooms.indexOf(aroom) + ":\n";
+                    resultsStr += aroom.toString();
+                    resultsStr += "\n=========================\n";
                 }
+                 
+                display.ShowResults(resultsStr);
                 
                 if(currentUser.getClass() != hotelmanagement.Employee.class)
                 {
@@ -633,7 +643,7 @@ public class HotelManagement
                 break;
             case 6:
             {
-                display.setState(StateEnum.MAIN);
+                display.setState(StateEnum.EMPLOYEE);
             }
                 break;
             case 7:
@@ -665,7 +675,7 @@ public class HotelManagement
                         params.add(strInput);
                     }
                 }
-                display.Show("Search Results:", false);
+                String resultsStr = "Search Results:\n";
                 
                 roomResults = theLedger.search(allRooms, params);
                 
@@ -677,11 +687,13 @@ public class HotelManagement
                 {
                     for(Room room : roomResults)
                     {
-                        display.Show("=========================", true);
-                        display.Show("Result #" + roomResults.indexOf(room) + ":", true);
-                        display.Show(room.toString(), true);
-                        display.Show("=========================", false);
+                        resultsStr += "=========================\n";
+                        resultsStr += "Result #" + roomResults.indexOf(room) + ":\n";
+                        resultsStr += room.toString();
+                        resultsStr += "\n=========================\n";
                     }
+                    
+                    display.ShowResults(resultsStr);
                 }
             }
                 break;
@@ -797,13 +809,17 @@ public class HotelManagement
         {
             case 1:
             {
+                String resultsStr = "";
+                
                 for(Reservation res : allReserves)
                 {
-                    display.Show("=========================", true);
-                    display.Show("Result #" + allReserves.indexOf(res) + ":", true);
-                    display.Show(res.toString(), true);
-                    display.Show("=========================", false);
+                    resultsStr += "=========================\n";
+                    resultsStr += "Result #" + allReserves.indexOf(res) + ":\n";
+                    resultsStr += res.toString();
+                    resultsStr += "\n=========================\n";
                 }
+                
+                display.ShowResults(resultsStr);
                 
                 if(currentUser.getClass() == hotelmanagement.User.class)
                 {
@@ -953,12 +969,13 @@ public class HotelManagement
                 }
                 else
                 {
+                    String resultsStr = "";
                     for(Reservation res : resResults)
                     {
-                        display.Show("=========================", true);
-                        display.Show("Result #" + resResults.indexOf(res) + ":", true);
-                        display.Show(res.toString(), true);
-                        display.Show("=========================", false);
+                        resultsStr += "=========================\n";
+                        resultsStr += "Result #" + resResults.indexOf(res) + ":\n";
+                        resultsStr += res.toString();
+                        resultsStr += "\n=========================\n";
                     }
                 }
             }
@@ -1055,7 +1072,20 @@ public class HotelManagement
         switch(menuOption)
         {
             case 1:
-                display.setState(StateEnum.MAIN);
+            {
+                if(currentUser.getClass() == Customer.class)
+                {
+                    display.setState(StateEnum.CUSTOMER);
+                }
+                else if (currentUser.getClass() == Employee.class)
+                {
+                    display.setState(StateEnum.EMPLOYEE);
+                }
+                else
+                {
+                    display.setState(StateEnum.MAIN);
+                }
+            }
                 break;
             case 2:
                 display.setState(StateEnum.SEARCH);

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  * Archive is a singleton.
- * Has an inner report class that holds information for employees
+ * Has an inner report class that holds information for employee reports
  * Can be searched with function. 
  * @author James
  */
