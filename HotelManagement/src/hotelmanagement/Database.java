@@ -275,26 +275,18 @@ public class Database {
     public void initArchives(ArrayList<Reservation> archiveList, ArrayList<Room> roomList, ArrayList<User> userList, ReservationFactory resfactory, Ledger ledger) throws SQLException 
     {
         Statement stmt = null;
-        String query = "select * from RESERVATIONS";
+        String query = "select * from ARCHIVES";
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                int reserveNum = rs.getInt("RESERVATIONNUMBER");
-                java.util.Date startDate = new java.util.Date(rs.getDate("STARTDATE").getTime());
-                java.util.Date endDate = new java.util.Date(rs.getDate("ENDDATE").getTime());
-                boolean isPaid = true;
-                double curPrice = 0.00;
-                boolean checkedIn = true;
-                int roomNum = rs.getInt("ROOMNUMBER");
-                double totalPrice = rs.getDouble("TOTALPRICE");
+                int reserveNum = rs.getInt("RESERVATION_NUMBER");
+                java.util.Date startDate = new java.util.Date(rs.getDate("START_DATE").getTime());
+                java.util.Date endDate = new java.util.Date(rs.getDate("END_DATE").getTime());
+                boolean checkedIn = rs.getBoolean("CHECKEDIN");
+                int roomNum = rs.getInt("ROOM_NUMBER");
+                double totalPrice = rs.getDouble("TOTAL_PRICE");
                 int userID = rs.getInt("USERID");
-                
-                System.out.println(reserveNum + 
-                                   "\t" + startDate +
-                                   "\t" + endDate + 
-                                   "\t" + isPaid +
-                                   "\t" + curPrice + "\t" + checkedIn + "\t" + totalPrice);
 
                 ArrayList<Room> roomResults = ledger.search(roomList, new ArrayList<String>(Arrays.asList(Integer.toString(roomNum))));
                 ArrayList<User> userResults = ledger.search(userList, new ArrayList<String>(Arrays.asList(Integer.toString(userID))));
@@ -324,7 +316,7 @@ public class Database {
 
             for(int i = 0; i < archiveList.size(); i++)
             {
-                String sql = "insert into RESERVATIONS(RESERVATION_NUMBER, START_DATE, END_DATE, ROOM_NUMBER, TOTAL_PRICE, USERID) VALUES (?,?,?,?,?,?)";
+                String sql = "insert into ARCHIVES(RESERVATION_NUMBER, START_DATE, END_DATE, ROOM_NUMBER, TOTAL_PRICE, USERID, CHECKEDIN) VALUES (?,?,?,?,?,?,?)";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setInt(1, archiveList.get(i).getReserveID());
                 java.sql.Date sqlStartDate = new java.sql.Date(archiveList.get(i).getStartDate().getTime());
@@ -334,6 +326,7 @@ public class Database {
                 ps.setInt(4, archiveList.get(i).getRoom().getNumber());
                 ps.setDouble(5, archiveList.get(i).getTotalPrice());
                 ps.setInt(6, archiveList.get(i).getReserver().getID());
+                ps.setBoolean(7, archiveList.get(i).IsCheckedIn());
                 
                 ps.executeUpdate();
             }
