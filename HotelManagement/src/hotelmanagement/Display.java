@@ -75,7 +75,19 @@ public class Display
         
         frame.setSize(400, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
+//        frame.setLayout(new BorderLayout());
+//        try {
+//            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (UnsupportedLookAndFeelException ex) {
+//            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        frame.getContentPane().setBackground(Color.red);
         frame.add(menuPanel, BorderLayout.NORTH);
         
         //frame.pack();
