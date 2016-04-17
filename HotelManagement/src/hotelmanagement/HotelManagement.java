@@ -198,7 +198,7 @@ public class HotelManagement
         display.Show("Enter last name:", true);
         String lName = display.getStrInput();
         
-        int ID = (allUsers.isEmpty()) ? 10000 : allUsers.get(allUsers.size() - 1).getID() + 1;
+        int ID = (allUsers.isEmpty()) ? 10000 : allUsers.get(allUsers.size() - 1).getID() + 2;
         
         User tempUser = null;
         
@@ -633,7 +633,7 @@ public class HotelManagement
                             display.Show("Most Occupied Room: " + theArchive.getReport().getMostOccupiedRoom().toString(), true);
                             display.Show("Most Occupied Room Amount: " + theArchive.getReport().getMostOccupiedRoomAmount(), true);
                             display.Show("Total Checkins: " + theArchive.getReport().getTotalCheckins(), true);
-                            display.Show("Total Income: " + theArchive.getReport().getTotalIncome(), true);
+                            display.Show("Total Income: " + theArchive.getReport().getTotalIncome(), false);
                         }
                             break;
                     }
@@ -981,6 +981,8 @@ public class HotelManagement
                         resultsStr += res.toString();
                         resultsStr += "\n=========================\n";
                     }
+                    
+                    display.ShowResults(resultsStr);
                 }
             }
                 break;
