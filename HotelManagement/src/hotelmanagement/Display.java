@@ -75,7 +75,7 @@ public class Display
         
         frame.setSize(400, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setLayout(new BorderLayout());
+        frame.setLayout(new BorderLayout());
 //        try {
 //            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 //        } catch (ClassNotFoundException ex) {
